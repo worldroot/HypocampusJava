@@ -40,6 +40,22 @@ public class Task {
         this.sprint_id = sprint_id;
     }
 
+    public Task(int backlog_id, String title, String description_fonctionnel, String description_technique, int story_points, Date created_date, Date finished_date, String state, int priority, int archive, int sprint_id) {
+        this.backlog_id = backlog_id;
+        this.title = title;
+        this.description_fonctionnel = description_fonctionnel;
+        this.description_technique = description_technique;
+        this.story_points = story_points;
+        this.created_date = created_date;
+        this.finished_date = finished_date;
+        this.state = state;
+        this.priority = priority;
+        this.archive = archive;
+        this.sprint_id = sprint_id;
+    }
+    
+    
+
     public int getId() {
         return id;
     }

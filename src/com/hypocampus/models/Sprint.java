@@ -28,6 +28,16 @@ public class Sprint {
         this.etat = etat;
     }
 
+    public Sprint(int project_id, String name, Date start_date_sprint, Date end_date_sprint, int etat) {
+        this.project_id = project_id;
+        this.name = name;
+        this.start_date_sprint = start_date_sprint;
+        this.end_date_sprint = end_date_sprint;
+        this.etat = etat;
+    }
+    
+    
+
     public int getId() {
         return id;
     }

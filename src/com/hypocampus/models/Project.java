@@ -20,6 +20,27 @@ public class Project {
     private String description;
     private int history;
 
+    public Project(int id, String name, String owner, Date start_date, Date end_date, String description, int history) {
+        this.id = id;
+        this.name = name;
+        this.owner = owner;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.description = description;
+        this.history = history;
+    }
+
+    public Project(String name, String owner, Date start_date, Date end_date, String description, int history) {
+        this.name = name;
+        this.owner = owner;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.description = description;
+        this.history = history;
+    }
+    
+    
+
     public String getOwner() {
         return owner;
     }
@@ -60,12 +81,6 @@ public class Project {
         this.history = history;
     }
     
-    
-
-    @Override
-    public String toString() {
-        return "Project{" + "id=" + id + ", name=" + name + '}';
-    }
 
     public int getId() {
         return id;
@@ -82,11 +97,10 @@ public class Project {
     public void setName(String name) {
         this.name = name;
     }
-
-    public Project(int id, String name) {
-        this.id = id;
-        this.name = name;
-    }
     
+        @Override
+    public String toString() {
+        return "Project{" + "id=" + id + ", name=" + name + '}';
+    }
     
 }
