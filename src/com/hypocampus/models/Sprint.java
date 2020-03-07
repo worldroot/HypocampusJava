@@ -1,0 +1,85 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package com.hypocampus.models;
+
+import java.sql.Date;
+
+/**
+ *
+ * @author mehdibehira
+ */
+public class Sprint {
+    private int id;
+    private int project_id;
+    private String name;
+    private Date start_date_sprint;
+    private Date end_date_sprint;
+    private int etat;
+
+    public Sprint(int id, int project_id, String name, Date start_date_sprint, Date end_date_sprint, int etat) {
+        this.id = id;
+        this.project_id = project_id;
+        this.name = name;
+        this.start_date_sprint = start_date_sprint;
+        this.end_date_sprint = end_date_sprint;
+        this.etat = etat;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getProject_id() {
+        return project_id;
+    }
+
+    public void setProject_id(int project_id) {
+        this.project_id = project_id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getStart_date_sprint() {
+        return start_date_sprint;
+    }
+
+    public void setStart_date_sprint(Date start_date_sprint) {
+        this.start_date_sprint = start_date_sprint;
+    }
+
+    public Date getEnd_date_sprint() {
+        return end_date_sprint;
+    }
+
+    public void setEnd_date_sprint(Date end_date_sprint) {
+        this.end_date_sprint = end_date_sprint;
+    }
+
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
+
+    @Override
+    public String toString() {
+        return "Sprint{" + "id=" + id + ", project_id=" + project_id + ", name=" + name + ", start_date_sprint=" + start_date_sprint + ", end_date_sprint=" + end_date_sprint + ", etat=" + etat + '}';
+    }
+    
+    
+}
