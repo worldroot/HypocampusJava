@@ -7,3 +7,7 @@ nbactions.xml
 nb-configuration.xml
 nbproject/private/
 build/
+core
+nbproject/*
+!nbproject/project.properties
+!nbproject/project.xml
