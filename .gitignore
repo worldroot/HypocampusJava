@@ -1,7 +1,9 @@
-nbproject/private/
-build/
-nbbuild/
+
+build/*
 dist/
+nbbuild/
 nbdist/
 nbactions.xml
 nb-configuration.xml
+nbproject/private/
+build/

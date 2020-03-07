@@ -11,11 +11,8 @@ package com.esprit.tests;
  */
 public class TestHypocampus {
     
-    
     public static void main(String[] args) {
         System.out.println("test");
                
     }
-
-    
 }
