@@ -16,7 +16,7 @@ public class Backlog {
     private int points_to_do;
     private int project_id;
 
-    public Backlog(int id, int points_done, int points_in_progress, int points_to_do, int project_id) {
+    public Backlog(int id, int points_to_do, int points_in_progress, int points_done, int project_id) {
         this.id = id;
         this.points_done = points_done;
         this.points_in_progress = points_in_progress;
@@ -24,11 +24,15 @@ public class Backlog {
         this.project_id = project_id;
     }
 
-    public Backlog(int points_done, int points_in_progress, int points_to_do, int project_id) {
+    public Backlog(int points_to_do, int points_in_progress, int points_done, int project_id) {
         this.points_done = points_done;
         this.points_in_progress = points_in_progress;
         this.points_to_do = points_to_do;
         this.project_id = project_id;
+    }
+
+    public Backlog(int aInt, int aInt0, String string) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
 
