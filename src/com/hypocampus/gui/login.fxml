@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane id="AnchorPane" prefHeight="1080.0" prefWidth="1920.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.hypocampus.controller.LoginController">
+   <children>
+      <TextField fx:id="username" layoutX="405.0" layoutY="339.0" />
+      <Label layoutX="295.0" layoutY="344.0" text="Label" />
+      <Button fx:id="submit" layoutX="659.0" layoutY="353.0" mnemonicParsing="false" onAction="#login" text="Button" />
+   </children>
+</AnchorPane>
