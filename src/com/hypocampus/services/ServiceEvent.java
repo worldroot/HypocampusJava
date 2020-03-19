@@ -50,7 +50,8 @@ public class ServiceEvent implements IService<Event>{
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-        }    }
+        }    
+    }
 
     @Override
     public void modifier(Event t) {

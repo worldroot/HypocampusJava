@@ -6,7 +6,9 @@
 package com.esprit.tests;
 
 import com.hypocampus.models.Event;
+import com.hypocampus.models.Participant;
 import com.hypocampus.services.ServiceEvent;
+import com.hypocampus.services.ServiceParticipant;
 import java.sql.Date;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -26,14 +28,25 @@ public class ghassentest {
         Date d = new Date(1998, 11, 31);
         Date de = new Date(2022, 11, 20);
 
-        Event e = new Event(38,"X", 1,"Workshops",d,de,"",de);
-        ServiceEvent ev = new ServiceEvent();
-        
+        //************Event********************
+        //Event e = new Event(38,"X", 1,"Workshops",d,de,"",de);
+        //ServiceEvent ev = new ServiceEvent();
         //ev.ajouter(e);
         //ev.afficher().forEach(System.out::println);
         //ev.supprimer(e);
         //ev.modifier(e);
-        ev.afficher().forEach(System.out::println);
+        //ev.afficher().forEach(System.out::println);
+        
+        //************Participant**************   
+        Participant p = new Participant ("G","Zeb","f@f.com","dfz",0);
+        ServiceParticipant sp = new ServiceParticipant();
+        //sp.ajouter(p);
+        //sp.supprimer(p);
+        //sp.modifier(p);
+        //sp.afficher().forEach(System.out::println);
+        
+        //************Certif*******************   
+        
         
         System.out.println("***************************");
         

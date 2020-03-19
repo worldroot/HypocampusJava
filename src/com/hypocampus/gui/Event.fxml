@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -24,7 +25,7 @@
             <Text layoutX="35.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type event" wrappingWidth="90.6708984375" />
             <Text layoutX="35.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date event" wrappingWidth="90.6708984375" />
             <Text layoutX="35.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date event" wrappingWidth="90.6708984375" />
-            <Text layoutX="137.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Ajout Event" textAlignment="CENTER" wrappingWidth="203.6708984375">
+            <Text fill="#1a154a" layoutX="137.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Ajout Event" textAlignment="CENTER" wrappingWidth="203.6708984375">
                <font>
                   <Font name="American Captain" size="35.0" />
                </font>
