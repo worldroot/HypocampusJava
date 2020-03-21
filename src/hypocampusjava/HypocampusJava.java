@@ -24,7 +24,7 @@ public class HypocampusJava extends Application {
     
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Parent root = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/Event.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/backend.fxml"));
         Scene scene = new Scene(root);
         primaryStage.setScene(scene);
 
