@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.BackendController">
-    
+<AnchorPane id="AnchorPane" fx:id="BackendPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.BackendController">
+   <children>
+      <ImageView fitHeight="768.0" fitWidth="1366.0" pickOnBounds="true">
+         <image>
+            <Image url="@../uploads/back.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="BacklogAction" layoutX="55.0" layoutY="155.0" mnemonicParsing="false" onAction="#btnBacklogAction" opacity="0.0" prefHeight="50.0" prefWidth="140.0" text="Button" />
+      <AnchorPane fx:id="ContentPane" layoutX="231.0" layoutY="73.0" prefHeight="695.0" prefWidth="1135.0" />
+   </children>
 </AnchorPane>
