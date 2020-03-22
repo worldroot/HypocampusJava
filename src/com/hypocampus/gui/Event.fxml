@@ -9,31 +9,24 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EventController">
+<AnchorPane id="AnchorPane" fx:id="SmallPane" prefHeight="695.0" prefWidth="1135.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EventController">
    <children>
-      <ImageView fx:id="back" fitHeight="768.0" fitWidth="1366.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../../../Capture%20d’écran%20(26).png" />
-         </image></ImageView>
-      <Pane fx:id="panemain" layoutX="235.0" layoutY="74.0" prefHeight="694.0" prefWidth="1130.0">
-         <children>
-            <TextField fx:id="TitreEvent" layoutX="146.0" layoutY="116.0" />
-            <TextField fx:id="numEvent" layoutX="146.0" layoutY="161.0" />
-            <TextField fx:id="typeEvent" layoutX="146.0" layoutY="203.0" />
-            <Text layoutX="35.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre event" wrappingWidth="90.6708984375" />
-            <Text layoutX="35.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacite" wrappingWidth="90.6708984375" />
-            <Text layoutX="35.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type event" wrappingWidth="90.6708984375" />
-            <Text layoutX="35.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date event" wrappingWidth="90.6708984375" />
-            <Text layoutX="35.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date event" wrappingWidth="90.6708984375" />
-            <Text fill="#1a154a" layoutX="137.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Ajout Event" textAlignment="CENTER" wrappingWidth="203.6708984375">
-               <font>
-                  <Font name="American Captain" size="35.0" />
-               </font>
-            </Text>
-            <Button fx:id="btnvalider" layoutX="205.0" layoutY="352.0" mnemonicParsing="false" onAction="#AddAction" text="Valider" />
-            <DatePicker fx:id="dateEvent" layoutX="146.0" layoutY="248.0" prefHeight="31.0" prefWidth="186.0" />
-            <DatePicker fx:id="endDateEvent" layoutX="146.0" layoutY="295.0" prefHeight="31.0" prefWidth="186.0" />
-         </children>
-      </Pane>
+      <TextField fx:id="TitreEvent" layoutX="516.0" layoutY="214.0" />
+      <TextField fx:id="numEvent" layoutX="516.0" layoutY="259.0" />
+      <TextField fx:id="typeEvent" layoutX="516.0" layoutY="301.0" />
+      <Text layoutX="405.0" layoutY="235.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre event" wrappingWidth="90.6708984375" />
+      <Text layoutX="405.0" layoutY="280.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacite" wrappingWidth="90.6708984375" />
+      <Text layoutX="405.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type event" wrappingWidth="90.6708984375" />
+      <Text layoutX="405.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date event" wrappingWidth="90.6708984375" />
+      <Text layoutX="405.0" layoutY="414.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date event" wrappingWidth="90.6708984375" />
+      <Text fill="#1a154a" layoutX="487.0" layoutY="178.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Ajout Event" textAlignment="CENTER" wrappingWidth="242.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold" size="35.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnvalider" layoutX="516.0" layoutY="450.0" mnemonicParsing="false" onAction="#AddAction" prefHeight="31.0" prefWidth="82.0" text="Valider" textOverrun="WORD_ELLIPSIS" />
+      <DatePicker fx:id="dateEvent" layoutX="516.0" layoutY="346.0" prefHeight="31.0" prefWidth="186.0" />
+      <DatePicker fx:id="endDateEvent" layoutX="516.0" layoutY="393.0" prefHeight="31.0" prefWidth="186.0" />
+      <Button fx:id="RetourAction" layoutX="612.0" layoutY="450.0" mnemonicParsing="false" onAction="#btnRetourAction" prefHeight="31.0" prefWidth="91.0" text="Retour" textOverrun="WORD_ELLIPSIS" />
    </children>
 </AnchorPane>

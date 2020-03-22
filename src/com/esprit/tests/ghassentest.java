@@ -46,8 +46,7 @@ public class ghassentest {
         //sp.afficher().forEach(System.out::println);
         
         //************Certif*******************   
-        
-        
+      
         System.out.println("***************************");
         
 

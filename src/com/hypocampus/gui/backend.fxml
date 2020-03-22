@@ -15,6 +15,7 @@
          </image>
       </ImageView>
       <Button fx:id="BacklogAction" layoutX="55.0" layoutY="155.0" mnemonicParsing="false" onAction="#btnBacklogAction" opacity="0.0" prefHeight="50.0" prefWidth="140.0" text="Button" />
+      <Button fx:id="EventsAction" layoutX="15.0" layoutY="446.0" mnemonicParsing="false" onAction="#btnEventsAction" opacity="0.0" prefHeight="50.0" prefWidth="120.0" text="Button" />
       <AnchorPane fx:id="ContentPane" layoutX="231.0" layoutY="73.0" prefHeight="695.0" prefWidth="1135.0" />
    </children>
 </AnchorPane>
