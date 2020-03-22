@@ -1,14 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.canvas.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.BacklogController">
+<AnchorPane id="AnchorPane" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.BacklogController">
    <children>
-      <Label layoutX="356.0" layoutY="207.0" prefHeight="156.0" prefWidth="309.0" text="BACKLOG CONTENT" />
-      <Button fx:id="testAction" layoutX="412.0" layoutY="194.0" mnemonicParsing="false" text="BACKLOG" />
+      <Button fx:id="AjoutAction" defaultButton="true" layoutX="795.0" layoutY="58.0" mnemonicParsing="false" onMouseClicked="#AjouterBacklog" prefHeight="48.0" prefWidth="103.0" styleClass="btn" stylesheets="@../stylesheets/buttons.css" text="Ajouter">
+         <effect>
+            <Glow />
+         </effect>
+         <font>
+            <Font size="11.0" />
+         </font></Button>
+      <AnchorPane fx:id="AjoutBacklogPane" layoutX="9.0" layoutY="28.0" prefHeight="602.0" prefWidth="1040.0" visible="false">
+         <children>
+            <ChoiceBox fx:id="ListProjetAction" layoutX="334.0" layoutY="209.0" prefWidth="150.0" />
+            <Button layoutX="383.0" layoutY="314.0" mnemonicParsing="false" text="Submit" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

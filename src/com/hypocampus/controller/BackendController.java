@@ -41,7 +41,7 @@ public class BackendController implements Initializable {
 
     @FXML
     private void btnBacklogAction(ActionEvent event) throws IOException {
-                AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/backlog.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/backlog.fxml"));
         ContentPane.getChildren().setAll(pane);
     }
     
