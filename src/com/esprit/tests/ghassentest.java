@@ -25,20 +25,20 @@ public class ghassentest {
     
     public static void main(String[] args) {
         
-        Date d = new Date(1998, 11, 31);
+        Date d = new Date(1998, 23, 05);
         Date de = new Date(2022, 11, 20);
 
         //************Event********************
-        //Event e = new Event(38,"X", 1,"Workshops",d,de,"",de);
-        //ServiceEvent ev = new ServiceEvent();
+        Event e = new Event(49,"SawSaw", 1,"Cours",d,de,"",de);
+        ServiceEvent ev = new ServiceEvent();
+        
         //ev.ajouter(e);
-        //ev.afficher().forEach(System.out::println);
         //ev.supprimer(e);
-        //ev.modifier(e);
-        //ev.afficher().forEach(System.out::println);
+        ev.modifier(e);
+        ev.afficher().forEach(System.out::println);
         
         //************Participant**************   
-        Participant p = new Participant ("G","Zeb","f@f.com","dfz",0);
+        Participant p = new Participant ("G","ffrr","f@f.com","dfz",0);
         ServiceParticipant sp = new ServiceParticipant();
         //sp.ajouter(p);
         //sp.supprimer(p);

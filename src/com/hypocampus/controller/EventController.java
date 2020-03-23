@@ -41,12 +41,14 @@ public class EventController implements Initializable {
     @FXML
     private DatePicker endDateEvent;
     @FXML
-    private Button RetourAction;
-    @FXML
     private AnchorPane SmallPane;
+    @FXML
+    private Button btnRetourAction;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -67,9 +69,10 @@ public class EventController implements Initializable {
     }
 
     @FXML
-    private void btnRetourAction(ActionEvent event) throws IOException {
+    private void RetourAction(ActionEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/MenuEvent.fxml"));
         SmallPane.getChildren().setAll(pane);
+
     }
     
 }

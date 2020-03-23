@@ -28,10 +28,10 @@ public class ServiceEvent implements IService<Event>{
         try {
            
             Statement stm = cnx.createStatement();
-            String query = "INSERT INTO events_admin (idev,TitreEvent,NumeroEvent,TypeEvent,DateEvent,enddateEvent) VALUES (NULL, '"+e.getTitreEvent()+"', '"+e.getNumeroEvent()+"', '"+e.getTypeEvent()+"', '"+e.getDateEvent()+"', '"+e.getEnddateEvent()+"')";
+            String query = "INSERT INTO events_admin (idev,TitreEvent,NumeroEvent,TypeEvent,DateEvent,enddateEvent) VALUES (NULL, '"+e.getTitreEvent()+"', '"+e.getNumeroEvent()+"', '"+e.getTypeEvent()+"', '"+e.getDateEvent()+"', '"+e.getEnddateEvent()+"' )";
             stm.executeUpdate(query);
             
-            System.out.println("Event ajoutée !");
+            System.out.println("Event ajouté !");
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -41,12 +41,12 @@ public class ServiceEvent implements IService<Event>{
 
     @Override
     public void supprimer(Event t) {
- try {
+        try {
             String requete = "DELETE FROM events_admin WHERE idev=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1,t.getIdev());
             pst.executeUpdate();
-            System.out.println("Event supprimée !");
+            System.out.println("Event supprimé !");
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -71,7 +71,7 @@ public class ServiceEvent implements IService<Event>{
             pst.setInt(8, t.getIdev());
             
             pst.executeUpdate();
-            System.out.println("Event modifiée !");
+            System.out.println("Event modifié !");
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -96,6 +96,8 @@ public class ServiceEvent implements IService<Event>{
         return list;
     }    
 
+    
+    
 
 
 

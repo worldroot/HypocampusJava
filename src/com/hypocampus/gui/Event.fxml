@@ -27,6 +27,6 @@
       <Button fx:id="btnvalider" layoutX="516.0" layoutY="450.0" mnemonicParsing="false" onAction="#AddAction" prefHeight="31.0" prefWidth="82.0" text="Valider" textOverrun="WORD_ELLIPSIS" />
       <DatePicker fx:id="dateEvent" layoutX="516.0" layoutY="346.0" prefHeight="31.0" prefWidth="186.0" />
       <DatePicker fx:id="endDateEvent" layoutX="516.0" layoutY="393.0" prefHeight="31.0" prefWidth="186.0" />
-      <Button fx:id="RetourAction" layoutX="612.0" layoutY="450.0" mnemonicParsing="false" onAction="#btnRetourAction" prefHeight="31.0" prefWidth="91.0" text="Retour" textOverrun="WORD_ELLIPSIS" />
+      <Button fx:id="btnRetourAction" layoutX="612.0" layoutY="450.0" mnemonicParsing="false" onAction="#RetourAction" prefHeight="31.0" prefWidth="91.0" text="Retour" textOverrun="WORD_ELLIPSIS" />
    </children>
 </AnchorPane>
