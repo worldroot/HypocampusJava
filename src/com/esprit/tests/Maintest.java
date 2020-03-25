@@ -6,8 +6,11 @@
 package com.esprit.tests;
 
 import com.hypocampus.models.Backlog;
+import com.hypocampus.models.team;
 import com.hypocampus.services.ServiceBacklog;
 import com.hypocampus.services.ServiceTask;
+import com.hypocampus.services.ServiceTeam;
+import java.sql.Date;
 
 /**
  *
@@ -29,7 +32,19 @@ public class Maintest {
         System.out.println("***************************");
         st.afficher().forEach(System.out::println);
 
-
+        // Team
+        
+       System.out.println("************** Team *************"); 
+       ServiceTeam sT =new ServiceTeam();
+       Date dateS=Date.valueOf("2020-04-09");
+       // ajouter
+       // sT.ajouter(new team("groupe",dateS));
+        //afficher
+        sT.afficher().forEach(System.out::println);
+        //supp
+        sT.supprimer(new team(20));
+       //modif
+       sT.modifier(new  team (21,"groupe2",dateS));
     }
     
 }

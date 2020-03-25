@@ -26,6 +26,9 @@ public class BackendController implements Initializable {
     private AnchorPane BackendPane;
     @FXML
     private Button BacklogAction;
+    
+    @FXML
+    private Button TeamAction;
     @FXML
     private AnchorPane ContentPane;
 
@@ -42,6 +45,12 @@ public class BackendController implements Initializable {
     @FXML
     private void btnBacklogAction(ActionEvent event) throws IOException {
                 AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/backlog.fxml"));
+        ContentPane.getChildren().setAll(pane);
+    }
+    
+        @FXML
+    void btnTeamAction(ActionEvent event) throws IOException {
+  AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/AfficherTeam.fxml"));
         ContentPane.getChildren().setAll(pane);
     }
     

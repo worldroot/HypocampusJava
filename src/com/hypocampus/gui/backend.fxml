@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane id="AnchorPane" fx:id="BackendPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.BackendController">
+<AnchorPane id="AnchorPane" fx:id="BackendPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.BackendController">
    <children>
       <ImageView fitHeight="768.0" fitWidth="1366.0" pickOnBounds="true">
          <image>
@@ -15,6 +13,7 @@
          </image>
       </ImageView>
       <Button fx:id="BacklogAction" layoutX="55.0" layoutY="155.0" mnemonicParsing="false" onAction="#btnBacklogAction" opacity="0.0" prefHeight="50.0" prefWidth="140.0" text="Button" />
+      <Button fx:id="TeamAction" layoutX="55.0" layoutY="371.0" mnemonicParsing="false" onAction="#btnTeamAction" opacity="0.0" prefHeight="50.0" prefWidth="140.0" text="Button" />
       <AnchorPane fx:id="ContentPane" layoutX="231.0" layoutY="73.0" prefHeight="695.0" prefWidth="1135.0" />
    </children>
 </AnchorPane>
