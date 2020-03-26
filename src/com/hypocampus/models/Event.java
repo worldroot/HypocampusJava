@@ -121,8 +121,10 @@ public class Event {
     
     @Override
     public String toString() {
-        return "Event{" + "idev=" + idev + ", titreEvent=" + titreEvent + ", numeroEvent=" + numeroEvent + ", typeEvent=" + typeEvent + ", dateEvent=" + dateEvent + ", enddateEvent=" + enddateEvent + '}';
+        return titreEvent;
     }
+    
+
     
            
 }

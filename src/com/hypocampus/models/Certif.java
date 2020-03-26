@@ -29,6 +29,13 @@ public class Certif {
         this.updated_at = updated_at;
     }
 
+    public Certif(int titrec, int pointc, Date datec) {
+        this.titrec = titrec;
+        this.pointc = pointc;
+        this.datec = datec;
+    }
+    
+
     public Certif(int titrec, int pointc, Date datec, String image_name, Date updated_at) {
         this.titrec = titrec;
         this.pointc = pointc;
@@ -43,6 +50,8 @@ public class Certif {
         this.pointc = pointc;
         this.datec = datec;
     }
+
+    public Certif() {}
 
     public int getTitrec() {
         return titrec;

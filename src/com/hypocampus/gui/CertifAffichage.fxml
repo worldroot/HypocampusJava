@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="SmallPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.CertifAffichageController">
+   <children>
+      <TableView fx:id="TableC" layoutX="298.0" layoutY="179.0" prefHeight="337.0" prefWidth="401.0">
+        <columns>
+          <TableColumn fx:id="coltitre" prefWidth="138.0" text="Titre" />
+          <TableColumn fx:id="colpoint" prefWidth="130.0" text="Point" />
+            <TableColumn fx:id="colDatec" prefWidth="130.0" text="Date Certif" />
+        </columns>
+      </TableView>
+      <Button fx:id="RetourAction" layoutX="466.0" layoutY="523.0" mnemonicParsing="false" onAction="#btnRetourAction" text="Retour" />
+      <Text fill="#1a154a" layoutX="335.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" List Certificats" textAlignment="CENTER" wrappingWidth="345.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold" size="35.0" />
+         </font>
+      </Text>
+   </children>
+</AnchorPane>

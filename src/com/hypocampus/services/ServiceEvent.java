@@ -5,6 +5,7 @@
  */
 package com.hypocampus.services;
 
+import com.hypocampus.models.Certif;
 import com.hypocampus.models.Event;
 import com.hypocampus.utils.DataSource;
 import java.sql.Connection;
@@ -95,6 +96,27 @@ public class ServiceEvent implements IService<Event>{
         } 
         return list;
     }    
+    
+    
+    
+    public String GetById(int id) {
+        
+        Event list = new Event();
+        String req = "select * from events_admin where idev="+id+"";
+        
+        try {
+            PreparedStatement pst = cnx.prepareStatement(req);
+            ResultSet rs =  pst.executeQuery();
+            while(rs.next()){
+                Event e = new Event(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getDate(5), rs.getDate(6), rs.getString(7), rs.getDate(8));
+                list=e;
+            }
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
+        } 
+        return list.getTitreEvent();
+    }    
+
 
     
     

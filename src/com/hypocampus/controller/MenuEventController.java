@@ -56,12 +56,16 @@ public class MenuEventController implements Initializable {
     }
 
     @FXML
-    private void btnListCertifAction(ActionEvent event) {
+    private void btnListCertifAction(ActionEvent event) throws IOException {
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/CertifAffichage.fxml"));
+        SmallPane.getChildren().setAll(pane); 
         
     }
 
     @FXML
-    private void btnCertifAction(ActionEvent event) {
+    private void btnCertifAction(ActionEvent event) throws IOException {
+       AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/Certif.fxml"));
+        SmallPane.getChildren().setAll(pane); 
     }
 
     @FXML

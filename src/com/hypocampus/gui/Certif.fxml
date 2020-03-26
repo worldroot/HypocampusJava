@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="SmallPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.CertifController">
+   <children>
+      <Text fill="#1a154a" layoutX="325.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Ajout Certificat" textAlignment="CENTER" wrappingWidth="345.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold" size="35.0" />
+         </font>
+      </Text>
+      <TextField fx:id="pointc" layoutX="484.0" layoutY="278.0" />
+      <DatePicker fx:id="datec" layoutX="484.0" layoutY="332.0" prefHeight="31.0" prefWidth="187.0" />
+      <Text layoutX="371.0" layoutY="248.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre event" wrappingWidth="90.6708984375" />
+      <Text layoutX="371.0" layoutY="299.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Point de Certif" wrappingWidth="101.6708984375" />
+      <Text layoutX="365.0" layoutY="353.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de Certif" wrappingWidth="101.6708984375" />
+      <Button fx:id="validerAction" layoutX="365.0" layoutY="403.0" mnemonicParsing="false" onAction="#btnvaliderAction" prefHeight="31.0" prefWidth="91.0" text="Valider" />
+      <Button fx:id="retourAction" layoutX="597.0" layoutY="403.0" mnemonicParsing="false" onAction="#btnretourAction" prefHeight="31.0" prefWidth="91.0" text="Retour" />
+      <Button fx:id="clearAction" layoutX="484.0" layoutY="403.0" mnemonicParsing="false" onAction="#btnclearAction" prefHeight="31.0" prefWidth="91.0" text="Clear" />
+      <ComboBox fx:id="ComboTitre" layoutX="484.0" layoutY="226.0" prefHeight="31.0" prefWidth="187.0" />
+   </children>
+</AnchorPane>
