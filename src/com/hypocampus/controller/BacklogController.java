@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -45,7 +46,7 @@ public class BacklogController implements Initializable {
     @FXML
     private AnchorPane AjoutBacklogPane;
     @FXML
-    private ChoiceBox<?> ListProjetAction;
+    private ChoiceBox<Backlog> ListProjetAction;
 
     /**
      * Initializes the controller class.
@@ -69,8 +70,11 @@ public class BacklogController implements Initializable {
     @FXML
     private MenuItem EditAction;
     
+    ServiceProject sb = new ServiceBacklog(); 
+    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        
         afficherBacklogs();
         // TODO
     }
@@ -79,7 +83,7 @@ public class BacklogController implements Initializable {
     public void afficherBacklogs(){
         TabBacklog.setVisible(true);
         ServiceBacklog sb = new ServiceBacklog();
-         Backlog_id_column.setCellValueFactory(new PropertyValueFactory<>("id")); 
+         Backlog_id_column.setCellValueFactory(new PropertyValueFactory<>("id"));
          Project_id_column.setCellValueFactory(new PropertyValueFactory<>("project_id")); 
          Points_done_column.setCellValueFactory(new PropertyValueFactory<>("points_to_do")); 
          Points_in_progress_column.setCellValueFactory(new PropertyValueFactory<>("points_in_progress")); 
@@ -90,20 +94,29 @@ public class BacklogController implements Initializable {
 
     @FXML
     private void AjouterBacklog(MouseEvent event) throws SQLException {
-         final ObservableList options = FXCollections.observableArrayList();
+  
+       
+         final ObservableList<Project> options = FXCollections.observableArrayList();
+          List<Project> projects= sb.afficher(); 
+              for(int i=0;i<projects.size();i++) 
+                { 
+                    options.add(projects.get(i)); 
+
+                }
+              ListProjetAction.setItems(options);
+         
          TabBacklog.setVisible(false);
         AjoutBacklogPane.setVisible(true);
-        Connection cnx = DataSource.getInstance().getCnx();
                 // first I execute the query that select name of department one by one
-        String query = "select projet_name from projets";
-        PreparedStatement statement = cnx.prepareStatement(query);
-        ResultSet set = statement.executeQuery();
-        while(set.next()){
-            options.add(set.getString("projet_name"));
-        }
-        ListProjetAction.setItems(options);
-        statement.close();
-        set.close();
+       // String query = "select projet_name from projets";
+        //PreparedStatement statement = cnx.prepareStatement(query);
+       // ResultSet set = statement.executeQuery();
+        //while(set.next()){
+        //    options.add(set.getString("projet_name"));
+        //}
+        //ListProjetAction.setItems(options);
+        //statement.close();
+        //set.close();
         
         
        
@@ -112,7 +125,8 @@ public class BacklogController implements Initializable {
     @FXML
     private void SubmitBacklogBtn(ActionEvent event) throws SQLException {
         ServiceBacklog sb = new ServiceBacklog();
-        String project_name = (String) ListProjetAction.getSelectionModel().getSelectedItem();
+        Project pr = ListProjetAction.getSelectionModel().getSelectedItem(); 
+       // String project_name = (String) ListProjetAction.getSelectionModel().getSelectedItem();
         Connection cnx = DataSource.getInstance().getCnx();
         String query = "select * from projets where projet_name= ?";
         PreparedStatement statement = cnx.prepareStatement(query);
