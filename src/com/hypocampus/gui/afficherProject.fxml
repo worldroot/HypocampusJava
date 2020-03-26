@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.AfficherProjectController">
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="706.0" prefWidth="1092.0">
+         <children>
+            <TableView fx:id="tab" layoutX="33.0" layoutY="152.0" prefHeight="300.0" prefWidth="1026.0">
+              <columns>
+                <TableColumn fx:id="Colprojetname" prefWidth="185.0" text="projet_name" />
+                <TableColumn fx:id="Colowner" prefWidth="198.0" text="owner" />
+                  <TableColumn fx:id="Colstartdate" prefWidth="195.0" text="start_date" />
+                  <TableColumn fx:id="Colenddate" prefWidth="190.0" text="end_date" />
+                  <TableColumn fx:id="Coldescription" prefWidth="257.0" text="description" />
+              </columns>
+               <contextMenu>
+                  <ContextMenu>
+                    <items>
+                      <MenuItem mnemonicParsing="false" onAction="#editprojet" text="Edit" />
+                    </items>
+                  </ContextMenu>
+               </contextMenu>
+            </TableView>
+            <Button fx:id="supprimerProject" layoutX="430.0" layoutY="477.0" mnemonicParsing="false" onAction="#supprimerProject" style="-fx-background-color: #fa626b;" text="Supprimer le projet de sélection" textFill="WHITE" />
+            <Pane layoutX="41.0" layoutY="52.0" prefHeight="63.0" prefWidth="1026.0" style="-fx-background-color: #ffff;">
+               <children>
+                  <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="15.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des projets" wrappingWidth="186.99998885393143">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="newProject" layoutX="899.0" layoutY="16.0" mnemonicParsing="false" onAction="#newProjectAction" style="-fx-background-color: #5ed84f;" text="New Project" textFill="WHITE" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
