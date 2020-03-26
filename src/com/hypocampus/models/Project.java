@@ -52,6 +52,9 @@ public class Project {
     public Project(int id) {
         this.id = id;
     }
+
+    public Project() {
+    }
     
     
 

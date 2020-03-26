@@ -21,14 +21,7 @@
          </font></Button>
       <TableView fx:id="TabBacklog" layoutX="22.0" layoutY="93.0" prefHeight="558.0" prefWidth="824.0">
         <columns>
-          <TableColumn fx:id="Backlog_id_column" editable="false" prefWidth="129.0" resizable="false" text="Backlog_id">
-               <contextMenu>
-                  <ContextMenu>
-                    <items>
-                      <MenuItem fx:id="EditAction" mnemonicParsing="false" onAction="#EditBacklog" text="Edit" />
-                    </items>
-                  </ContextMenu>
-               </contextMenu></TableColumn>
+          <TableColumn fx:id="Backlog_id_column" editable="false" prefWidth="129.0" resizable="false" text="Backlog_id" />
           <TableColumn fx:id="Project_id_column" editable="false" prefWidth="114.0" resizable="false" text="Project_id" />
             <TableColumn fx:id="Points_to_do_column" editable="false" prefWidth="178.0" resizable="false" text="Points_to_do" />
             <TableColumn fx:id="Points_in_progress_column" editable="false" prefWidth="167.0" resizable="false" text="Points_in_progress" />
@@ -37,6 +30,13 @@
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem fx:id="EditAction" mnemonicParsing="false" onAction="#EditBacklog" text="Edit" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
       </TableView>
       <AnchorPane fx:id="AjoutBacklogPane" layoutX="9.0" layoutY="28.0" prefHeight="602.0" prefWidth="1040.0" visible="false">
          <children>

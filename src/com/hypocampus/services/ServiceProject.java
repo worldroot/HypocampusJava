@@ -104,7 +104,26 @@ public class ServiceProject implements IService<Project> {
       
         return ListProject;
     }
-                   
+    
+    
+        public String GetById(int id) { 
+         
+        Project list = new Project(); 
+        String req = "select * from projets where id="+id+""; 
+         
+        try { 
+            PreparedStatement pst = cnx.prepareStatement(req); 
+            ResultSet rs =  pst.executeQuery(); 
+            while(rs.next()){ 
+                Project e = new Project(rs.getInt("id"), rs.getString("projet_name"),rs.getString("owner")
+                ,rs.getDate("start_date"), rs.getDate("end_date"),rs.getString("description")); 
+                list=e; 
+            } 
+        } catch (SQLException ex){ 
+            System.out.println(ex.getMessage()); 
+        }  
+        return list.getName(); 
+    }  
                    
                    
                    
