@@ -11,8 +11,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -75,14 +76,15 @@ public class ServiceBacklog implements IService<Backlog>{
     
     @Override
     public List<Backlog> afficher() {
-        List<Backlog> list = new ArrayList<>();
+         ObservableList <Backlog> ListBacklog =FXCollections.observableArrayList(); 
+     
 
         try {
             String requete = "SELECT * FROM backlog";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new Backlog(rs.getInt("id"), rs.getInt("points_to_do"), rs.getInt("points_in_progress")
+                ListBacklog.add(new Backlog(rs.getInt("id"), rs.getInt("points_to_do"), rs.getInt("points_in_progress")
                 ,rs.getInt("points_done"), rs.getInt("project_id")));
             }
 
@@ -90,7 +92,7 @@ public class ServiceBacklog implements IService<Backlog>{
             System.err.println(ex.getMessage());
         }
 
-        return list;
+        return ListBacklog;
     }
 
     

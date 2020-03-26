@@ -34,6 +34,10 @@ public class Backlog {
     public Backlog(int aInt, int aInt0, String string) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public Backlog() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 
     public int getId() {
