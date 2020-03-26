@@ -6,6 +6,7 @@
 package com.hypocampus.services;
 
 import com.hypocampus.models.Participant;
+import com.hypocampus.models.Event;
 import com.hypocampus.utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -27,10 +28,20 @@ public class ServiceParticipant implements IService<Participant> {
     public void ajouter(Participant p) {
         
     try {
-            Statement stm = cnx.createStatement();
-            String query = "INSERT INTO participant (nomp,prenomp,email,passwordp,review) VALUES ('"+p.getNomp()+"','"+p.getPrenomp()+"','"+p.getEmail()+"','"+p.getPasswordp()+"','"+p.getReview()+"')";
-            stm.executeUpdate(query);
             
+            Statement stm = cnx.createStatement();
+            /* String query  =""
+                + "SELECT p.nomp, p.prenomp, p.choix, p.email, p.password, p.choix, p.review "
+                + "FROM participant p"
+                + "JOIN events_admin e ON e.idev = p.choix"; 
+            */
+            
+            String query = ""
+                    + "INSERT INTO participant "
+                    + "(nomp,prenomp,email,passwordp,choix,review) VALUES ('"+p.getNomp()+"','"+p.getPrenomp()+"','"+p.getEmail()+"',"
+                    + "'"+p.getPasswordp()+"', '"+p.getChoix()+"' ,'"+p.getReview()+"' )";
+            
+            stm.executeUpdate(query);
             System.out.println("Participant ajoutée !");
 
         } catch (SQLException ex) {
@@ -43,6 +54,10 @@ public class ServiceParticipant implements IService<Participant> {
         
         List<Participant> list = new  ArrayList<>();
         String req = "select * from participant";
+         /* String req = "SELECT  participant.nomp as 'Nom', participant.prenomp as 'Prenom', participant.email as 'Email', participant.passwordp as 'Password', "
+                        + "participant.choix as 'Choix', participant.review as 'Review'  FROM participant INNER JOIN "
+                        + "events_admin ON participant.nomp=events_admin.idev ";
+                        */
         try {
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet rs =  pst.executeQuery();

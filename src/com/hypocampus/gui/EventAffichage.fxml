@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="SmallPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EventAffichageController">
+   <children>
+      <Text fill="#1a154a" layoutX="410.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List Events">
+         <font>
+            <Font name="Caviar Dreams Bold" size="35.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnRetourAction" layoutX="445.0" layoutY="542.0" mnemonicParsing="false" onAction="#RetourAction" prefHeight="31.0" prefWidth="107.0" text="Retour" />
+      <TableView fx:id="listEvent" layoutX="204.0" layoutY="170.0" prefHeight="347.0" prefWidth="714.0" AnchorPane.rightAnchor="145.0">
+        <columns>
+          <TableColumn fx:id="colTitre" prefWidth="117.0" text="Titre Event" />
+          <TableColumn fx:id="colCap" prefWidth="113.0" text="Capacité" />
+            <TableColumn fx:id="colType" prefWidth="147.0" text="Type Event" />
+            <TableColumn fx:id="coldd" prefWidth="119.0" text="Date Debut" />
+            <TableColumn fx:id="coldf" prefWidth="126.0" text="Debut Fin" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>

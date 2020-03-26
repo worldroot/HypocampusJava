@@ -50,11 +50,14 @@ public class MenuEventController implements Initializable {
     }
 
     @FXML
-    private void btnListEventAction(ActionEvent event) {
+    private void btnListEventAction(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/EventAffichage.fxml"));
+        SmallPane.getChildren().setAll(pane);
     }
 
     @FXML
     private void btnListCertifAction(ActionEvent event) {
+        
     }
 
     @FXML
@@ -62,7 +65,9 @@ public class MenuEventController implements Initializable {
     }
 
     @FXML
-    private void btnListParAction(ActionEvent event) {
+    private void btnListParAction(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/ParticipantAffichage.fxml"));
+        SmallPane.getChildren().setAll(pane);
     }
     
 }

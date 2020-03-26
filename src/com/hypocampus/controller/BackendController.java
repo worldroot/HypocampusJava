@@ -50,7 +50,7 @@ public class BackendController implements Initializable {
     
     @FXML
     private void btnEventsAction(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/Event.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/MenuEvent.fxml"));
         ContentPane.getChildren().setAll(pane);
     }
     

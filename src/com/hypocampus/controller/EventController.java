@@ -15,6 +15,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -44,6 +45,8 @@ public class EventController implements Initializable {
     private AnchorPane SmallPane;
     @FXML
     private Button btnRetourAction;
+    @FXML
+    private Button clearAction;
 
     /**
      * Initializes the controller class.
@@ -56,16 +59,54 @@ public class EventController implements Initializable {
     }    
 
     @FXML
-    private void AddAction(ActionEvent event) {
+    private void AddAction(ActionEvent event) throws IOException {
+        
+        boolean test = false;
         Date dateevent = new Date(dateEvent.getValue().getYear()-1900, dateEvent.getValue().getMonthValue()-1, dateEvent.getValue().getDayOfMonth());
         Date enddateEvent = new Date(endDateEvent.getValue().getYear()-1900, endDateEvent.getValue().getMonthValue()-1, endDateEvent.getValue().getDayOfMonth());
         
-        Event e = new Event(TitreEvent.getText(), Integer.parseInt(numEvent.getText()),typeEvent.getText(),dateevent,enddateEvent);
+        if (TitreEvent.getText().equals("")) {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention");
+            alert.setHeaderText("Le champs TitreEvent est vide");
+            alert.showAndWait();
+            test = false;
+            }
         
+        if (typeEvent.getText().equals("")) {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention");
+            alert.setHeaderText("Le champs Type est vide");
+            alert.showAndWait();
+            test = false;
+            }
+        
+        if (numEvent.getText().equals("")) {
+
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Attention");
+            alert.setHeaderText("Le champs Capacité est vide");
+            alert.showAndWait();
+            test = false;
+            }
+        
+        else{
+             
+        Event e = new Event(TitreEvent.getText(), Integer.parseInt(numEvent.getText()),typeEvent.getText(),dateevent,enddateEvent);
         ServiceEvent ev = new ServiceEvent();
         
         ev.ajouter(e);
-        ev.afficher().forEach(System.out::println);        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Done ");
+        alert.setHeaderText("Event bien ajouté <3");
+        alert.showAndWait();
+        test = false;
+        
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/EventAffichage.fxml"));
+        SmallPane.getChildren().setAll(pane);
+        }      
     }
 
     @FXML
@@ -74,5 +115,14 @@ public class EventController implements Initializable {
         SmallPane.getChildren().setAll(pane);
 
     }
+
+    @FXML
+    private void btnclearAction(ActionEvent event) {
+        TitreEvent.clear();
+        typeEvent.clear();
+        numEvent.clear();
+        dateEvent.getEditor().clear();
+        endDateEvent.getEditor().clear();
+        }
     
 }
