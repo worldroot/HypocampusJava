@@ -1,14 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.canvas.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.BacklogController">
+<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="695.0" prefWidth="996.0" stylesheets="@../stylesheets/buttons.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.BacklogController">
    <children>
-      <Label layoutX="356.0" layoutY="207.0" prefHeight="156.0" prefWidth="309.0" text="BACKLOG CONTENT" />
-      <Button fx:id="testAction" layoutX="412.0" layoutY="194.0" mnemonicParsing="false" text="BACKLOG" />
+      <Button fx:id="AjoutAction" defaultButton="true" layoutX="846.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#AjouterBacklog" prefHeight="48.0" prefWidth="103.0" styleClass="btn" stylesheets="@../stylesheets/buttons.css" text="Ajouter">
+         <effect>
+            <Glow />
+         </effect>
+         <font>
+            <Font size="11.0" />
+         </font></Button>
+      <TableView fx:id="TabBacklog" layoutX="22.0" layoutY="93.0" prefHeight="558.0" prefWidth="824.0">
+        <columns>
+          <TableColumn fx:id="Backlog_id_column" editable="false" prefWidth="129.0" resizable="false" text="Backlog_id" />
+          <TableColumn fx:id="Project_id_column" editable="false" prefWidth="114.0" resizable="false" text="Project_id" />
+            <TableColumn fx:id="Points_to_do_column" editable="false" prefWidth="178.0" resizable="false" text="Points_to_do" />
+            <TableColumn fx:id="Points_in_progress_column" editable="false" prefWidth="167.0" resizable="false" text="Points_in_progress" />
+            <TableColumn fx:id="Points_done_column" editable="false" prefWidth="235.0" resizable="false" text="Points_done" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+         <contextMenu>
+            <ContextMenu>
+              <items>
+                <MenuItem id="#record-sales" fx:id="EditAction" mnemonicParsing="false" onAction="#EditBacklog" text="Edit" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="deleteAction" mnemonicParsing="false" onAction="#DeleteBacklog" text="delete" />
+              </items>
+            </ContextMenu>
+         </contextMenu>
+      </TableView>
+      <AnchorPane fx:id="AjoutBacklogPane" layoutX="9.0" layoutY="28.0" prefHeight="602.0" prefWidth="1040.0" visible="false">
+         <children>
+            <ChoiceBox fx:id="ListProjetAction" layoutX="334.0" layoutY="209.0" prefWidth="150.0" />
+            <Button fx:id="SubmitBacklogAction" layoutX="383.0" layoutY="314.0" mnemonicParsing="false" onAction="#SubmitBacklogBtn" text="Submit" />
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

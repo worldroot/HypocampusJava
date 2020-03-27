@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EditBacklogController">
+   <children>
+      <Pane layoutX="30.0" layoutY="29.0" prefHeight="281.0" prefWidth="494.0">
+         <children>
+            <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="18.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Backlog" wrappingWidth="207.99998885393143">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="154.0" layoutY="104.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Name" wrappingWidth="186.9999859035015" />
+            <Button fx:id="ModifierBacklog" layoutX="201.0" layoutY="218.0" mnemonicParsing="false" onAction="#ModifierBacklog" prefHeight="31.0" prefWidth="79.0" style="-fx-background-color: #5ed84f;" text="Modifier" textFill="WHITE" />
+            <Button fx:id="BackBacklog" layoutX="119.0" layoutY="218.0" mnemonicParsing="false" onAction="#BackBacklog" prefHeight="31.0" prefWidth="79.0" style="-fx-background-color: #fa626b;" text="Annuler" textFill="WHITE" />
+            <ComboBox fx:id="comboBox" layoutX="126.0" layoutY="127.0" prefWidth="150.0" />
+            <Text layoutX="18.0" layoutY="87.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Backlog id" wrappingWidth="69.99998590350151" />
+            <TextField fx:id="BacklogId" disable="true" editable="false" layoutX="88.0" layoutY="69.0" prefHeight="27.0" prefWidth="39.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
