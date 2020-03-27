@@ -1,11 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
 <?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.ParticipantController">
-    
+<AnchorPane id="AnchorPane" fx:id="ContentPane" maxHeight="769.0" maxWidth="1200.0" minHeight="769.0" minWidth="1200.0" prefHeight="769.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.ParticipantController">
+   <children>
+      <ImageView fitHeight="778.0" fitWidth="1199.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../uploads/JavaPartici.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Home" fitHeight="101.0" fitWidth="96.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#GoHomeAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../uploads/H-02.png" />
+         </image>
+      </ImageView>
+      <Button layoutX="513.0" layoutY="660.0" mnemonicParsing="false" opacity="0.0" prefHeight="45.0" prefWidth="178.0" />
+   </children>
 </AnchorPane>

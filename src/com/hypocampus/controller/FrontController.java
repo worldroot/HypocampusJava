@@ -8,11 +8,11 @@ package com.hypocampus.controller;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.image.ImageView;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -20,12 +20,14 @@ import javafx.scene.layout.AnchorPane;
  *
  * @author ASUS
  */
-public class ParticipantController implements Initializable {
+public class FrontController implements Initializable {
 
     @FXML
-    private ImageView Home;
+    private AnchorPane FrontPane;
     @FXML
-    private AnchorPane ContentPane;
+    private Button LoginAction;
+    @FXML
+    private Button ParticipantAction;
 
     /**
      * Initializes the controller class.
@@ -35,13 +37,20 @@ public class ParticipantController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
-        // SmallPane : 996 x 695
     }    
 
     @FXML
-    private void GoHomeAction(MouseEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/Front.fxml"));
-        ContentPane.getChildren().setAll(pane);
+    private void btnloginAction(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/backend.fxml"));
+        FrontPane.getChildren().setAll(pane);
+        
+    }
+
+    @FXML
+    private void btnParticipantAction(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/Participant.fxml"));
+        FrontPane.getChildren().setAll(pane);
+        
     }
     
 }

@@ -64,12 +64,9 @@ public class CertifAffichageController implements Initializable {
         listev = ev.afficher();
         ServiceEvent se =new ServiceEvent();
         ObservableList<Certif> l = FXCollections.observableArrayList(listev);  
-        //coltitre.setCellValueFactory(new PropertyValueFactory<Certif, String>(se.GetById(("titrec"))));
         coltitre.setCellValueFactory((CellDataFeatures<Certif, String> p) -> new ReadOnlyObjectWrapper(se.GetById(p.getValue().getTitrec())));
-        //coltitre.setCellValueFactory((new PropertyValueFactory<>("titrec")));
         colpoint.setCellValueFactory(new PropertyValueFactory<>("pointc"));
         colDatec.setCellValueFactory(new PropertyValueFactory<>("datec"));
-        //System.out.println(id);
         System.out.println("View Certif !");
         TableC.setEditable(true);
         TableC.setItems(l);
