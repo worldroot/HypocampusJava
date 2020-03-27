@@ -52,6 +52,15 @@ public class Project {
     public Project(int id) {
         this.id = id;
     }
+
+    public Project(String name) {
+        this.name = name;
+    }
+
+    public Project(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
     
     
 

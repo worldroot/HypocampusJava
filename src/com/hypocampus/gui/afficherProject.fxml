@@ -5,6 +5,7 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
@@ -14,7 +15,7 @@
    <children>
       <AnchorPane id="AnchorPane" layoutX="10.0" layoutY="10.0" prefHeight="706.0" prefWidth="1092.0">
          <children>
-            <TableView fx:id="tab" layoutX="33.0" layoutY="152.0" prefHeight="300.0" prefWidth="1026.0">
+            <TableView fx:id="tab" layoutX="33.0" layoutY="172.0" prefHeight="300.0" prefWidth="1026.0">
               <columns>
                 <TableColumn fx:id="Colprojetname" prefWidth="185.0" text="projet_name" />
                 <TableColumn fx:id="Colowner" prefWidth="198.0" text="owner" />
@@ -30,7 +31,7 @@
                   </ContextMenu>
                </contextMenu>
             </TableView>
-            <Button fx:id="supprimerProject" layoutX="430.0" layoutY="477.0" mnemonicParsing="false" onAction="#supprimerProject" style="-fx-background-color: #fa626b;" text="Supprimer le projet de sélection" textFill="WHITE" />
+            <Button fx:id="supprimerProject" layoutX="328.0" layoutY="479.0" mnemonicParsing="false" onAction="#supprimerProject" style="-fx-background-color: #fa626b;" text="Supprimer le projet de sélection" textFill="WHITE" />
             <Pane layoutX="41.0" layoutY="52.0" prefHeight="63.0" prefWidth="1026.0" style="-fx-background-color: #ffff;">
                <children>
                   <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="15.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des projets" wrappingWidth="186.99998885393143">
@@ -41,6 +42,8 @@
                   <Button fx:id="newProject" layoutX="899.0" layoutY="16.0" mnemonicParsing="false" onAction="#newProjectAction" style="-fx-background-color: #5ed84f;" text="New Project" textFill="WHITE" />
                </children>
             </Pane>
+            <Button fx:id="affSprint" layoutX="628.0" layoutY="479.0" mnemonicParsing="false" onAction="#affSprint" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: #6f42c1;" text="Voir les sprints" textFill="WHITE" />
+            <TextField fx:id="filterField" layoutX="870.0" layoutY="131.0" />
          </children>
       </AnchorPane>
    </children>
