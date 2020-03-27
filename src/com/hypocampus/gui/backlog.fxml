@@ -10,7 +10,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.BacklogController">
+<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="695.0" prefWidth="996.0" stylesheets="@../stylesheets/buttons.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.BacklogController">
    <children>
       <Button fx:id="AjoutAction" defaultButton="true" layoutX="846.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#AjouterBacklog" prefHeight="48.0" prefWidth="103.0" styleClass="btn" stylesheets="@../stylesheets/buttons.css" text="Ajouter">
          <effect>
@@ -33,7 +33,9 @@
          <contextMenu>
             <ContextMenu>
               <items>
-                <MenuItem fx:id="EditAction" mnemonicParsing="false" onAction="#EditBacklog" text="Edit" />
+                <MenuItem id="#record-sales" fx:id="EditAction" mnemonicParsing="false" onAction="#EditBacklog" text="Edit" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem fx:id="deleteAction" mnemonicParsing="false" onAction="#DeleteBacklog" text="delete" />
               </items>
             </ContextMenu>
          </contextMenu>

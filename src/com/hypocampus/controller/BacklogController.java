@@ -10,6 +10,7 @@ import com.hypocampus.models.Project;
 import com.hypocampus.services.ServiceBacklog;
 import com.hypocampus.services.ServiceProject;
 import com.hypocampus.utils.DataSource;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,6 +18,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
@@ -25,15 +27,23 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -74,6 +84,10 @@ public class BacklogController implements Initializable {
     private MenuItem EditAction;
     
     ServiceProject sp = new ServiceProject(); 
+    @FXML
+    private AnchorPane ContentPane;
+    @FXML
+    private MenuItem deleteAction;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -112,19 +126,7 @@ public class BacklogController implements Initializable {
          
          TabBacklog.setVisible(false);
         AjoutBacklogPane.setVisible(true);
-                // first I execute the query that select name of department one by one
-       // String query = "select projet_name from projets";
-        //PreparedStatement statement = cnx.prepareStatement(query);
-       // ResultSet set = statement.executeQuery();
-        //while(set.next()){
-        //    options.add(set.getString("projet_name"));
-        //}
-        //ListProjetAction.setItems(options);
-        //statement.close();
-        //set.close();
-        
-        
-       
+ 
     }
 
     @FXML
@@ -132,28 +134,48 @@ public class BacklogController implements Initializable {
         ServiceBacklog sb = new ServiceBacklog();
         Project pr = ListProjetAction.getSelectionModel().getSelectedItem();
         
-       // String project_name = (String) ListProjetAction.getSelectionModel().getSelectedItem();
+    
         Connection cnx = DataSource.getInstance().getCnx();
-     //   String query = "select * from projets where projet_name= ?";
-      //  PreparedStatement statement = cnx.prepareStatement(query);
-       // System.out.println(project_name);
-        //statement.setString(1, project_name);
-       // ResultSet set = statement.executeQuery();
-       // while (set.next()) {
-       // System.out.println(set.getInt("id"));
+
         Backlog B = new Backlog(0,0,0,pr.getId());
         sb.ajouter(B);
-       // }
-      // statement.close();
-      // set.close();
-       
        
 
         
     }
 
     @FXML
-    private void EditBacklog(ActionEvent event) {
+    private void EditBacklog(ActionEvent event) throws IOException {
+        
+               
+         Backlog ba = TabBacklog.getSelectionModel().getSelectedItem();
+                         
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/EditBacklog.fxml"));              
+        Parent parent = loader.load();
+        ContentPane.getChildren().setAll(parent);
+        EditBacklogController controller =(EditBacklogController) loader.getController();
+        controller.inflateUI(ba);
+         System.out.println(ba);
+
+            
+        
+    }
+
+    @FXML
+    private void DeleteBacklog(ActionEvent event) {
+        Backlog ba = TabBacklog.getSelectionModel().getSelectedItem();
+        ServiceBacklog sb =new ServiceBacklog();
+   
+          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+       alert.setTitle("Confirmation ");
+       alert.setHeaderText(null);
+       alert.setContentText("Vous voulez vraiment supprimer ce Backlog ");
+       Optional<ButtonType> action = alert.showAndWait();
+       if (action.get() == ButtonType.OK) {
+          sb.supprimer(ba);
+          afficherBacklogs();
+       }
+        
         
     }
     

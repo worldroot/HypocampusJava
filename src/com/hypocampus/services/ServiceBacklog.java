@@ -6,6 +6,7 @@
 package com.hypocampus.services;
 
 import com.hypocampus.models.Backlog;
+import com.hypocampus.models.Project;
 import com.hypocampus.utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -73,7 +74,22 @@ public class ServiceBacklog implements IService<Backlog>{
             System.err.println(ex.getMessage());
         }
     }
-    
+
+    public void modifierProject(Backlog B){
+                try {
+            String requete = "UPDATE backlog SET project_id=? WHERE id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(2, B.getId());
+            pst.setInt(1, B.getProject_id());
+            pst.executeUpdate();
+            System.out.println("Backlog Project id modifiée !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
+        
+    }
     @Override
     public List<Backlog> afficher() {
          ObservableList <Backlog> ListBacklog =FXCollections.observableArrayList(); 

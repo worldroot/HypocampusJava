@@ -32,11 +32,16 @@ public class Backlog {
     }
 
     public Backlog(int aInt, int aInt0, String string) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     public Backlog() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public Backlog(int id, int project_id) {
+         this.id = id;
+        this.project_id = project_id;
+        
+        
     }
     
 
