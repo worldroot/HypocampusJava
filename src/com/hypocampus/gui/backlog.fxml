@@ -33,6 +33,8 @@
          <contextMenu>
             <ContextMenu>
               <items>
+                  <MenuItem fx:id="Taches" mnemonicParsing="false" onAction="#BacklogTasks" text="Taches" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
                 <MenuItem id="#record-sales" fx:id="EditAction" mnemonicParsing="false" onAction="#EditBacklog" text="Edit" />
                   <SeparatorMenuItem mnemonicParsing="false" />
                   <MenuItem fx:id="deleteAction" mnemonicParsing="false" onAction="#DeleteBacklog" text="delete" />

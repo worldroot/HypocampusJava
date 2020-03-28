@@ -88,6 +88,8 @@ public class BacklogController implements Initializable {
     private AnchorPane ContentPane;
     @FXML
     private MenuItem deleteAction;
+    @FXML
+    private MenuItem Taches;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -177,6 +179,10 @@ public class BacklogController implements Initializable {
        }
         
         
+    }
+
+    @FXML
+    private void BacklogTasks(ActionEvent event) {
     }
     
     
