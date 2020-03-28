@@ -15,7 +15,7 @@
          </font>
       </Text>
       <Button fx:id="btnRetourAction" layoutX="445.0" layoutY="542.0" mnemonicParsing="false" onAction="#RetourAction" prefHeight="31.0" prefWidth="107.0" text="Retour" />
-      <TableView fx:id="listEvent" layoutX="204.0" layoutY="170.0" prefHeight="347.0" prefWidth="714.0" AnchorPane.rightAnchor="145.0">
+      <TableView fx:id="listEvent" layoutX="186.0" layoutY="166.0" prefHeight="350.0" prefWidth="623.0" AnchorPane.rightAnchor="187.0">
         <columns>
           <TableColumn fx:id="colTitre" prefWidth="117.0" text="Titre Event" />
           <TableColumn fx:id="colCap" prefWidth="113.0" text="Capacité" />

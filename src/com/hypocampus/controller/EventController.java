@@ -67,7 +67,7 @@ public class EventController implements Initializable {
         
         if (TitreEvent.getText().equals("")) {
 
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Attention");
             alert.setHeaderText("Le champs TitreEvent est vide");
             alert.showAndWait();

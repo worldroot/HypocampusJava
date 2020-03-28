@@ -53,6 +53,7 @@ public class ParticipantAffichageController implements Initializable {
     List listp = new ArrayList();
     Participant p = new Participant ();
     ServiceParticipant sp = new ServiceParticipant();
+    
     @FXML
     private AnchorPane SmallPane;
 

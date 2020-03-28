@@ -65,7 +65,7 @@ public class EventAffichageController implements Initializable {
         colType.setCellValueFactory(new PropertyValueFactory<>("typeEvent"));
         coldd.setCellValueFactory(new PropertyValueFactory<>("dateEvent"));
         coldf.setCellValueFactory(new PropertyValueFactory<>("enddateEvent"));
-        System.out.println("Perfect !");
+        System.out.println("Perfect Affichage!");
         listEvent.setEditable(true);
         listEvent.setItems(l);
   }

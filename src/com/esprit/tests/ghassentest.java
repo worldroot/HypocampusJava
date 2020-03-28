@@ -32,7 +32,7 @@ public class ghassentest {
 
         //************Event********************
         //Event e = new Event(49,"SawSaw", 1,"Cours",d,de,"",de);
-        ServiceEvent ev = new ServiceEvent();
+        //ServiceEvent ev = new ServiceEvent();
         
         //ev.ajouter(e);
         //ev.supprimer(e);

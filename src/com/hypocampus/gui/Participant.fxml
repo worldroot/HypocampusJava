@@ -20,5 +20,6 @@
          </image>
       </ImageView>
       <Button layoutX="513.0" layoutY="660.0" mnemonicParsing="false" opacity="0.0" prefHeight="45.0" prefWidth="178.0" />
+      <Button fx:id="InscAction" layoutX="1054.0" layoutY="667.0" mnemonicParsing="false" onAction="#btnInscAction" text="Inscription" />
    </children>
 </AnchorPane>
