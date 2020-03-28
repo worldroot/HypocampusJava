@@ -19,6 +19,9 @@ public class Sprint {
     private Date end_date_sprint;
     private int etat;
 
+    public Sprint() {
+    }
+
     public Sprint(int id, int project_id, String name, Date start_date_sprint, Date end_date_sprint, int etat) {
         this.id = id;
         this.project_id = project_id;
@@ -28,14 +31,27 @@ public class Sprint {
         this.etat = etat;
     }
 
-    public Sprint(int project_id, String name, Date start_date_sprint, Date end_date_sprint, int etat) {
+    public Sprint(int id, String name, Date start_date_sprint, Date end_date_sprint, int project_id) {
+        this.id = id;
+        this.project_id = project_id;
+        this.name = name;
+        this.start_date_sprint = start_date_sprint;
+        this.end_date_sprint = end_date_sprint;
+   
+    }    
+    public Sprint(String name, Date start_date_sprint, Date end_date_sprint, int project_id, int etat) {
         this.project_id = project_id;
         this.name = name;
         this.start_date_sprint = start_date_sprint;
         this.end_date_sprint = end_date_sprint;
         this.etat = etat;
+   
     }
-    
+
+
+    public Sprint(int id) {
+        this.id = id;
+    }
     
 
     public int getId() {
@@ -88,8 +104,9 @@ public class Sprint {
 
     @Override
     public String toString() {
-        return "Sprint{" + "id=" + id + ", project_id=" + project_id + ", name=" + name + ", start_date_sprint=" + start_date_sprint + ", end_date_sprint=" + end_date_sprint + ", etat=" + etat + '}';
+        return "Sprint{" + "id=" + id  + ", name=" + name + ", start_date_sprint=" + start_date_sprint + ", end_date_sprint=" + end_date_sprint + ", project_id=" + project_id+ '}';
     }
-    
+
+
     
 }

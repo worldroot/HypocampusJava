@@ -137,47 +137,7 @@ public class AfficherProjectController implements Initializable {
     }
     
     
-    
-    void recherche(){
-    
-           ServiceProject sP =new ServiceProject();
-        // Wrap the ObservableList in a FilteredList (initially display all data).
-        FilteredList<Project> filteredData = new FilteredList<>((ObservableList<Project>) sP.afficher(), b -> true);
-		
-		// 2. Set the filter Predicate whenever the filter changes.
-		filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-			filteredData.setPredicate(Project -> {
-				// If filter text is empty, display all persons.
-								
-				if (newValue == null || newValue.isEmpty()) {
-					return true;
-				}
-				
-				// Compare first name and last name of every person with filter text.
-				String lowerCaseFilter = newValue.toLowerCase();
-				
-				if (Project.getName().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
-					return true; // Filter matches first name.
-				} 
-				     else  
-				    	 return false; // Does not match.
-			});
-		});
-		
-		// 3. Wrap the FilteredList in a SortedList. 
-		SortedList<Project> sortedData = new SortedList<>(filteredData);
-		
-		// 4. Bind the SortedList comparator to the TableView comparator.
-		// 	  Otherwise, sorting the TableView would have no effect.
-		sortedData.comparatorProperty().bind(tab.comparatorProperty());
-		
-		// 5. Add sorted (and filtered) data to the table.
-		tab.setItems(sortedData);
-               
-        
-    
-    }
-    
+
     
     
     @FXML
@@ -249,15 +209,7 @@ public class AfficherProjectController implements Initializable {
            EditProjectController controller =(EditProjectController) loader.getController();
             controller.inflateUI(Pr);
             controller.add(Pr);
-          // controller.getIdPr1(Pr);
-//          data2.add(Pr);
-            System.out.println(Pr);
-          /*
-            Stage stage = new Stage(StageStyle.DECORATED);
-            stage.setTitle("Edit Project");
-            stage.setScene(new Scene(parent));
-            stage.show();
-          */
+
             
           }
      
@@ -269,15 +221,52 @@ public class AfficherProjectController implements Initializable {
         ContentPane.getChildren().setAll(pane);
 
     }
-   /*
-    public void getidl()
-    {
-    for(int i = 0; i < data2.size(); i++)
-    {  
-        System.out.println(data2.get(0).getId()) ;
-           
-    }
 
+    
+          
+    void recherche(){
+    
+           ServiceProject sP =new ServiceProject();
+        // Wrap the ObservableList in a FilteredList (initially display all data).
+        FilteredList<Project> filteredData = new FilteredList<>((ObservableList<Project>) sP.afficher(), b -> true);
+		
+		// 2. Set the filter Predicate whenever the filter changes.
+		filterField.textProperty().addListener((observable, oldValue, newValue) -> {
+			filteredData.setPredicate(Project -> {
+				// If filter text is empty, display all persons.
+								
+				if (newValue == null || newValue.isEmpty()) {
+					return true;
+				}
+				
+				// Compare first name and last name of every person with filter text.
+				String lowerCaseFilter = newValue.toLowerCase();
+				
+				if (Project.getName().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
+					return true; // Filter matches first name.
+				} 
+				     else  
+				    	 return false; // Does not match.
+			});
+		});
+		
+		// 3. Wrap the FilteredList in a SortedList. 
+		SortedList<Project> sortedData = new SortedList<>(filteredData);
+		
+		// 4. Bind the SortedList comparator to the TableView comparator.
+		// 	  Otherwise, sorting the TableView would have no effect.
+		sortedData.comparatorProperty().bind(tab.comparatorProperty());
+		
+		// 5. Add sorted (and filtered) data to the table.
+		tab.setItems(sortedData);
+               
+        
+    
     }
-*/
+    
+    
+    
+    
+    
+    
 }

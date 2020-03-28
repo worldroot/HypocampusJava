@@ -20,11 +20,11 @@ import javafx.collections.ObservableList;
  *
  * @author 21694
  */
-public class ServiceProject implements IService<Project> {
+public class ServiceProject  {
     
     
     Connection cnx = DataSource.getInstance().getCnx();
-     @Override
+    
     public void ajouter(Project P)              
     {
             try {
@@ -51,7 +51,7 @@ public class ServiceProject implements IService<Project> {
 
 
 
-    @Override
+ 
     public void supprimer(Project P) {
                 try {
             String requete = "DELETE FROM projets WHERE id=?";
@@ -65,7 +65,7 @@ public class ServiceProject implements IService<Project> {
         }
     }
 
-    @Override
+
     public void modifier(Project P) {
                 try {
             String requete = "UPDATE projets SET projet_name=?, owner=?,start_date=?,end_date=?,description=? WHERE id=?";
@@ -84,7 +84,7 @@ public class ServiceProject implements IService<Project> {
         }
     }
 
-    @Override
+
     public List<Project> afficher() {
        
    ObservableList <Project> ListProject =FXCollections.observableArrayList();
@@ -105,8 +105,42 @@ public class ServiceProject implements IService<Project> {
         return ListProject;
     }
                    
-                   
-                   
+    public List<Project> afficherN() {
+       
+   ObservableList <Project> ListProject =FXCollections.observableArrayList();
+
+        try {
+            String requete = "SELECT projet_name FROM projets";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                ListProject.add(new Project( rs.getString("projet_name")));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return ListProject;
+    }
+                                   
+    	public Project getById(int idp) {
+		 Project pp = new Project();
+
+        try {
+            String requete = "SELECT * FROM projets where id="+idp+"";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                pp = new Project(rs.getInt("id"),rs.getString("projet_name"));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return pp;
+	}               
                    
     
 }

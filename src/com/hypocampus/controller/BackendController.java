@@ -49,6 +49,7 @@ public class BackendController implements Initializable {
         @FXML
     void btnProjetAction(ActionEvent event) throws IOException {
     AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/afficherProject.fxml"));
+    
         ContentPane.getChildren().setAll(pane);
     }
     

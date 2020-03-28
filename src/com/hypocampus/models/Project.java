@@ -21,6 +21,9 @@ public class Project {
     private String description;
     private int history;
 
+    public Project() {
+    }
+
     public Project(int id, String name, String owner, Date start_date, Date end_date, String description, int history) {
         this.id = id;
         this.name = name;
@@ -123,7 +126,7 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project{" + "id=" + id + ", name=" + name + ", owner=" + owner + ", start_date=" + start_date + ", end_date=" + end_date + ", description=" + description + '}';
+        return  name ;
     }
     
  

@@ -5,33 +5,37 @@
  */
 package com.hypocampus.controller;
 
+import static com.hypocampus.controller.ProjectController.NOW_LOCAL_DATE;
 import com.hypocampus.models.Project;
+import com.hypocampus.models.Sprint;
 import com.hypocampus.services.ServiceProject;
+import com.hypocampus.services.ServiceSprint;
 import com.hypocampus.utils.DataSource;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -40,79 +44,98 @@ import org.controlsfx.control.Notifications;
  *
  * @author 21694
  */
-public class ProjectController implements Initializable {
+public class SprintController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
-    }
-
-    @FXML
-    private AnchorPane ContentPaneAjouP;
-    @FXML
-    private Button ajouterProject;
+       afficherP();
+    }  
     
     @FXML
-    private Button backAffprojet;
+    private AnchorPane ContentPaneAjouS;
 
     @FXML
-    private TextField NameEmployee;
+    private TextField SprintName;
 
     @FXML
-    private TextField NameProject;
-    @FXML
-    private TextArea description;
-    @FXML
-    private Text Description;
+    private DatePicker StartDateSprint;
 
     @FXML
-    private DatePicker StartDateProject;
+    private DatePicker EndDateSprint;
 
     @FXML
-    private DatePicker EndDateProject;
+    private Button AjouterSprint;
+
+    @FXML
+    private Button backAffsprint;
+
+    @FXML
+    private ComboBox<Project> ProjectName;
     
-// alert
+    ObservableList  dataB =FXCollections.observableArrayList();
+    Connection cnx = DataSource.getInstance().getCnx();
+    // alert
       Alert alert = new Alert(Alert.AlertType.NONE);
-      Connection cnx = DataSource.getInstance().getCnx();
-    @FXML
-    void ajouterProject(ActionEvent event) {   
-       if (!NameEmployee.getText().equals("") && !NameProject.getText().equals("")&& !description.getText().equals(""))
-       {
+    
+         public void afficherP()
+     {
+         try {
+            String requete = "SELECT id,projet_name FROM projets";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                dataB.add(new Project(rs.getInt("id"),rs.getString("projet_name")));
+            }
 
-           ServiceProject sP =new ServiceProject();
-           LocalDate ds= StartDateProject.getValue();
-           LocalDate df= EndDateProject.getValue();
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+         
+         ProjectName.setItems(dataB);
+     }
+         
+         
+         
+         
+    @FXML
+    void ajouterSprint(ActionEvent event) {           
+           
+       if (!SprintName.getText().equals(""))
+       {
+   
+           ServiceSprint ss =new ServiceSprint();
+           LocalDate ds= StartDateSprint.getValue();
+           LocalDate df= EndDateSprint.getValue();
            
            Date dateS=Date.valueOf(ds.toString());//converting string into sql date
            Date datef=Date.valueOf(df.toString());
 
            if(ds.compareTo(df) < 0)
            {
-            
-               sP.ajouter(new Project(NameProject.getText(),NameEmployee.getText(),dateS,datef,description.getText(),00));
+             Project pr = ProjectName.getSelectionModel().getSelectedItem();
+               ss.ajouter(new Sprint(SprintName.getText(),dateS,datef,pr.getId(),00));
+             
                Image img = new Image("/com/hypocampus/uploads/Check.png");
                             Notifications n = Notifications.create()
                               .title("SUCCESS")
-                              .text("  Project ajouté")
+                              .text("  Sprint ajouté")
                               .graphic(new ImageView(img))
                               .position(Pos.TOP_CENTER)
                               .hideAfter(Duration.seconds(5));
                n.darkStyle();
                n.show();
-               NameProject.setText("");
-               NameEmployee.setText("");
-               EndDateProject.setValue(NOW_LOCAL_DATE());
-               description.setText("");
+               SprintName.setText("");
+               StartDateSprint.setValue(NOW_LOCAL_DATE());
            }
            else
            {
              Image img = new Image("/com/hypocampus/uploads/error.png");
              Notifications n = Notifications.create()
                               .title("Error")
-                              .text("  vérifier date de création du projet")
+                              .text("  vérifier date de création du Sprint")
                               .graphic(new ImageView(img))
                               .position(Pos.TOP_CENTER)
                               .hideAfter(Duration.seconds(5));
@@ -131,19 +154,16 @@ public class ProjectController implements Initializable {
            
            // show the dialog
            alert.show();
-           }
-
+       }
+        
+        
     }
 
-      public static final LocalDate NOW_LOCAL_DATE (){
-        String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate localDate = LocalDate.parse(date , formatter);
-        return localDate;
+    @FXML
+    void backAffsprint(ActionEvent event) throws IOException {
+   AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/AfficherSprint.fxml"));
+        ContentPaneAjouS.getChildren().setAll(pane);
     }
-        @FXML
-    void backAffprojet(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/afficherProject.fxml"));
-        ContentPaneAjouP.getChildren().setAll(pane);
-    }
+
+    
 }
