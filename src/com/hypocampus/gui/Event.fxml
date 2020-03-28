@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
@@ -11,23 +12,34 @@
 
 <AnchorPane id="AnchorPane" fx:id="SmallPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EventController">
    <children>
-      <TextField fx:id="TitreEvent" layoutX="447.0" layoutY="211.0" />
-      <TextField fx:id="numEvent" layoutX="447.0" layoutY="256.0" />
-      <TextField fx:id="typeEvent" layoutX="447.0" layoutY="298.0" />
+      <TextField fx:id="TitreEvent" layoutX="447.0" layoutY="211.0" prefHeight="31.0" prefWidth="219.0" />
+      <TextField fx:id="numEvent" layoutX="447.0" layoutY="256.0" prefHeight="31.0" prefWidth="219.0" />
+      <TextField fx:id="typeEvent" layoutX="447.0" layoutY="298.0" prefHeight="31.0" prefWidth="219.0" />
       <Text layoutX="336.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre event" wrappingWidth="90.6708984375" />
       <Text layoutX="336.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacite" wrappingWidth="90.6708984375" />
       <Text layoutX="336.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type event" wrappingWidth="90.6708984375" />
       <Text layoutX="336.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date event" wrappingWidth="90.6708984375" />
-      <Text layoutX="336.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date event" wrappingWidth="90.6708984375" />
-      <Text fill="#1a154a" layoutX="418.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Ajout Event" textAlignment="CENTER" wrappingWidth="242.6708984375">
+      <Text layoutX="336.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date fin event" wrappingWidth="102.6708984375" />
+      <Text fill="#262d47" layoutX="418.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Ajout Event" textAlignment="CENTER" wrappingWidth="242.6708984375">
          <font>
             <Font name="Caviar Dreams Bold" size="35.0" />
          </font>
       </Text>
-      <Button fx:id="btnvalider" layoutX="447.0" layoutY="447.0" mnemonicParsing="false" onAction="#AddAction" prefHeight="31.0" prefWidth="82.0" text="Valider" textOverrun="WORD_ELLIPSIS" />
-      <DatePicker fx:id="dateEvent" layoutX="447.0" layoutY="343.0" prefHeight="31.0" prefWidth="186.0" />
-      <DatePicker fx:id="endDateEvent" layoutX="447.0" layoutY="390.0" prefHeight="31.0" prefWidth="186.0" />
-      <Button fx:id="btnRetourAction" layoutX="543.0" layoutY="447.0" mnemonicParsing="false" onAction="#RetourAction" prefHeight="31.0" prefWidth="91.0" text="Retour" textOverrun="WORD_ELLIPSIS" />
-      <Button fx:id="clearAction" layoutX="497.0" layoutY="494.0" mnemonicParsing="false" onAction="#btnclearAction" prefHeight="31.0" prefWidth="82.0" text="clear" />
+      <Button fx:id="btnvalider" layoutX="448.0" layoutY="438.0" mnemonicParsing="false" onAction="#AddAction" prefHeight="37.0" prefWidth="171.0" styleClass="DarkBlue" stylesheets="@../stylesheets/buttons.css" text="Valider" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="Caviar Dreams Italic" size="15.0" />
+         </font></Button>
+      <DatePicker fx:id="dateEvent" layoutX="447.0" layoutY="343.0" prefHeight="31.0" prefWidth="219.0" />
+      <DatePicker fx:id="endDateEvent" layoutX="447.0" layoutY="390.0" prefHeight="31.0" prefWidth="219.0" />
+      <ImageView fx:id="clearAction" fitHeight="31.0" fitWidth="32.0" layoutX="630.0" layoutY="441.0" onMouseClicked="#btnclearAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../uploads/redo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="RetourAction" fitHeight="44.0" fitWidth="55.0" layoutX="32.0" layoutY="630.0" onMouseClicked="#btnRetourAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../uploads/arrow.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

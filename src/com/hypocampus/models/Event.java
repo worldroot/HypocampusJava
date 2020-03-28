@@ -49,9 +49,17 @@ public class Event {
         this.dateEvent = dateEvent;
         this.enddateEvent = enddateEvent;
     }
+
+    public Event(int idev) {
+        this.idev = idev;
+    }
+    
+    
     
     public Event() {
     }
+
+   
     
     
     public String getImage_name() {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -7,14 +8,51 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane id="AnchorPane" fx:id="ContentPane" maxHeight="769.0" maxWidth="1200.0" minHeight="769.0" minWidth="1200.0" prefHeight="769.0" prefWidth="1200.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="com.hypocampus.controller.ParticipantInscriController">
+<AnchorPane id="AnchorPane" fx:id="ContentPane" maxHeight="769.0" maxWidth="1200.0" minHeight="769.0" minWidth="1200.0" prefHeight="769.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.ParticipantInscriController">
    <children>
-      <ImageView fitHeight="769.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="768.0" fitWidth="1200.0" layoutY="1.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../uploads/JavaPartici.png" />
-         </image>
-      </ImageView>
-      <Button fx:id="RetourAction" layoutX="1085.0" layoutY="682.0" mnemonicParsing="false" onAction="#btnRetourAction" text="Retour" />
+         </image></ImageView>
+      <Button fx:id="btnValiderAction" layoutX="451.0" layoutY="609.0" mnemonicParsing="false" onAction="#ValiderAction" opacity="0.8" prefHeight="42.0" prefWidth="284.0" styleClass="BlueSky" stylesheets="@../stylesheets/buttons.css" text="Valider votre inscription" />
+      <Text fill="WHITE" layoutX="396.0" layoutY="189.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Inscrivez vous ici pour l'acces de l'event" textAlignment="CENTER" wrappingWidth="407.2734375">
+         <font>
+            <Font name="Caviar Dreams Bold" size="31.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="btnRetourAction" fitHeight="52.0" fitWidth="60.0" layoutX="14.0" layoutY="703.0" onMouseClicked="#RetourAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../uploads/arrow2.png" />
+         </image></ImageView>
+      <TextField fx:id="nom" layoutX="399.0" layoutY="310.0" opacity="0.65" prefHeight="31.0" prefWidth="192.0" />
+      <TextField fx:id="prenom" layoutX="609.0" layoutY="311.0" opacity="0.65" prefHeight="31.0" prefWidth="192.0" />
+      <TextField fx:id="mail" layoutX="399.0" layoutY="374.0" opacity="0.65" prefHeight="31.0" prefWidth="400.0" />
+      <PasswordField fx:id="pass" layoutX="401.0" layoutY="435.0" opacity="0.65" prefHeight="31.0" prefWidth="400.0" />
+      <ComboBox fx:id="listTitre" layoutX="399.0" layoutY="499.0" opacity="0.65" prefHeight="31.0" prefWidth="400.0" />
+      <Text fill="WHITE" layoutX="401.0" layoutY="429.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe:" wrappingWidth="149.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="16.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="400.0" layoutY="493.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Choix de l'evenement:" wrappingWidth="200.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="16.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="402.0" layoutY="367.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail:" wrappingWidth="149.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="16.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="401.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom:" wrappingWidth="149.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="16.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="609.0" layoutY="305.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Prenom:" wrappingWidth="149.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="16.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

@@ -34,6 +34,16 @@ public class Participant {
         this.passwordp = passwordp;
         this.review = review;
     }
+    
+        public Participant(String nomp, String prenomp, String email, String passwordp) {
+        this.nomp = nomp;
+        this.prenomp = prenomp;
+        this.email = email;
+        this.passwordp = passwordp;
+    }
+
+    
+    
    
     public Participant() {
     }

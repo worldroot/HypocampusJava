@@ -44,6 +44,8 @@ public class EditBacklogController implements Initializable {
     private AnchorPane ContentPane;
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -55,7 +57,7 @@ public class EditBacklogController implements Initializable {
         
         ServiceBacklog sb = new ServiceBacklog();
         Project pr = comboBox.getSelectionModel().getSelectedItem();
-       String id = BacklogId.getText();
+        String id = BacklogId.getText();
         Backlog B = new Backlog(Integer.parseInt(id),pr.getId());
         sb.modifierProject(B);
     }

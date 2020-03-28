@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
 <?import java.util.*?>
@@ -9,17 +10,22 @@
 
 <AnchorPane id="AnchorPane" fx:id="ContentPane" maxHeight="769.0" maxWidth="1200.0" minHeight="769.0" minWidth="1200.0" prefHeight="769.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.ParticipantController">
    <children>
-      <ImageView fitHeight="778.0" fitWidth="1199.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="765.0" fitWidth="1210.0" layoutX="3.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../uploads/JavaPartici.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="Home" fitHeight="101.0" fitWidth="96.0" layoutX="14.0" layoutY="14.0" onMouseClicked="#GoHomeAction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Home" fitHeight="45.0" fitWidth="56.0" layoutX="23.0" layoutY="701.0" onMouseClicked="#GoHomeAction" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../uploads/H-02.png" />
+            <Image url="@../uploads/arrow2.png" />
          </image>
       </ImageView>
       <Button layoutX="513.0" layoutY="660.0" mnemonicParsing="false" opacity="0.0" prefHeight="45.0" prefWidth="178.0" />
-      <Button fx:id="InscAction" layoutX="1054.0" layoutY="667.0" mnemonicParsing="false" onAction="#btnInscAction" text="Inscription" />
+      <Button fx:id="InscAction" layoutX="492.0" layoutY="668.0" mnemonicParsing="false" onAction="#btnInscAction" prefHeight="37.0" prefWidth="220.0" styleClass="EVP" stylesheets="@../stylesheets/buttons.css" text="Inscription" />
+      <Text fill="WHITE" layoutX="474.0" layoutY="630.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="272.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="18.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>

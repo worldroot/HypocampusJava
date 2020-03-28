@@ -5,15 +5,18 @@
  */
 package com.hypocampus.controller;
 
+import com.hypocampus.models.Backlog;
 import com.hypocampus.models.Event;
 import java.net.URL;
 import com.hypocampus.models.Participant;
+import com.hypocampus.services.ServiceEvent;
 import com.hypocampus.services.ServiceParticipant;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -22,6 +25,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
@@ -51,6 +55,7 @@ public class ParticipantAffichageController implements Initializable {
     private TableColumn<Participant, Integer> colreview;
     
     List listp = new ArrayList();
+    
     Participant p = new Participant ();
     ServiceParticipant sp = new ServiceParticipant();
     
@@ -61,16 +66,18 @@ public class ParticipantAffichageController implements Initializable {
       public void views() throws SQLException {  
       
         listp = sp.afficher();
+        ServiceEvent se =new ServiceEvent();
         ObservableList<Participant> l = FXCollections.observableArrayList(listp);  
         colnomp.setCellValueFactory(new PropertyValueFactory<>("nomp"));
         colPrenom.setCellValueFactory(new PropertyValueFactory<>("prenomp"));
         colmail.setCellValueFactory(new PropertyValueFactory<>("email"));
         colpass.setCellValueFactory(new PropertyValueFactory<>("passwordp"));
         colchoix.setCellValueFactory(new PropertyValueFactory<>("choix"));
+        //colchoix.setCellValueFactory((CellDataFeatures<Participant, String> x) -> new ReadOnlyObjectWrapper(se.GetById(x.getValue().getChoix())));
         colreview.setCellValueFactory(new PropertyValueFactory<>("review"));
-        System.out.println("Perfect !");
+        System.out.println("Perfect Participant !");
         Ptab.setEditable(true);
-        Ptab.setItems(l);
+        Ptab.setItems((ObservableList<Participant>)sp.afficher());
   }
     
     
