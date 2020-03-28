@@ -6,13 +6,15 @@
 package com.hypocampus.services;
 
 import com.hypocampus.models.Backlog;
+import com.hypocampus.models.Project;
 import com.hypocampus.utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.List;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 /**
  *
@@ -72,17 +74,33 @@ public class ServiceBacklog implements IService<Backlog>{
             System.err.println(ex.getMessage());
         }
     }
-    
+
+    public void modifierProject(Backlog B){
+                try {
+            String requete = "UPDATE backlog SET project_id=? WHERE id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(2, B.getId());
+            pst.setInt(1, B.getProject_id());
+            pst.executeUpdate();
+            System.out.println("Backlog Project id modifiée !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
+        
+    }
     @Override
     public List<Backlog> afficher() {
-        List<Backlog> list = new ArrayList<>();
+         ObservableList <Backlog> ListBacklog =FXCollections.observableArrayList(); 
+     
 
         try {
             String requete = "SELECT * FROM backlog";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                list.add(new Backlog(rs.getInt("id"), rs.getInt("points_to_do"), rs.getInt("points_in_progress")
+                ListBacklog.add(new Backlog(rs.getInt("id"), rs.getInt("points_to_do"), rs.getInt("points_in_progress")
                 ,rs.getInt("points_done"), rs.getInt("project_id")));
             }
 
@@ -90,7 +108,7 @@ public class ServiceBacklog implements IService<Backlog>{
             System.err.println(ex.getMessage());
         }
 
-        return list;
+        return ListBacklog;
     }
 
     

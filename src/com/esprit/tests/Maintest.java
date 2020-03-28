@@ -6,8 +6,11 @@
 package com.esprit.tests;
 
 import com.hypocampus.models.Backlog;
+import com.hypocampus.models.Project;
 import com.hypocampus.services.ServiceBacklog;
+import com.hypocampus.services.ServiceProject;
 import com.hypocampus.services.ServiceTask;
+import java.sql.Date;
 
 /**
  *
@@ -28,7 +31,19 @@ public class Maintest {
         sb.afficher().forEach(System.out::println);
         System.out.println("***************************");
         st.afficher().forEach(System.out::println);
-
+        
+       System.out.println("************** Project *************"); 
+      ServiceProject sP =new ServiceProject();
+       Date dateS=Date.valueOf("2020-02-10");
+       Date datef=Date.valueOf("2025-01-01");
+       // ajouter
+        sP.ajouter(new Project("Projet 4","ahmedddd",dateS,datef,"oki",00));
+        //afficher
+        sP.afficher().forEach(System.out::println);
+        //supp
+       // sP.supprimer(new Project(30));
+       //modif
+       sP.modifier(new  Project ("Projet4","ahmed ben said",dateS,datef,"oki",00));
 
     }
     

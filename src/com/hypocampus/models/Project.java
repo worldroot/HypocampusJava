@@ -6,6 +6,7 @@
 package com.hypocampus.models;
 
 import java.sql.Date;
+import java.util.Objects;
 
 /**
  *
@@ -29,6 +30,15 @@ public class Project {
         this.description = description;
         this.history = history;
     }
+    public Project(int id, String name, String owner, Date start_date, Date end_date, String description) {
+        this.id = id;
+        this.name = name;
+        this.owner = owner;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.description = description;
+    }
+
 
     public Project(String name, String owner, Date start_date, Date end_date, String description, int history) {
         this.name = name;
@@ -37,6 +47,13 @@ public class Project {
         this.end_date = end_date;
         this.description = description;
         this.history = history;
+    }
+
+    public Project(int id) {
+        this.id = id;
+    }
+
+    public Project() {
     }
     
     
@@ -97,10 +114,12 @@ public class Project {
     public void setName(String name) {
         this.name = name;
     }
-    
-        @Override
+
+    @Override
     public String toString() {
-        return "Project{" + "id=" + id + ", name=" + name + '}';
+        return "Project{" + "id=" + id + ", name=" + name + ", owner=" + owner + ", start_date=" + start_date + ", end_date=" + end_date + ", description=" + description + '}';
     }
+    
+ 
     
 }
