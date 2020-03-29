@@ -77,7 +77,8 @@ public class ParticipantAffichageController implements Initializable {
         colreview.setCellValueFactory(new PropertyValueFactory<>("review"));
         System.out.println("Perfect Participant !");
         Ptab.setEditable(true);
-        Ptab.setItems((ObservableList<Participant>)sp.afficher());
+        //Ptab.setItems((ObservableList<Participant>)sp.afficher());
+        Ptab.setItems(l);
   }
     
     

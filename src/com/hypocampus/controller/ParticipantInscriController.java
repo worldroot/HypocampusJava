@@ -87,8 +87,10 @@ public class ParticipantInscriController implements Initializable {
          if (!nom.getText().equals("") && !prenom.getText().equals("") && !pass.getText().equals("") && !mail.getText().equals("")) {
              
              Event et = listTitre.getSelectionModel().getSelectedItem();
-             Participant p = new Participant(nom.getText(), prenom.getText(),pass.getText(),mail.getText(),et.getIdev());
+             Participant p = new Participant(nom.getText(), prenom.getText(),pass.getText(),mail.getText()); 
              pa.ajouter(p);
+             System.out.println("Done");
+             
              Image img = new Image("/com/hypocampus/uploads/Check.png");
                              Notifications n = Notifications.create()
                                 .title("SUCCESS")

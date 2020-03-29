@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -10,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="ContentPane" maxHeight="769.0" maxWidth="1200.0" minHeight="769.0" minWidth="1200.0" prefHeight="769.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.ParticipantController">
    <children>
-      <ImageView fitHeight="765.0" fitWidth="1210.0" layoutX="3.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="768.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../uploads/JavaPartici.png" />
          </image>
@@ -21,10 +22,28 @@
          </image>
       </ImageView>
       <Button layoutX="513.0" layoutY="660.0" mnemonicParsing="false" opacity="0.0" prefHeight="45.0" prefWidth="178.0" />
-      <Button fx:id="InscAction" layoutX="492.0" layoutY="668.0" mnemonicParsing="false" onAction="#btnInscAction" prefHeight="37.0" prefWidth="220.0" styleClass="EVP" stylesheets="@../stylesheets/buttons.css" text="Inscription" />
-      <Text fill="WHITE" layoutX="474.0" layoutY="630.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="272.6708984375">
+      <Button fx:id="InscAction" layoutX="492.0" layoutY="668.0" mnemonicParsing="false" onAction="#btnInscAction" prefHeight="37.0" prefWidth="220.0" styleClass="BlueSky" stylesheets="@../stylesheets/buttons.css" text="Inscription" />
+      <Text fill="WHITE" layoutX="464.0" layoutY="622.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Si vous n'avez pas un compte cliquez ci-dessous" textAlignment="CENTER" wrappingWidth="272.6708984375">
          <font>
             <Font name="Caviar Dreams Bold Italic" size="18.0" />
+         </font>
+      </Text>
+      <PasswordField fx:id="mdp" layoutX="386.0" layoutY="385.0" opacity="0.65" prefHeight="31.0" prefWidth="429.0" />
+      <PasswordField fx:id="email" layoutX="388.0" layoutY="305.0" opacity="0.65" prefHeight="31.0" prefWidth="429.0" />
+      <Text fill="WHITE" layoutX="388.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail:">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="16.0" />
+         </font>
+      </Text>
+      <Text fill="WHITE" layoutX="388.0" layoutY="373.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mot de passe:">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="16.0" />
+         </font>
+      </Text>
+      <Button fx:id="ValiderAction" layoutX="460.0" layoutY="476.0" mnemonicParsing="false" onAction="#btnValiderAction" prefHeight="37.0" prefWidth="285.0" styleClass="BlueSky" stylesheets="@../stylesheets/buttons.css" text="Valider" />
+      <Text fill="WHITE" layoutX="385.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Acces pour l'événement choisi" textAlignment="CENTER" wrappingWidth="429.0">
+         <font>
+            <Font name="Caviar Dreams Bold" size="31.0" />
          </font>
       </Text>
    </children>

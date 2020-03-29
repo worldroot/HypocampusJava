@@ -71,14 +71,19 @@ public class CertifController implements Initializable {
     
 
     @FXML
-    private void btnvaliderAction(ActionEvent event) {  
+    private void btnvaliderAction(ActionEvent event) throws IOException {  
        Date dateevent = new Date(datec.getValue().getYear()-1900, datec.getValue().getMonthValue()-1, datec.getValue().getDayOfMonth());
        Event et = ComboTitre.getSelectionModel().getSelectedItem();
        Certif e = new Certif(et.getIdev(),Integer.parseInt(pointc.getText()),dateevent);
-       ServiceCertif ev = new ServiceCertif();
+       ServiceCertif evv = new ServiceCertif();
        
-       ev.ajouter(e);
-        System.out.println("Youssef");
+       evv.ajouter(e);
+       System.out.println("Done");
+       
+       AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/CertifAffichage.fxml"));
+       SmallPane.getChildren().setAll(pane);
+       
+       
     }      
 
     @FXML

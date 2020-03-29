@@ -13,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.PasswordField;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -30,6 +31,12 @@ public class ParticipantController implements Initializable {
     private AnchorPane ContentPane;
     @FXML
     private Button InscAction;
+    @FXML
+    private PasswordField mdp;
+    @FXML
+    private PasswordField email;
+    @FXML
+    private Button ValiderAction;
 
     /**
      * Initializes the controller class.
@@ -52,6 +59,11 @@ public class ParticipantController implements Initializable {
     private void btnInscAction(ActionEvent event) throws IOException {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/ParticipantInscri.fxml"));
         ContentPane.getChildren().setAll(pane);
+        
+    }
+
+    @FXML
+    private void btnValiderAction(ActionEvent event) {
         
     }
     
