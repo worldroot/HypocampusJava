@@ -51,6 +51,11 @@ public class Certif {
         this.datec = datec;
     }
 
+    public Certif(int idc) {
+        this.idc = idc;
+    }
+    
+
     public Certif() {}
 
     public int getTitrec() {

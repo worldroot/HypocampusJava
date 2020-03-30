@@ -16,11 +16,12 @@
             <TableColumn fx:id="colDatec" prefWidth="162.0" text="Date Certif" />
         </columns>
       </TableView>
-      <Button fx:id="RetourAction" layoutX="466.0" layoutY="544.0" mnemonicParsing="false" onAction="#btnRetourAction" text="Retour" />
+      <Button fx:id="RetourAction" layoutX="438.0" layoutY="601.0" mnemonicParsing="false" onAction="#btnRetourAction" prefHeight="37.0" prefWidth="140.0" styleClass="DarkBlue" stylesheets="@../stylesheets/buttons.css" text="Retour" />
       <Text fill="#1a154a" layoutX="335.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" List Certificats" textAlignment="CENTER" wrappingWidth="345.6708984375">
          <font>
             <Font name="Caviar Dreams Bold" size="35.0" />
          </font>
       </Text>
+      <Button fx:id="SuppAction" layoutX="372.0" layoutY="537.0" mnemonicParsing="false" onAction="#btnSuppAction" opacity="0.65" prefHeight="37.0" prefWidth="273.0" styleClass="Supp" stylesheets="@../stylesheets/buttons.css" text="Sélectionner lechamp à Supprimer" />
    </children>
 </AnchorPane>

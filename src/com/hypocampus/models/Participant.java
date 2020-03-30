@@ -42,6 +42,12 @@ public class Participant {
         this.passwordp = passwordp;
     }
 
+    public Participant(String nomp) {
+        this.nomp = nomp;
+    }
+        
+        
+
     
     
    

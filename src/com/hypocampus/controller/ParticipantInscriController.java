@@ -87,11 +87,12 @@ public class ParticipantInscriController implements Initializable {
          if (!nom.getText().equals("") && !prenom.getText().equals("") && !pass.getText().equals("") && !mail.getText().equals("")) {
              
              Event et = listTitre.getSelectionModel().getSelectedItem();
-             Participant p = new Participant(nom.getText(), prenom.getText(),pass.getText(),mail.getText()); 
-             pa.ajouter(p);
+             System.out.println("et:"+et.getIdev());
+             //Participant p = new Participant(nom.getText(), prenom.getText(),pass.getText(),mail.getText()); 
+              Participant p2 = new Participant( nom.getText(),  prenom.getText(),  mail.getText(),  pass.getText(),  et.getIdev(), 0);
+              pa.ajouter(p2);
              System.out.println("Done");
-             
-             Image img = new Image("/com/hypocampus/uploads/Check.png");
+               Image img = new Image("/com/hypocampus/uploads/Check.png");
                              Notifications n = Notifications.create()
                                 .title("SUCCESS")
                                 .text("  Participant ajouté")
@@ -100,6 +101,9 @@ public class ParticipantInscriController implements Initializable {
                                 .hideAfter(Duration.seconds(5));
                             n.darkStyle();
                             n.show();
+             
+           
+                          
              //AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/EventAffichage.fxml"));
              //ContentPane.getChildren().setAll(pane);
              }

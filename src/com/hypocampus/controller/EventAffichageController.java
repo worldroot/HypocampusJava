@@ -57,12 +57,14 @@ public class EventAffichageController implements Initializable {
     private TableColumn<Event, String> coldd;
     @FXML
     private TableColumn<Event, String> coldf;
+    @FXML
+    private Button SupAction;
     
     List listev = new ArrayList();
     Event e;
     ServiceEvent ev = new ServiceEvent();
-    @FXML
-    private Button SupAction;
+    
+    
     
     
   public void views() throws SQLException {  
@@ -103,7 +105,7 @@ public class EventAffichageController implements Initializable {
     }
 
     @FXML
-    private void btnSupAction(ActionEvent event) {
+    private void btnSupAction(ActionEvent event) throws SQLException {
         
         Event ET = listEvent.getSelectionModel().getSelectedItem();
         
@@ -129,7 +131,9 @@ public class EventAffichageController implements Initializable {
                               Optional<ButtonType> action = alert.showAndWait();
                               if (action.get() == ButtonType.OK) {
                                     Sv.supprimer(Ev);
-                                    Sv.afficher();}
+                                    views();
+                                    }
+                              
                                   }
         
         
