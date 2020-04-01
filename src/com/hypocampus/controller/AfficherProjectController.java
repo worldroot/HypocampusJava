@@ -7,9 +7,14 @@ package com.hypocampus.controller;
 
 import com.hypocampus.models.Project;
 import com.hypocampus.services.ServiceProject;
+import com.hypocampus.utils.DataSource;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -34,6 +39,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.Pagination;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -45,6 +51,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -61,36 +68,14 @@ public class AfficherProjectController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       
-        afficher();
-        recherche();
-//data2.clear();
+        afficher();                   
+
     }    
-    /*
-        @FXML
-    private GridPane afficheProject;
-
-    @FXML
-    private Label projetname;
-
-    @FXML
-    private Label owner;
-
-    @FXML
-    private Label startdate;
-
-    @FXML
-    private Label enddate;
-
-    @FXML
-    private Label description;
-
-    @FXML
-    private FlowPane tab;
-    */
-    
     
     @FXML
     private AnchorPane ContentPane;
+    @FXML
+    private Pagination pagination;
     @FXML
     private TableView<Project> tab;
 
@@ -108,15 +93,16 @@ public class AfficherProjectController implements Initializable {
 
     @FXML
     private TableColumn<Project, String> Coldescription;
-    
-    @FXML
-    private TextField filterField;
     @FXML
     private Button affSprint;
+    
     private List<Project> L = new ArrayList();
     public List <Project> data2 ;
-     //observalble list to store data
     private final ObservableList<Project> dataList = FXCollections.observableArrayList();
+        
+    int from =0,to=0;
+    int intempage=3;
+    Connection cnx = DataSource.getInstance().getCnx();
     
      public void afficher()
      {
@@ -128,6 +114,9 @@ public class AfficherProjectController implements Initializable {
                     Colstartdate.setCellValueFactory(new PropertyValueFactory<>("start_date"));
                     Colenddate.setCellValueFactory(new PropertyValueFactory<>("end_date"));
                     Coldescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+                    int pagecount=(sP.affPagination()/intempage)+1;
+                    pagination.setPageCount(pagecount);
+                    pagination.setPageFactory(this::creatPage);
                     tab.setItems((ObservableList<Project>) sP.afficher());
      }
     @FXML
@@ -143,11 +132,7 @@ public class AfficherProjectController implements Initializable {
     @FXML
     void supprimerProject(ActionEvent event) {
             Project Pr = tab.getSelectionModel().getSelectedItem();
-             
-
-   
-   
-   
+     
                                   if (Pr == null) {
 
                                     Image img = new Image("/com/hypocampus/uploads/error.png");
@@ -183,11 +168,7 @@ public class AfficherProjectController implements Initializable {
     void editprojet(ActionEvent event) throws IOException {
         
          Project Pr = tab.getSelectionModel().getSelectedItem();
-//             data2.removeAll(Pr);
 
-   
-   
-   
                                   if (Pr == null) {
 
                                     Image img = new Image("/com/hypocampus/uploads/error.png");
@@ -202,11 +183,11 @@ public class AfficherProjectController implements Initializable {
                                 }
      else{
                                       
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/EditProject.fxml"));              
-        Parent parent = loader.load();
-        ContentPane.getChildren().setAll(parent);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/EditProject.fxml"));              
+            Parent parent = loader.load();
+            ContentPane.getChildren().setAll(parent);
 
-           EditProjectController controller =(EditProjectController) loader.getController();
+            EditProjectController controller =(EditProjectController) loader.getController();
             controller.inflateUI(Pr);
             controller.add(Pr);
 
@@ -218,17 +199,47 @@ public class AfficherProjectController implements Initializable {
         @FXML
     void affSprint(ActionEvent event) throws IOException {
            AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/AfficherSprint.fxml"));
-        ContentPane.getChildren().setAll(pane);
+           ContentPane.getChildren().setAll(pane);
 
     }
 
+   
     
-          
+       public List<Project> gettabdata() {
+       
+        ObservableList <Project> ListProject =FXCollections.observableArrayList();
+
+        try {
+            String requete = "SELECT * FROM projets LIMIT "+from+","+to+"";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                ListProject.add(new Project(rs.getInt("id"), rs.getString("projet_name"),rs.getString("owner")
+                ,rs.getDate("start_date"), rs.getDate("end_date"),rs.getString("description")));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return ListProject;
+    }
+   private Node creatPage(int pageIndex) 
+   {
+       from=pageIndex *intempage;
+       to=intempage;
+       tab.setItems((ObservableList<Project>) gettabdata());
+
+       return tab;
+   }
+    
+    //recherche 
+       /*  
     void recherche(){
     
            ServiceProject sP =new ServiceProject();
         // Wrap the ObservableList in a FilteredList (initially display all data).
-        FilteredList<Project> filteredData = new FilteredList<>((ObservableList<Project>) sP.afficher(), b -> true);
+        FilteredList<Project> filteredData = new FilteredList<>((ObservableList<Project>) gettabdata(), b -> true);
 		
 		// 2. Set the filter Predicate whenever the filter changes.
 		filterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -263,10 +274,5 @@ public class AfficherProjectController implements Initializable {
         
     
     }
-    
-    
-    
-    
-    
-    
+*/
 }

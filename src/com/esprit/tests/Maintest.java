@@ -7,8 +7,10 @@ package com.esprit.tests;
 
 import com.hypocampus.models.Backlog;
 import com.hypocampus.models.Project;
+import com.hypocampus.models.Sprint;
 import com.hypocampus.services.ServiceBacklog;
 import com.hypocampus.services.ServiceProject;
+import com.hypocampus.services.ServiceSprint;
 import com.hypocampus.services.ServiceTask;
 import java.sql.Date;
 
@@ -44,6 +46,20 @@ public class Maintest {
        // sP.supprimer(new Project(30));
        //modif
        sP.modifier(new  Project ("Projet4","ahmed ben said",dateS,datef,"oki",00));
+       
+       
+  System.out.println("************** sprint *************"); 
+      ServiceSprint sPs =new ServiceSprint();
+       Date dateSs=Date.valueOf("2020-02-10");
+       Date datefs=Date.valueOf("2025-01-01");
+       // ajouter
+        sPs.ajouter(new Sprint("sprnt200",dateSs,datefs,31,00));
+        //afficher
+        sPs.afficher().forEach(System.out::println);
+        //supp
+       // sPs.supprimer(new Sprint(10));
+       //modif
+       sPs.modifier(new  Sprint (20,"sprint_modi",dateS,datef,30));
 
     }
     

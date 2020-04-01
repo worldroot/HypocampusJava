@@ -141,6 +141,21 @@ public class ServiceProject  {
       
         return pp;
 	}               
-                   
+       public int affPagination() {
+       
+         int count =0;
+        try {
+            String requete = "SELECT count(*) FROM projets";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            rs.first();
+         count=rs.getInt(1);
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return count;
+    }                
     
 }
