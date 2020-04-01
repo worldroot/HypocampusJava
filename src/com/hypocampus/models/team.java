@@ -30,6 +30,14 @@ public class team {
         this.teamname = teamname;
         this.dateofcreation = dateofcreation;
     }
+
+    public team(int id, String teamname) {
+        this.id = id;
+        this.teamname = teamname;
+    }
+
+    public team() {
+    }
     
     
     
@@ -58,6 +66,11 @@ public class team {
 
     public void setDateofcreation(Date dateofcreation) {
         this.dateofcreation = dateofcreation;
+    }
+
+    @Override
+    public String toString() {
+        return teamname ;
     }
 
    

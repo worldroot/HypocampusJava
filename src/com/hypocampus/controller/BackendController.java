@@ -21,6 +21,8 @@ import javafx.scene.layout.AnchorPane;
  * @author mehdibehira
  */
 public class BackendController implements Initializable {
+    @FXML
+    private Button meeting;
 
     @FXML
     private AnchorPane BackendPane;
@@ -53,5 +55,10 @@ public class BackendController implements Initializable {
   AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/AfficherTeam.fxml"));
         ContentPane.getChildren().setAll(pane);
     }
-    
+  
+    @FXML
+    void btnmeetingAction(ActionEvent event) throws IOException {
+  AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/Affichermeeting.fxml"));
+        ContentPane.getChildren().setAll(pane);
+    }  
 }

@@ -8,8 +8,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" fx:id="ContentPaneEditT" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.hypocampus.controller.ModifierTeamController">
+<AnchorPane id="AnchorPane" fx:id="ContentPaneEditT" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.ModifierTeamController">
    <children>
       <Pane layoutX="17.0" layoutY="10.0" prefHeight="516.0" prefWidth="973.0" style="-fx-background-color: #ffff;">
          <children>
@@ -19,7 +18,7 @@
                </font>
             </Text>
             <Text layoutX="22.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nom de groupe" wrappingWidth="186.9999859035015" />
-            <TextField fx:id="NameTeam" layoutX="20.0" layoutY="111.0" prefHeight="31.0" prefWidth="283.0" promptText="Team Name" />
+            <TextField fx:id="NameTeam" layoutX="22.0" layoutY="110.0" prefHeight="31.0" prefWidth="283.0" promptText="Team Name" />
             <Text layoutX="22.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date de création" />
             <DatePicker fx:id="StartDateteam" layoutX="22.0" layoutY="186.0" prefHeight="31.0" prefWidth="283.0" />
             <Button fx:id="ModifierTeam" layoutX="846.0" layoutY="476.0" mnemonicParsing="false" onAction="#ModifierTeam" prefHeight="31.0" prefWidth="79.0" style="-fx-background-color: #5ed84f;" text="Modifier" textFill="WHITE" />

@@ -97,6 +97,24 @@ public class ServiceTeam implements IService<team> {
         return Listteam;
     }
                    
+   public team getById(int idp) {
+		 team pp = new team();
+
+        try {
+            String requete = "SELECT * FROM team where id="+idp+"";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                pp = new team(rs.getInt("id"),rs.getString("teamname"));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return pp;
+	}               
                    
+                    
    
 }
