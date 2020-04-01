@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.chart.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="SmallPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EventStatController">
+   <children>
+      <PieChart fx:id="pieChart" layoutX="16.0" layoutY="131.0" prefHeight="499.0" prefWidth="959.0" />
+      <Text fill="#1a154a" layoutX="261.0" layoutY="69.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Pourcentages des events par Capacité des participants" textAlignment="CENTER" wrappingWidth="497.646484375">
+         <font>
+            <Font name="Caviar Dreams Bold" size="31.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="Retour" fitHeight="49.0" fitWidth="44.0" layoutX="14.0" layoutY="632.0" onMouseClicked="#RetourAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../uploads/arrow.png" />
+         </image>
+      </ImageView>
+   </children>
+</AnchorPane>

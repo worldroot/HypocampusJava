@@ -14,8 +14,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,6 +29,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -40,7 +44,10 @@ import org.controlsfx.control.Notifications;
  * @author ASUS
  */
 public class EventAffichageController implements Initializable {
-
+    
+    ServiceEvent ev = new ServiceEvent();
+    public ObservableList<Event> list = FXCollections.observableArrayList(ev.afficher());
+    
     @FXML
     private ImageView btnRetourAction;
     @FXML
@@ -62,7 +69,11 @@ public class EventAffichageController implements Initializable {
     
     List listev = new ArrayList();
     Event e;
-    ServiceEvent ev = new ServiceEvent();
+    
+    @FXML
+    private TextField search;
+    @FXML
+    private ImageView Stat;
     
     
     
@@ -94,7 +105,27 @@ public class EventAffichageController implements Initializable {
         
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
-    } 
+    }
+        
+        FilteredList<Event> filteredData = new FilteredList<>(list, e -> true);
+        search.setOnKeyReleased(e -> {
+            search.textProperty().addListener((ObservableValue, oldValue, newValue) -> {
+                filteredData.setPredicate((Predicate<? super Event>) certif -> {
+                    if (newValue == null || newValue.isEmpty()) {
+                        return true;
+                    }
+                    String lower = newValue.toLowerCase();
+                    if (certif.getTitreEvent().toLowerCase().contains(lower)) {
+                        return true;
+                    }
+
+                    return false;
+                });
+            });
+            SortedList<Event> sortedData = new SortedList<>(filteredData);
+            sortedData.comparatorProperty().bind(listEvent.comparatorProperty());
+            listEvent.setItems(sortedData);
+        });
           
 }   
 
@@ -137,6 +168,13 @@ public class EventAffichageController implements Initializable {
                                   }
         
         
+    }
+
+
+    @FXML
+    private void ViewStat(MouseEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/EventStat.fxml"));
+        SmallPane.getChildren().setAll(pane);
     }
 
 

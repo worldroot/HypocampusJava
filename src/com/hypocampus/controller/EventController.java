@@ -100,6 +100,7 @@ public class EventController implements Initializable {
                 AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/EventAffichage.fxml"));
                 SmallPane.getChildren().setAll(pane);
                 }
+            
             else{
                 Image img = new Image("/com/hypocampus/uploads/error.png");
                 Notifications n = Notifications.create()
@@ -108,8 +109,8 @@ public class EventController implements Initializable {
                               .graphic(new ImageView(img))
                               .position(Pos.TOP_CENTER)
                               .hideAfter(Duration.seconds(5));
-               n.darkStyle();
-               n.show();
+                        n.darkStyle();
+                        n.show();
             }
                 
         

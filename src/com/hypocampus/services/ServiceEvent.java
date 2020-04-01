@@ -115,15 +115,26 @@ public class ServiceEvent implements IService<Event>{
             System.out.println(ex.getMessage());
         } 
         return list.getTitreEvent();
-    }    
-
-
+    } 
     
-    
-
-
-
+    public int getTitreId(String TitreEvent) throws SQLException {
+        Statement stm = cnx.createStatement();
+        String query = "select idev  from events_admin where TitreEvent='"+TitreEvent+"'";
+        ResultSet rst = stm.executeQuery(query);
+        int id = 0;
+        while (rst.next()) {
+            id = rst.getInt("idev");
+        }
+        return id;
+    }
 }
+
+
+    
+    
+
+
+
 
 
 

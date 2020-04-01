@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.text.*?>
 <?import java.lang.*?>
@@ -10,18 +11,18 @@
 
 <AnchorPane id="AnchorPane" fx:id="SmallPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EventAffichageController">
    <children>
-      <Text fill="#1a154a" layoutX="410.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List Events">
+      <Text fill="#1a154a" layoutX="227.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List Events">
          <font>
             <Font name="Caviar Dreams Bold" size="35.0" />
          </font>
       </Text>
-      <TableView fx:id="listEvent" layoutX="122.0" layoutY="166.0" prefHeight="350.0" prefWidth="752.0" AnchorPane.rightAnchor="122.0">
+      <TableView fx:id="listEvent" layoutX="20.0" layoutY="164.0" prefHeight="350.0" prefWidth="549.0" AnchorPane.rightAnchor="427.0">
         <columns>
-          <TableColumn fx:id="colTitre" prefWidth="222.0" text="Titre Event" />
-          <TableColumn fx:id="colCap" prefWidth="83.0" text="Capacité" />
-            <TableColumn fx:id="colType" prefWidth="147.0" text="Type Event" />
-            <TableColumn fx:id="coldd" prefWidth="133.0" text="Date Debut" />
-            <TableColumn fx:id="coldf" prefWidth="165.0" text="Debut Fin" />
+          <TableColumn fx:id="colTitre" prefWidth="173.0" text="Titre Event" />
+          <TableColumn fx:id="colCap" prefWidth="73.0" text="Capacité" />
+            <TableColumn fx:id="colType" prefWidth="95.0" text="Type Event" />
+            <TableColumn fx:id="coldd" prefWidth="103.0" text="Date Debut" />
+            <TableColumn fx:id="coldf" prefWidth="101.0" text="Debut Fin" />
         </columns>
       </TableView>
       <ImageView fx:id="btnRetourAction" fitHeight="44.0" fitWidth="55.0" layoutX="14.0" layoutY="637.0" onMouseClicked="#RetourAction" pickOnBounds="true" preserveRatio="true">
@@ -29,6 +30,12 @@
             <Image url="@../uploads/arrow.png" />
          </image>
       </ImageView>
-      <Button fx:id="SupAction" layoutX="315.0" layoutY="547.0" mnemonicParsing="false" onAction="#btnSupAction" opacity="0.75" prefHeight="31.0" prefWidth="367.0" styleClass="Supp" stylesheets="@../stylesheets/buttons.css" text="Sélectionner le champ à supprimer" />
+      <Button fx:id="SupAction" layoutX="77.0" layoutY="547.0" mnemonicParsing="false" onAction="#btnSupAction" opacity="0.75" prefHeight="31.0" prefWidth="367.0" styleClass="Supp" stylesheets="@../stylesheets/buttons.css" text="Sélectionner le champ à supprimer" />
+      <TextField fx:id="search" layoutX="21.0" layoutY="115.0" prefHeight="31.0" prefWidth="467.0" promptText="Search..." />
+      <ImageView fx:id="Stat" fitHeight="44.0" fitWidth="44.0" layoutX="509.0" layoutY="109.0" onMouseClicked="#ViewStat" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../uploads/graph.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

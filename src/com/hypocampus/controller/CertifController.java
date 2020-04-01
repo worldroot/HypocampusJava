@@ -88,13 +88,14 @@ public class CertifController implements Initializable {
 
     @FXML
     private void btnretourAction(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/MenuEvent.fxml"));
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/MenuEvent.fxml"));
          SmallPane.getChildren().setAll(pane);
     }
 
     @FXML
     private void btnclearAction(ActionEvent event) {
-        
+        pointc.clear();
+        datec.getEditor().clear();    
     }
 
 
