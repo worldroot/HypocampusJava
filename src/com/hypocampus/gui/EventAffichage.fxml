@@ -16,13 +16,13 @@
             <Font name="Caviar Dreams Bold" size="35.0" />
          </font>
       </Text>
-      <TableView fx:id="listEvent" layoutX="20.0" layoutY="164.0" prefHeight="350.0" prefWidth="549.0" AnchorPane.rightAnchor="427.0">
+      <TableView fx:id="listEvent" layoutX="14.0" layoutY="160.0" prefHeight="350.0" prefWidth="558.0" AnchorPane.rightAnchor="424.0">
         <columns>
-          <TableColumn fx:id="colTitre" prefWidth="173.0" text="Titre Event" />
-          <TableColumn fx:id="colCap" prefWidth="73.0" text="Capacité" />
-            <TableColumn fx:id="colType" prefWidth="95.0" text="Type Event" />
-            <TableColumn fx:id="coldd" prefWidth="103.0" text="Date Debut" />
-            <TableColumn fx:id="coldf" prefWidth="101.0" text="Debut Fin" />
+          <TableColumn fx:id="colTitre" prefWidth="176.0" text="Titre Event" />
+          <TableColumn fx:id="colCap" prefWidth="70.0" text="Capacité" />
+            <TableColumn fx:id="colType" prefWidth="109.0" text="Type Event" />
+            <TableColumn fx:id="coldd" prefWidth="100.0" text="Date Debut" />
+            <TableColumn fx:id="coldf" prefWidth="102.0" text="Debut Fin" />
         </columns>
       </TableView>
       <ImageView fx:id="btnRetourAction" fitHeight="44.0" fitWidth="55.0" layoutX="14.0" layoutY="637.0" onMouseClicked="#RetourAction" pickOnBounds="true" preserveRatio="true">
@@ -31,11 +31,23 @@
          </image>
       </ImageView>
       <Button fx:id="SupAction" layoutX="77.0" layoutY="547.0" mnemonicParsing="false" onAction="#btnSupAction" opacity="0.75" prefHeight="31.0" prefWidth="367.0" styleClass="Supp" stylesheets="@../stylesheets/buttons.css" text="Sélectionner le champ à supprimer" />
-      <TextField fx:id="search" layoutX="21.0" layoutY="115.0" prefHeight="31.0" prefWidth="467.0" promptText="Search..." />
-      <ImageView fx:id="Stat" fitHeight="44.0" fitWidth="44.0" layoutX="509.0" layoutY="109.0" onMouseClicked="#ViewStat" pickOnBounds="true" preserveRatio="true">
+      <TextField fx:id="search" layoutX="14.0" layoutY="116.0" prefHeight="31.0" prefWidth="467.0" promptText="Search..." />
+      <ImageView fx:id="Stat" fitHeight="40.0" fitWidth="40.0" layoutX="509.0" layoutY="109.0" onMouseClicked="#ViewStat" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../uploads/graph.png" />
          </image>
       </ImageView>
+      <Line endX="100.0" layoutX="610.0" layoutY="335.0" rotate="90.0" scaleX="2.2" scaleY="2.0" scaleZ="2.0" startX="-100.0" stroke="#1a154a" />
+      <Text fill="#1a154a" layoutX="640.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier l'evenement" textAlignment="CENTER" wrappingWidth="339.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold" size="35.0" />
+         </font>
+      </Text>
+      <Button fx:id="ModifAction" layoutX="697.0" layoutY="547.0" mnemonicParsing="false" onAction="#btnModifAction" opacity="0.75" prefHeight="37.0" prefWidth="227.0" styleClass="DarkBlue" stylesheets="@../stylesheets/buttons.css" text="Valider la modifiaction" />
+      <TextField fx:id="UpTitre" layoutX="684.0" layoutY="199.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouveau Titre..." />
+      <TextField fx:id="UpCapa" layoutX="684.0" layoutY="262.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouvelle Capacité..." />
+      <TextField fx:id="UpType" layoutX="684.0" layoutY="324.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouvelle Type..." />
+      <DatePicker fx:id="UpDatedb" layoutX="684.0" layoutY="385.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouvelle Date debut..." />
+      <DatePicker fx:id="UpDatefn" layoutX="684.0" layoutY="447.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouvelle Date fin..." />
    </children>
 </AnchorPane>

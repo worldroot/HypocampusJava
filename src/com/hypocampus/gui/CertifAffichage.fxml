@@ -58,6 +58,5 @@
             <Font name="Caviar Dreams Bold" size="35.0" />
          </font>
       </Text>
-      <TextField fx:id="search" layoutX="288.0" layoutY="128.0" prefHeight="31.0" prefWidth="238.0" promptText="Search..." />
    </children>
 </AnchorPane>

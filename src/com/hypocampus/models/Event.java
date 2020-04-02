@@ -53,6 +53,17 @@ public class Event {
     public Event(int idev) {
         this.idev = idev;
     }
+
+    public Event(int idev, String titreEvent, int numeroEvent, String typeEvent, Date dateEvent, Date enddateEvent) {
+        this.idev = idev;
+        this.titreEvent = titreEvent;
+        this.numeroEvent = numeroEvent;
+        this.typeEvent = typeEvent;
+        this.dateEvent = dateEvent;
+        this.enddateEvent = enddateEvent;
+    }
+    
+    
     
     
     

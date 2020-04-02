@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
 <?import java.lang.*?>
@@ -10,26 +11,39 @@
 
 <AnchorPane id="AnchorPane" fx:id="SmallPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.ParticipantAffichageController">
    <children>
-      <TableView fx:id="Ptab" layoutX="58.0" layoutY="185.0" prefHeight="326.0" prefWidth="882.0">
+      <TableView fx:id="Ptab" layoutX="20.0" layoutY="185.0" prefHeight="326.0" prefWidth="646.0">
         <columns>
-          <TableColumn fx:id="colnomp" prefWidth="132.0" text="Nom" />
-          <TableColumn fx:id="colPrenom" prefWidth="122.0" text="Prenom" />
-            <TableColumn fx:id="colmail" prefWidth="219.0" text="E-mail" />
-            <TableColumn fx:id="colpass" prefWidth="134.0" text="Password" />
-            <TableColumn fx:id="colchoix" prefWidth="186.0" text="Choix" />
-            <TableColumn fx:id="colreview" prefWidth="88.0" text="Review" />
+          <TableColumn fx:id="colnomp" prefWidth="88.0" text="Nom" />
+          <TableColumn fx:id="colPrenom" prefWidth="96.0" text="Prenom" />
+            <TableColumn fx:id="colmail" prefWidth="128.0" text="E-mail" />
+            <TableColumn fx:id="colpass" prefWidth="76.0" text="Password" />
+            <TableColumn fx:id="colchoix" prefWidth="197.0" text="Choix" />
+            <TableColumn fx:id="colreview" prefWidth="60.0" text="Review" />
         </columns>
       </TableView>
-      <Button fx:id="btnSuppAction" layoutX="345.0" layoutY="541.0" mnemonicParsing="false" onAction="#SuppAction" opacity="0.8" prefHeight="31.0" prefWidth="306.0" styleClass="Supp" stylesheets="@../stylesheets/buttons.css" text="Sélectionner le champ à supprimer" />
+      <Button fx:id="btnSuppAction" layoutX="190.0" layoutY="541.0" mnemonicParsing="false" onAction="#SuppAction" opacity="0.75" prefHeight="31.0" prefWidth="306.0" styleClass="Supp" stylesheets="@../stylesheets/buttons.css" text="Sélectionner le champ à supprimer" />
       <ImageView fitHeight="44.0" fitWidth="55.0" layoutX="14.0" layoutY="637.0" onMouseClicked="#RetourAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../uploads/arrow.png" />
          </image>
       </ImageView>
-      <Text fill="#262d47" layoutX="346.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List des Participants">
+      <Text fill="#262d47" layoutX="191.0" layoutY="121.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List des Participants">
          <font>
             <Font name="Caviar Dreams Bold" size="31.0" />
          </font>
       </Text>
+      <Line endX="100.0" layoutX="690.0" layoutY="337.0" rotate="90.0" scaleX="2.0" scaleY="2.0" scaleZ="2.0" startX="-100.0" stroke="#262d47" />
+      <TextField fx:id="UpMail" layoutX="716.0" layoutY="293.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouveau e-mail..." />
+      <TextField fx:id="UpPrenom" layoutX="717.0" layoutY="239.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouveau Prenom..." />
+      <TextField fx:id="UpNom" layoutX="716.0" layoutY="185.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouveau Nom..." />
+      <Button fx:id="ModifAction" layoutX="731.0" layoutY="522.0" mnemonicParsing="false" onAction="#btnModifAction" opacity="0.75" prefHeight="37.0" prefWidth="227.0" styleClass="DarkBlue" stylesheets="@../stylesheets/buttons.css" text="Valider la modifiaction" />
+      <Text fill="#1a154a" layoutX="724.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Participant" textAlignment="CENTER" wrappingWidth="240.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold" size="31.0" />
+         </font>
+      </Text>
+      <TextField fx:id="UpPass" layoutX="717.0" layoutY="349.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouveau password..." />
+      <TextField fx:id="UpRev" layoutX="718.0" layoutY="459.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouveau Review..." />
+      <ComboBox fx:id="UpTitre" layoutX="718.0" layoutY="404.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouveau choix" />
    </children>
 </AnchorPane>

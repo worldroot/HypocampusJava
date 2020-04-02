@@ -5,7 +5,6 @@
  */
 package com.hypocampus.controller;
 
-import static com.hypocampus.controller.EditProjectController.LOCAL_DATE;
 import com.hypocampus.models.Certif;
 import com.hypocampus.models.Event;
 import com.hypocampus.services.ServiceCertif;
@@ -66,6 +65,7 @@ public class CertifAffichageController implements Initializable {
     ServiceEvent sv = new ServiceEvent();
     public ObservableList<Certif> list = FXCollections.observableArrayList(ev.afficher());
     
+    private int current_id;
     @FXML
     private TableView<Certif> TableC;
     @FXML
@@ -89,9 +89,7 @@ public class CertifAffichageController implements Initializable {
     private Button ModifAction;
     @FXML
     private ComboBox<String> ComTitre;
-     private int current_id;
-    @FXML
-    private TextField search;
+     
    
   public void views() throws SQLException {  
       
@@ -132,26 +130,25 @@ public class CertifAffichageController implements Initializable {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
     }
-         TableC.setOnKeyReleased(new EventHandler<KeyEvent>() {
-            @Override
-            public void handle(KeyEvent e) {
-                if (e.getCode() == KeyCode.UP || e.getCode() == KeyCode.DOWN) {
-                    
-                    Certif rowData = TableC.getSelectionModel().getSelectedItem();
-                    /**
-                     * fill the fields with the selected data *
-                     */
-                    //Event et = ComTitre.getSelectionModel().getSelectedItem();
-                      // LocalDate df= Updatec.getValue();
-           
-                      String t=sv.GetById(rowData.getTitrec());
-                    ComTitre.setValue(t);
-                    Uppoint.setText(Integer.toString(rowData.getPointc()));
-                    Updatec.setValue(LOCAL_DATE(rowData.getDatec().toString()));
-                    current_id = rowData.getIdc();
-    
-                }
-            }
+        
+        //Modifier Starts Here
+         TableC.setOnKeyReleased((KeyEvent e) -> {
+             if (e.getCode() == KeyCode.UP || e.getCode() == KeyCode.DOWN) {
+                 
+                 Certif rowData = TableC.getSelectionModel().getSelectedItem();
+                 /**
+                  * fill the fields with the selected data *
+                  */
+                 //Event et = ComTitre.getSelectionModel().getSelectedItem();
+                 // LocalDate df= Updatec.getValue();
+                 
+                 String t=sv.GetById(rowData.getTitrec());
+                 ComTitre.setValue(t);
+                 Uppoint.setText(Integer.toString(rowData.getPointc()));
+                 Updatec.setValue(LOCAL_DATE(rowData.getDatec().toString()));
+                 current_id = rowData.getIdc();
+                 
+             }
         });
          
        
@@ -214,7 +211,6 @@ public class CertifAffichageController implements Initializable {
             /**
              * refreshing the table view *
              */
-          
             TableC.setItems(list);
 
 
@@ -233,6 +229,12 @@ public class CertifAffichageController implements Initializable {
         LocalDate localDate = LocalDate.parse(date , formatter);
         return localDate;
     }
+    
+     public static final LocalDate LOCAL_DATE (String dateString){
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+    LocalDate localDate = LocalDate.parse(dateString, formatter);
+    return localDate;
+}
 
 
 
