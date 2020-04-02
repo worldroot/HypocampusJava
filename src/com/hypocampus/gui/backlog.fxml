@@ -1,18 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import javafx.scene.effect.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.canvas.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Glow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="695.0" prefWidth="996.0" stylesheets="@../stylesheets/buttons.css" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.BacklogController">
+<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="695.0" prefWidth="996.0" stylesheets="@../stylesheets/buttons.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.BacklogController">
    <children>
-      <Button fx:id="AjoutAction" defaultButton="true" layoutX="846.0" layoutY="59.0" mnemonicParsing="false" onMouseClicked="#AjouterBacklog" prefHeight="48.0" prefWidth="103.0" styleClass="btn" stylesheets="@../stylesheets/buttons.css" text="Ajouter">
+      <Text fx:id="TitreListeBacklog" fill="#1a154a" layoutX="205.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste Backlog" textAlignment="CENTER" wrappingWidth="457.6708984375">
+         <font>
+            <Font name="American Captain" size="35.0" />
+         </font>
+      </Text>
+      <Button fx:id="AjoutAction" defaultButton="true" layoutX="865.0" layoutY="69.0" mnemonicParsing="false" onMouseClicked="#AjouterBacklog" prefHeight="48.0" prefWidth="103.0" style="-fx-background-color: #4f86f7;" text="Ajouter" textFill="#f5f5f5">
          <effect>
             <Glow />
          </effect>
@@ -45,7 +52,12 @@
       <AnchorPane fx:id="AjoutBacklogPane" layoutX="9.0" layoutY="28.0" prefHeight="602.0" prefWidth="1040.0" visible="false">
          <children>
             <ChoiceBox fx:id="ListProjetAction" layoutX="334.0" layoutY="209.0" prefWidth="150.0" />
-            <Button fx:id="SubmitBacklogAction" layoutX="383.0" layoutY="314.0" mnemonicParsing="false" onAction="#SubmitBacklogBtn" text="Submit" />
+            <Button fx:id="SubmitBacklogAction" layoutX="383.0" layoutY="314.0" mnemonicParsing="false" onAction="#SubmitBacklogBtn" text="Valider" />
+            <Text fx:id="TitreAjoutBacklog" fill="#1a154a" layoutX="192.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Backlog" textAlignment="CENTER" wrappingWidth="457.6708984375">
+               <font>
+                  <Font name="American Captain" size="35.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </children>

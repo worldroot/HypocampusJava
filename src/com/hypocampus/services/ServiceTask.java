@@ -15,6 +15,7 @@ import java.util.List;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -125,8 +126,110 @@ public class ServiceTask implements IService<Task>{
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
+        
+        
 
         return list;
+    }
+    
+    public List<Task> afficher(int first, int limit){
+        
+              List<Task> list = new ArrayList<>();
+
+        try {
+            String requete = "SELECT * FROM task";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                list.add(new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
+                ,rs.getString("description_fonctionnel"), rs.getString("description_technique")
+                ,rs.getInt("story_points"), rs.getDate("created_date"), rs.getDate("finished_date")
+                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id")));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+          
+        if ((first==0)&&(limit==0)) {
+           return list; 
+        } else if ((first==0)&&(limit!=0)) {
+            return  list.stream().limit(limit).collect(Collectors.toList());
+        } else if ((first!=0)&&(limit==0)) {
+            return  list.stream().skip(first).collect(Collectors.toList());
+        }
+        else{
+         return  list.stream().skip(first).limit(limit).collect(Collectors.toList());
+        }
+
+        
+        
+    }
+    
+    
+       public List<Task> afficherParBacklog(int first, int limit, Backlog b){
+        
+              List<Task> list = new ArrayList<>();
+
+        try {
+            String requete = "SELECT * FROM task where task.backlog_id ="+b.getId()+"";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                list.add(new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
+                ,rs.getString("description_fonctionnel"), rs.getString("description_technique")
+                ,rs.getInt("story_points"), rs.getDate("created_date"), rs.getDate("finished_date")
+                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id")));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+          
+        if ((first==0)&&(limit==0)) {
+           return list; 
+        } else if ((first==0)&&(limit!=0)) {
+            return  list.stream().limit(limit).collect(Collectors.toList());
+        } else if ((first!=0)&&(limit==0)) {
+            return  list.stream().skip(first).collect(Collectors.toList());
+        }
+        else{
+         return  list.stream().skip(first).limit(limit).collect(Collectors.toList());
+        }
+
+        
+        
+    }
+       
+    public List<Task> afficherParBacklogId(int first, int limit, int id){
+        
+              List<Task> list = new ArrayList<>();
+
+        try {
+            String requete = "SELECT * FROM task where task.backlog_id ="+id+"";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                list.add(new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
+                ,rs.getString("description_fonctionnel"), rs.getString("description_technique")
+                ,rs.getInt("story_points"), rs.getDate("created_date"), rs.getDate("finished_date")
+                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id")));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+          
+        if ((first==0)&&(limit==0)) {
+           return list; 
+        } else if ((first==0)&&(limit!=0)) {
+            return  list.stream().limit(limit).collect(Collectors.toList());
+        } else if ((first!=0)&&(limit==0)) {
+            return  list.stream().skip(first).collect(Collectors.toList());
+        }
+        else{
+         return  list.stream().skip(first).limit(limit).collect(Collectors.toList());
+        }
+
+        
+        
     }
 
 }

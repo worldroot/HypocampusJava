@@ -24,6 +24,7 @@ public class Task {
     private int priority;
     private int archive;
     private int sprint_id;
+    private int user_id;
 
     public Task(int id, int backlog_id, String title, String description_fonctionnel, String description_technique, int story_points, Date created_date, Date finished_date, String state, int priority, int archive, int sprint_id) {
         this.id = id;

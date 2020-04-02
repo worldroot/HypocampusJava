@@ -9,6 +9,7 @@ import com.hypocampus.models.Backlog;
 import com.hypocampus.models.Project;
 import com.hypocampus.services.ServiceBacklog;
 import com.hypocampus.services.ServiceProject;
+import com.hypocampus.services.ServiceTask;
 import com.hypocampus.utils.DataSource;
 import java.io.IOException;
 import java.net.URL;
@@ -42,6 +43,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -90,6 +92,10 @@ public class BacklogController implements Initializable {
     private MenuItem deleteAction;
     @FXML
     private MenuItem Taches;
+    @FXML
+    private Text TitreListeBacklog;
+    @FXML
+    private Text TitreAjoutBacklog;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -100,6 +106,8 @@ public class BacklogController implements Initializable {
     
     
     public void afficherBacklogs(){
+        TitreAjoutBacklog.setVisible(false);
+        TitreListeBacklog.setVisible(true);
         TabBacklog.setVisible(true);
         ServiceBacklog sb = new ServiceBacklog();
         ServiceProject sp =new ServiceProject(); 
@@ -128,6 +136,8 @@ public class BacklogController implements Initializable {
          
          TabBacklog.setVisible(false);
         AjoutBacklogPane.setVisible(true);
+        TitreAjoutBacklog.setVisible(true);
+        TitreListeBacklog.setVisible(false);
  
     }
 
@@ -182,7 +192,24 @@ public class BacklogController implements Initializable {
     }
 
     @FXML
-    private void BacklogTasks(ActionEvent event) {
+    private void BacklogTasks(ActionEvent event) throws IOException {
+        ServiceTask ST  = new ServiceTask();
+         Backlog ba = TabBacklog.getSelectionModel().getSelectedItem();
+        ServiceBacklog sb =new ServiceBacklog();
+        
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/IndexTask.fxml"));
+           Parent root = loader.load();
+       
+        IndexTaskController ITC = loader.getController();
+        ITC.affichageTasks(ST.afficherParBacklog(0, 0, ba));
+        ITC.setBacklogId(Integer.toString(ba.getId()));
+
+        
+        // AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/IndexTask.fxml"));
+        ContentPane.getChildren().setAll(root);
+        
+       
+        
     }
     
     
