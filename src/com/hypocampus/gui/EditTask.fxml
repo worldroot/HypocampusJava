@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EditTaskController">
+   <children>
+      <Text fx:id="TitreBacklog" fill="#1a154a" layoutX="289.0" layoutY="95.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Tache" textAlignment="CENTER" wrappingWidth="457.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold" size="35.0" />
+         </font>
+      </Text>
+      <TextArea fx:id="DescriptionTask" layoutX="526.0" layoutY="493.0" prefHeight="72.0" prefWidth="335.0" />
+      <TextField fx:id="TItreTask" layoutX="85.0" layoutY="251.0" prefHeight="27.0" prefWidth="194.0" />
+      <Text fx:id="TitreTask" fill="#1a154a" layoutX="124.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre" textAlignment="CENTER" wrappingWidth="88.6708984375">
+         <font>
+            <Font name="Caviar Dreams" size="34.0" />
+         </font>
+      </Text>
+      <Text fx:id="DescriptionFTitre" fill="#1a154a" layoutX="515.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Description Fonctionnel" textAlignment="CENTER" wrappingWidth="356.6708984375">
+         <font>
+            <Font name="Caviar Dreams" size="34.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="StoryPointsList" layoutX="85.0" layoutY="376.0" prefHeight="27.0" prefWidth="194.0" />
+      <Text fx:id="StoryPointsTitre" fill="#1a154a" layoutX="84.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Story Points" textAlignment="CENTER" wrappingWidth="178.6708984375">
+         <font>
+            <Font name="Caviar Dreams" size="34.0" />
+         </font>
+      </Text>
+      <DatePicker fx:id="Deadline" layoutX="85.0" layoutY="502.0" />
+      <Text fx:id="DeadlineTitre" fill="#1a154a" layoutX="79.0" layoutY="472.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Deadline" textAlignment="CENTER" wrappingWidth="178.6708984375">
+         <font>
+            <Font name="Caviar Dreams" size="34.0" />
+         </font>
+      </Text>
+      <ComboBox layoutX="596.0" layoutY="251.0" prefHeight="27.0" prefWidth="194.0" />
+      <Text fx:id="UserTItre" fill="#1a154a" layoutX="649.0" layoutY="236.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User" textAlignment="CENTER" wrappingWidth="88.6708984375">
+         <font>
+            <Font name="Caviar Dreams" size="34.0" />
+         </font>
+      </Text>
+      <Text fx:id="EtatTitre" fill="#1a154a" layoutX="649.0" layoutY="350.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Etat" textAlignment="CENTER" wrappingWidth="88.6708984375">
+         <font>
+            <Font name="Caviar Dreams" size="34.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="EtatTask" layoutX="596.0" layoutY="376.0" prefHeight="27.0" prefWidth="194.0" />
+      <Text fx:id="PriorityTitre" fill="#1a154a" layoutX="93.0" layoutY="599.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority" textAlignment="CENTER" wrappingWidth="178.6708984375">
+         <font>
+            <Font name="Caviar Dreams" size="34.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="Priority" layoutX="85.0" layoutY="615.0" prefHeight="27.0" prefWidth="194.0" />
+      <Button layoutX="761.0" layoutY="601.0" mnemonicParsing="false" onAction="#SubmitTask" prefHeight="41.0" prefWidth="111.0" text="Valider" />
+      <Label fx:id="BacklogId" disable="true" layoutX="140.0" layoutY="121.0" prefHeight="17.0" prefWidth="57.0" visible="false" />
+   </children>
+</AnchorPane>

@@ -189,6 +189,95 @@ public class IndexTaskController implements Initializable {
             TitreTask.getChildren().add(Titre);
             postpane.getChildren().add(TitreTask);
             
+            // Story Points
+            Pane StoryPointTextPane = new Pane();
+            StoryPointTextPane.setPrefWidth(190);
+            StoryPointTextPane.setLayoutX(10);
+            
+            Label StoryPointLabel = new Label();
+            StoryPointLabel.setPrefHeight(110);
+            StoryPointLabel.setPrefWidth(230);
+            StoryPointLabel.setLayoutX(8);
+            StoryPointLabel.setLayoutY(80);
+            StoryPointLabel.setTextFill(Color.WHITE);
+            StoryPointLabel.setStyle("-fx-font-size :15");
+            StoryPointLabel.setText("Story Points : "+tasks.get(i).getStory_points());
+            StoryPointLabel.setAlignment(Pos.TOP_LEFT);
+            StoryPointLabel.setWrapText(true);
+            StoryPointTextPane.getChildren().add(StoryPointLabel);
+            postpane.getChildren().add(StoryPointTextPane);
+            
+            //Deadline
+             Pane DeadlineTextPane = new Pane();
+            DeadlineTextPane.setPrefWidth(190);
+            DeadlineTextPane.setLayoutX(10);
+            
+            Label DeadlineLabel = new Label();
+            DeadlineLabel.setPrefHeight(110);
+            DeadlineLabel.setPrefWidth(230);
+            DeadlineLabel.setLayoutX(8);
+            DeadlineLabel.setLayoutY(120);
+            DeadlineLabel.setTextFill(Color.WHITE);
+            DeadlineLabel.setStyle("-fx-font-size :15");
+            DeadlineLabel.setText("Deadline : "+tasks.get(i).getFinished_date());
+            DeadlineLabel.setAlignment(Pos.TOP_LEFT);
+            DeadlineLabel.setWrapText(true);
+            DeadlineTextPane.getChildren().add(DeadlineLabel);
+            postpane.getChildren().add(DeadlineTextPane);
+            
+            // State
+            Pane StateTextPane = new Pane();
+            StateTextPane.setPrefWidth(190);
+            StateTextPane.setLayoutX(10);
+            
+            Label StateLabel = new Label();
+            StateLabel.setPrefHeight(110);
+            StateLabel.setPrefWidth(230);
+            StateLabel.setLayoutX(8);
+            StateLabel.setLayoutY(160);
+            StateLabel.setTextFill(Color.WHITE);
+            StateLabel.setStyle("-fx-font-size :15");
+            StateLabel.setText("Etat : "+tasks.get(i).getState());
+            StateLabel.setAlignment(Pos.TOP_LEFT);
+            StateLabel.setWrapText(true);
+            StateTextPane.getChildren().add(StateLabel);
+            postpane.getChildren().add(StateTextPane);
+            
+            
+            // Priority
+            Pane PriorityTextPane = new Pane();
+            PriorityTextPane.setPrefWidth(190);
+            PriorityTextPane.setLayoutX(10);
+            
+            String priority;
+           
+           switch (tasks.get(i).getPriority()) {
+               case 1:
+                   priority= "Low";
+                   break;
+               case 2:
+                   priority= "Medium";
+                   break;
+               default:
+                   priority= "High";
+                   break;
+           }
+            
+            Label PriorityLabel = new Label();
+            PriorityLabel.setPrefHeight(110);
+            PriorityLabel.setPrefWidth(230);
+            PriorityLabel.setLayoutX(8);
+            PriorityLabel.setLayoutY(200);
+            PriorityLabel.setTextFill(Color.WHITE);
+            PriorityLabel.setStyle("-fx-font-size :15");
+            PriorityLabel.setText("Priority : "+priority);
+            PriorityLabel.setAlignment(Pos.TOP_LEFT);
+            PriorityLabel.setWrapText(true);
+            PriorityTextPane.getChildren().add(PriorityLabel);
+            postpane.getChildren().add(PriorityTextPane);
+            
+            
+            /// To add after sprint + user + desTechnique
             //Edit bouton task
             Image editIcon = new Image("/com/hypocampus/uploads/settings1.png");
             editIcon.getRequestedHeight();
@@ -203,8 +292,17 @@ public class IndexTaskController implements Initializable {
             postpane.getChildren().add(editbtn);
             
             editbtn.setOnMouseClicked((MouseEvent e) -> {
-
-                });
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/EditTask.fxml"));
+                        Parent parent = loader.load();
+                        ContentMaine.getChildren().setAll(parent);
+                        EditTaskController controller =(EditTaskController) loader.getController();
+                        controller.inflateUI(current);
+                    } catch (IOException ex) {
+                        Logger.getLogger(IndexTaskController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+           
+            });
             
             //Delete bouton task
             Image DeleteIcon = new Image("/com/hypocampus/uploads/error.png");

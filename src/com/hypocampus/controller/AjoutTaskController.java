@@ -92,8 +92,9 @@ public class AjoutTaskController implements Initializable {
         int story_points = StoryPointsList.getSelectionModel().getSelectedItem();
         long millis=System.currentTimeMillis();
         Date created_date =new java.sql.Date(millis);
-        Date finished_date = new Date(Deadline.getValue().getYear()-1900, Deadline.getValue().getMonthValue()-1, Deadline.getValue().getDayOfMonth());
-
+        
+      //  Date finished_date = new Date(Deadline.getValue().getYear()-1900, Deadline.getValue().getMonthValue()-1, Deadline.getValue().getDayOfMonth());
+        Date finished_date = Date.valueOf(Deadline.getValue().toString());
         
         String state = EtatTask.getSelectionModel().getSelectedItem();
         int priority= Priority.getSelectionModel().getSelectedItem();
