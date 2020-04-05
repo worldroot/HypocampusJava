@@ -54,6 +54,9 @@ public class Task {
         this.archive = archive;
         this.sprint_id = sprint_id;
     }
+
+    public Task() {
+    }
     
     
 

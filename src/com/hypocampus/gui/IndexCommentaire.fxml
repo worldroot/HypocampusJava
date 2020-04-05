@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="ContentMaine" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.IndexCommentaireController">
+   <children>
+      <Text fx:id="TitreListeDesCommentaires" fill="#1a154a" layoutX="283.0" layoutY="73.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Commentaires" textAlignment="CENTER" wrappingWidth="457.6708984375">
+         <font>
+            <Font name="American Captain" size="35.0" />
+         </font>
+      </Text>
+      <ScrollPane layoutX="331.0" layoutY="180.0" prefHeight="456.0" prefWidth="305.0" style="-fx-background-color: transparent;">
+         <content>
+            <VBox fx:id="CommentairesContainer" spacing="10.0" style="-fx-background-color: transparent;" />
+         </content>
+      </ScrollPane>
+      <Button fx:id="AjoutCommentaireBtn" layoutX="885.0" layoutY="105.0" mnemonicParsing="false" onAction="#AjoutCommentaire" style="-fx-background-color: #4f86f7;" text="Ajouter" textFill="WHITE" />
+      <Text fx:id="TaskId" disable="true" layoutX="215.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+   </children>
+</AnchorPane>

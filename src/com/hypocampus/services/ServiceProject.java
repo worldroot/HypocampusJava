@@ -125,7 +125,7 @@ public class ServiceProject implements IService<Project> {
         return list.getName(); 
     }  
         
-       public Project GetByIdProject(int id) { 
+    public Project GetByIdProject(int id) {
          
         Project list = new Project(); 
         String req = "select * from projets where id="+id+""; 

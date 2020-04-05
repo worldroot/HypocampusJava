@@ -7,10 +7,13 @@ package com.hypocampus.controller;
 
 import com.hypocampus.models.Backlog;
 import com.hypocampus.models.Task;
+import com.hypocampus.services.ServiceCommentaire;
 import com.hypocampus.services.ServiceTask;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -22,7 +25,9 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
@@ -318,19 +323,81 @@ public class IndexTaskController implements Initializable {
             postpane.getChildren().add(DeletButton);
             
             DeletButton.setOnMouseClicked((MouseEvent e) -> {
-                ServiceTask ST = new ServiceTask();
-                ST.supprimer(current);
-               FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/IndexTask.fxml"));
+                
+                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                    alert.setTitle("Confirmation ");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Vous voulez vraiment supprimer cette tache ");
+                                    Optional<ButtonType> action = alert.showAndWait();
+                                    if (action.get() == ButtonType.OK) {
+                                     
+                                      
+
+                                    
                 try {
-                 Parent root = loader.load();
-                IndexTaskController ITC = loader.getController();
-                ITC.affichageTasks(ST.afficherParBacklogId(0, 0, current.getBacklog_id()));
-                ITC.setBacklogId(Integer.toString(current.getBacklog_id()));
-                ContentMaine.getChildren().setAll(root);
-                  } catch (IOException ex) {
+                    
+                    
+                    
+                    
+                    ServiceTask ST = new ServiceTask();
+                    /// algo points to remove points
+                    ST.point_algortime_1(current, false);
+                    ST.supprimer(current);
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/IndexTask.fxml"));
+                    try {
+                        Parent root = loader.load();
+                        IndexTaskController ITC = loader.getController();
+                        ITC.affichageTasks(ST.afficherParBacklogId(0, 0, current.getBacklog_id()));
+                        ITC.setBacklogId(Integer.toString(current.getBacklog_id()));
+                        ContentMaine.getChildren().setAll(root);
+                    } catch (IOException ex) {
+                        Logger.getLogger(IndexTaskController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    
+                } catch (SQLException ex) {
                                Logger.getLogger(IndexTaskController.class.getName()).log(Level.SEVERE, null, ex);
                            }
+                
+                }
                 });
+            
+            ///Commentaires bouton
+                       
+            Image CommentaireIcon = new Image("/com/hypocampus/uploads/commentaires.png");
+            editIcon.getRequestedHeight();
+            editIcon.getRequestedWidth();
+            ImageView comment = new ImageView(CommentaireIcon);
+            Button CommentButton = new Button("", comment);
+            CommentButton.setBackground(Background.EMPTY);
+            CommentButton.setPrefWidth(1);
+            CommentButton.setPrefHeight(1);
+            CommentButton.setLayoutX(120);
+            CommentButton.setLayoutY(250);
+            postpane.getChildren().add(CommentButton);
+            
+            CommentButton.setOnMouseClicked((MouseEvent e) -> {
+                try {
+                    ServiceCommentaire SC  = new ServiceCommentaire();
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/IndexCommentaire.fxml"));
+                        Parent parent = loader.load();
+                        ContentMaine.getChildren().setAll(parent);
+                        IndexCommentaireController controller =(IndexCommentaireController) loader.getController();
+                     
+                        controller.affichageCommentaires(SC.afficherParTask(current.getId()));
+                        
+        controller.setTaskId(Integer.toString(current.getId()));
+
+        
+
+                    } catch (IOException ex) {
+                        Logger.getLogger(IndexTaskController.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+  
+                });
+            
+            
+            
+            
             
             
             

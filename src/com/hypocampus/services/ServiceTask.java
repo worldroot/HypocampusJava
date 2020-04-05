@@ -15,7 +15,9 @@ import java.util.List;
 import java.sql.Date;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.Properties;
 import java.util.stream.Collectors;
+import javax.mail.Session;
 
 /**
  *
@@ -231,5 +233,44 @@ public class ServiceTask implements IService<Task>{
         
         
     }
+    
+    public void point_algortime_1(Task T, boolean math) throws SQLException{
+        ServiceBacklog SB = new ServiceBacklog();
+        Backlog B = SB.getBacklogbyId(T.getBacklog_id());
+        int old_points = T.getStory_points();
+     
+        if ("To Do".equals(T.getState())){
+           SB.update_points_1(B, 1, old_points, math);
+        }else if("Doing".equals(T.getState())){
+            SB.update_points_1(B, 2, old_points, math);
+        }else{
+            SB.update_points_1(B, 3, old_points, math);
+        }
+        
+    }
+    
+    public Task getTaskbyid(int id){
+                Task ta = new Task();
 
+        try {
+            String requete = "SELECT * FROM task where id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                ta = new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
+                ,rs.getString("description_fonctionnel"), rs.getString("description_technique")
+                ,rs.getInt("story_points"), rs.getDate("created_date"), rs.getDate("finished_date")
+                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id"));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+          
+         return ta;
+
+        
+       
+    }
+   
 }

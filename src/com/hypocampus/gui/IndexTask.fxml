@@ -19,9 +19,9 @@
             <Font name="American Captain" size="35.0" />
          </font>
       </Text>
-      <ScrollPane layoutX="40.0" layoutY="160.0" prefHeight="456.0" prefWidth="937.0">
+      <ScrollPane layoutX="40.0" layoutY="160.0" prefHeight="456.0" prefWidth="937.0" style="-fx-background-color: transpartent;">
          <content>
-            <HBox fx:id="TaskContainer" spacing="3.0" />
+            <HBox fx:id="TaskContainer" spacing="3.0" style="-fx-background-color: transpartent;" />
          </content>
       </ScrollPane>
       <Button fx:id="AjoutTaskbtn" layoutX="875.0" layoutY="95.0" mnemonicParsing="false" onAction="#AjoutTask" style="-fx-background-color: #4f86f7;" text="Ajouter" textFill="WHITE" />

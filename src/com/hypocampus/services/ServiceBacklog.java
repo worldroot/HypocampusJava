@@ -74,6 +74,52 @@ public class ServiceBacklog implements IService<Backlog>{
             System.err.println(ex.getMessage());
         }
     }
+    
+    public void update_points_1(Backlog B, int step, int points, boolean math) throws SQLException{
+        switch (step) {
+            case 1:
+                String requete = "UPDATE backlog SET points_to_do=? WHERE id=?";
+                PreparedStatement pst = cnx.prepareStatement(requete);
+                if (math == false){
+                  pst.setInt(1, B.getPoints_to_do() - points);
+                }else{
+                    pst.setInt(1, B.getPoints_to_do() + points); 
+                }
+                pst.setInt(2, B.getId());
+                pst.executeUpdate();
+                System.out.println("Backlog  Update points to do done !");
+                break;
+            case 2:
+                String requete2 = "UPDATE backlog SET points_in_progress=? WHERE id=?";
+                PreparedStatement pst2 = cnx.prepareStatement(requete2);
+                if (math == false){
+                    pst2.setInt(1, B.getPoints_in_progress() - points);
+                }
+                else{
+                    pst2.setInt(1, B.getPoints_in_progress() + points);
+                }
+                pst2.setInt(2, B.getId());
+                pst2.executeUpdate();
+                System.out.println("Backlog  Update points in progress done !");
+                break;
+            case 3:
+                String requete3 = "UPDATE backlog SET points_done=? WHERE id=?";
+                PreparedStatement pst3 = cnx.prepareStatement(requete3);
+                if (math == false){
+                    pst3.setInt(1, B.getPoints_done() - points);
+                }else{
+                    pst3.setInt(1, B.getPoints_done() + points);
+                }
+                pst3.setInt(2, B.getId());
+                pst3.executeUpdate();
+                System.out.println("Backlog  Update points  done !");
+                break;
+            default:
+                System.out.println("Backlog  Update points  nothing to do !");
+                break;
+        }
+        
+    }
 
     public void modifierProject(Backlog B){
                 try {
@@ -93,8 +139,6 @@ public class ServiceBacklog implements IService<Backlog>{
     @Override
     public List<Backlog> afficher() {
          ObservableList <Backlog> ListBacklog =FXCollections.observableArrayList(); 
-     
-
         try {
             String requete = "SELECT * FROM backlog";
             PreparedStatement pst = cnx.prepareStatement(requete);
@@ -110,7 +154,26 @@ public class ServiceBacklog implements IService<Backlog>{
 
         return ListBacklog;
     }
-
     
+    public Backlog getBacklogbyId(int id){
+        Backlog ba = new Backlog(); 
+        try {
+            String requete = "SELECT * FROM backlog where id= ?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, id);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                ba = new Backlog(rs.getInt("id"), rs.getInt("points_to_do"), rs.getInt("points_in_progress")
+                ,rs.getInt("points_done"), rs.getInt("project_id"));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return ba;
+    
+    }
+
     
 }

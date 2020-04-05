@@ -7,19 +7,28 @@ package com.hypocampus.controller;
 
 import com.hypocampus.models.Task;
 import com.hypocampus.services.ServiceTask;
+import com.hypocampus.utils.Email;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -58,6 +67,8 @@ public class AjoutTaskController implements Initializable {
     private Text PriorityTitre;
     @FXML
     private Label BacklogId;
+    @FXML
+    private AnchorPane ContentMaine;
 
     /**
      * Initializes the controller class.
@@ -84,7 +95,7 @@ public class AjoutTaskController implements Initializable {
     }
     
     @FXML
-    private void SubmitTask(ActionEvent event) {
+    private void SubmitTask(ActionEvent event) throws Exception {
         ServiceTask  ST =new ServiceTask();
         String title = TItreTask.getText();
         String description_fonctionnel = DescriptionTask.getText();
@@ -105,6 +116,40 @@ public class AjoutTaskController implements Initializable {
         Task t = new Task(Integer.parseInt(BacklogId.getText()), title, description_fonctionnel, description_technique, story_points, created_date, finished_date, state, priority, archive, sprint_id);
         
         ST.ajouter(t);
+        // alghorithme points
+        ST.point_algortime_1(t, true);
+        String titreMail ="Vous Etes Affecter A Une Nouvelle Tache";
+        String text = "\"<h1> Bonsoir, \n </h1>"
+                + " <h2>Vous Etes Affecter A Une Nouvelle Tache,"
+                + " Vous Pouvez vous connecter est commencer a travailler\n </h2> "
+                + "<h2>Titre: "+t.getTitle()+"\n</h2> "
+                + "<h2>Description: "+t.getDescription_fonctionnel()+"\n</h2>"
+                + "<h2>Story Points: "+t.getStory_points()+"\n</h2>"
+                + "<h2>Etat: "+t.getState()+"\n</h2>"
+                + "<h2>Date Estimer: "+t.getFinished_date()+"\n</h2>"
+                + "<h3> ,Bonne Chance et Bon Courage </h3>";
+        // notification
+        
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/IndexTask.fxml"));
+        Parent root = loader.load();
+       
+        IndexTaskController ITC = loader.getController();
+        ITC.affichageTasks(ST.afficherParBacklogId(0, 0, t.getBacklog_id()));
+        ITC.setBacklogId(Integer.toString(t.getBacklog_id()));
+         ContentMaine.getChildren().setAll(root);
+        
+         Image img = new Image("/com/hypocampus/uploads/Check.png");
+         Notifications n = Notifications.create()
+           .title("SUCCESS")
+           .text("Tache ajoutée")
+           .graphic(new ImageView(img))
+           .position(Pos.TOP_CENTER)
+           .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
+        // email    
+        new Email("hypocampus.platforms@gmail.com", "3A192020", "mehdibehira@gmail.com", titreMail, text); // Send a message
+        // redirection
         
     }
     

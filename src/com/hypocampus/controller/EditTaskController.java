@@ -14,6 +14,7 @@ import com.hypocampus.services.ServiceTask;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -118,7 +119,7 @@ public class EditTaskController implements Initializable {
 }
 
     @FXML
-    private void SubmitTask(ActionEvent event) throws IOException {
+    private void SubmitTask(ActionEvent event) throws IOException, SQLException {
         ServiceTask  ST =new ServiceTask();
         String title = TItreTask.getText();
         String description_fonctionnel = DescriptionTask.getText();
@@ -134,9 +135,15 @@ public class EditTaskController implements Initializable {
         int archive = 0;
         // to implement sprint id after 
         int sprint_id =2;
+        Task oldTask = ST.getTaskbyid(taskid);
                 
+        // alghorithme points false to remove old points
+        ST.point_algortime_1(oldTask, false);
+        
         Task t = new Task(taskid,Integer.parseInt(BacklogId.getText()), title, description_fonctionnel, description_technique, story_points, created_date, finished_date, state, priority, archive, sprint_id);
         ST.modifier(t);
+        // ALGHO points ture to add new points
+        ST.point_algortime_1(t, true);
         
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/IndexTask.fxml"));
         Parent root = loader.load();

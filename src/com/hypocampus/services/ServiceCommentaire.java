@@ -27,7 +27,7 @@ public class ServiceCommentaire implements IService<Commentaire>{
         try {
             long millis=System.currentTimeMillis();
             java.sql.Date date=new java.sql.Date(millis);
-            String requete = "INSERT INTO commentaire (task_id,description,user_id, image_name,date_creation) VALUES (?,?,?,?)";
+            String requete = "INSERT INTO commentaire (task_id,description,user_id, image_name,date_creation) VALUES (?,?,?,?,?)";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1, c.getTask_id());
             pst.setString(2, c.getDescription());
@@ -81,6 +81,26 @@ public class ServiceCommentaire implements IService<Commentaire>{
         try {
             String requete = "SELECT * FROM commentaire";
             PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                list.add(new Commentaire(rs.getInt("id"), rs.getInt("task_id"),rs.getInt("user_id"),
+                rs.getString("image_name"), rs.getString("description"), rs.getDate("date_creation")));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+
+        return list;
+    }
+    
+        public List<Commentaire> afficherParTask(int idtask) {
+                List<Commentaire> list = new ArrayList<>();
+
+        try {
+            String requete = "SELECT * FROM commentaire where task_id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, idtask);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 list.add(new Commentaire(rs.getInt("id"), rs.getInt("task_id"),rs.getInt("user_id"),
