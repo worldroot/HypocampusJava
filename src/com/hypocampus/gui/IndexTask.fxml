@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -19,7 +20,7 @@
             <Font name="American Captain" size="35.0" />
          </font>
       </Text>
-      <ScrollPane layoutX="40.0" layoutY="160.0" prefHeight="456.0" prefWidth="937.0" style="-fx-background-color: transpartent;">
+      <ScrollPane layoutX="36.0" layoutY="225.0" prefHeight="456.0" prefWidth="937.0" style="-fx-background-color: transpartent;">
          <content>
             <HBox fx:id="TaskContainer" spacing="3.0" style="-fx-background-color: transpartent;" />
          </content>
@@ -30,5 +31,6 @@
             <Font name="Caviar Dreams" size="35.0" />
          </font>
       </Text>
+      <TextField fx:id="Search" layoutX="121.0" layoutY="185.0" onKeyTyped="#search" prefHeight="27.0" prefWidth="213.0" />
    </children>
 </AnchorPane>

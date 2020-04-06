@@ -14,6 +14,7 @@ import java.sql.SQLException;
 import java.util.List;
 import java.sql.Date;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.stream.Collectors;
@@ -271,6 +272,34 @@ public class ServiceTask implements IService<Task>{
 
         
        
+    }
+    
+    
+    
+    public List<Task> SearchTasksAdvanced(String character) throws SQLException  {
+        Statement stm = cnx.createStatement();
+        String req="select * from task where title  LIKE '%"+character+"%'" ;
+        ResultSet rst = stm.executeQuery(req);
+        List<Task> tasks = new ArrayList<>();
+        while (rst.next()) {
+            Task p2 = new Task();
+            p2.setId(rst.getInt("id"));
+            p2.setBacklog_id(rst.getInt("backlog_id"));
+            p2.setTitle(rst.getString("title"));
+            p2.setDescription_fonctionnel(rst.getString("description_fonctionnel"));            
+            p2.setDescription_technique(rst.getString("description_technique"));
+            p2.setStory_points(rst.getInt("story_points"));
+            p2.setCreated_date(rst.getDate("created_date"));
+            p2.setFinished_date(rst.getDate("finished_date"));
+            p2.setState(rst.getString("state"));
+            p2.setPriority(rst.getInt("priority"));
+            p2.setArchive(rst.getInt("archive"));
+            p2.setSprint_id(rst.getInt("sprint_id"));
+
+
+            tasks.add(p2);
+        }
+     return tasks;
     }
    
 }

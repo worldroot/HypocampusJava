@@ -12,12 +12,18 @@ import com.hypocampus.services.ServiceTask;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -29,9 +35,11 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Background;
@@ -61,7 +69,11 @@ public class IndexTaskController implements Initializable {
     private Button AjoutTaskbtn;
     @FXML
     private Text BackogId;
-
+    ServiceTask ST  = new ServiceTask();
+    
+    
+    @FXML
+    private TextField Search;
     /**
      * Initializes the controller class.
      */
@@ -73,6 +85,8 @@ public class IndexTaskController implements Initializable {
         // TODO
        // affichageTasks(ST.afficher(0,8) );
         System.out.println(ST.afficher());
+        
+ 
     }    
     
     public void setBacklogId(String id){
@@ -416,6 +430,15 @@ public class IndexTaskController implements Initializable {
         AjoutTaskController ATC = loader.getController();
         ATC.setBacklogId(BackogId.getText());
  
+    }
+
+    @FXML
+    private void search(KeyEvent event) throws SQLException {
+                ServiceTask SP = new ServiceTask();
+        String m = Search.getText();
+        ArrayList<Task> p = (ArrayList<Task>) SP.SearchTasksAdvanced(m);
+        ObservableList<Task> obs = FXCollections.observableArrayList(p);
+        affichageTasks(obs);
     }
 
 }
