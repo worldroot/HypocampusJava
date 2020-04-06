@@ -6,6 +6,7 @@
 package com.hypocampus.controller;
 
 
+import static com.hypocampus.controller.EditProjectController.LOCAL_DATE;
 import com.hypocampus.models.Project;
 import com.hypocampus.models.Sprint;
 import com.hypocampus.services.ServiceProject;
@@ -13,6 +14,8 @@ import com.hypocampus.services.ServiceSprint;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.beans.property.ReadOnlyObjectWrapper;
@@ -52,7 +55,7 @@ public class AfficherSprintController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         afficher();
-        recherche();
+       // recherche();
     } 
     
     @FXML
@@ -72,22 +75,40 @@ public class AfficherSprintController implements Initializable {
 
     @FXML
     private TableColumn<Sprint, String> Colnameproject;
+    @FXML
+    private TableColumn<Sprint, Sprint> ColCompletedTask;
 
     @FXML
     private Button supprimerSprint;
+    @FXML
+    private Button voirtaches;
 
     @FXML
     private Button newSprint;
     @FXML
     private TextField filterField;
+    List <Project> data2 =new ArrayList() ;
 
-
-
+    public void inflateUI(Project P) {      
+         ServiceSprint ss =new ServiceSprint();
+         tab.setItems((ObservableList<Sprint>) ss.afficher_SprintProject(new Project(P.getId())));
+         data2.add(P);
+    } 
+    
     @FXML
     void newSprintAction(ActionEvent event) throws IOException {
-   AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/Sprint.fxml"));
-        ContentPane.getChildren().setAll(pane);
+       // System.out.println(data2.get(0).getId());
+            
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/Sprint.fxml"));              
+            Parent parent = loader.load();
+            ContentPane.getChildren().setAll(parent);
+
+            SprintController controllerPS =(SprintController) loader.getController();
+           controllerPS.inflateUI(data2.get(0));
+           //controllerPS.recherche(data2.get(0));
     }
+    
+   
      public void afficher()
      {
            //ObservableList <Project> data =FXCollections.observableArrayList();
@@ -97,16 +118,19 @@ public class AfficherSprintController implements Initializable {
                     Colsprintname.setCellValueFactory(new PropertyValueFactory<>("name"));
                     Colstartdate.setCellValueFactory(new PropertyValueFactory<>("start_date_sprint"));
                     Colenddate.setCellValueFactory(new PropertyValueFactory<>("end_date_sprint"));
+                    ColCompletedTask.setCellValueFactory(new PropertyValueFactory<>("Completed_Task"));
                     Colnameproject.setCellValueFactory((CellDataFeatures<Sprint, String> p) -> new ReadOnlyObjectWrapper(sP.getById(p.getValue().getProject_id()))); 
                     //Colnameproject.setCellValueFactory(new PropertyValueFactory<>("project_id"));
-                    tab.setItems((ObservableList<Sprint>) ss.afficher());
+                    //System.out.println(data2.get(0).getId());
+                   
+                    
      }
-     
-     void recherche(){
+    
+     void recherche(Project P){
     
         ServiceSprint sP =new ServiceSprint();
         // Wrap the ObservableList in a FilteredList (initially display all data).
-        FilteredList<Sprint> filteredData = new FilteredList<>((ObservableList<Sprint>) sP.afficher(), b -> true);
+        FilteredList<Sprint> filteredData = new FilteredList<>((ObservableList<Sprint>) sP.afficher_SprintProject(new Project(P.getId())), b -> true);
 		
 		// 2. Set the filter Predicate whenever the filter changes.
 		filterField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -141,6 +165,7 @@ public class AfficherSprintController implements Initializable {
         
     
     }
+
     @FXML
     void supprimerSprint(ActionEvent event) {
 
@@ -161,6 +186,7 @@ public class AfficherSprintController implements Initializable {
                                                       .hideAfter(Duration.seconds(5));
                                     n.darkStyle();
                                     n.show();
+                                      System.out.println(data2.get(0).getId());
                                 }
                                    else{
                                         ServiceSprint sP =new ServiceSprint();
@@ -172,7 +198,10 @@ public class AfficherSprintController implements Initializable {
                                         Optional<ButtonType> action = alert.showAndWait();
                                         if (action.get() == ButtonType.OK) {
                                            sP.supprimer(ss);
-                                           afficher();
+                                           //afficher();
+                                            ServiceSprint ssa =new ServiceSprint();
+                                           tab.setItems((ObservableList<Sprint>) ssa.afficher_SprintProject(new Project(data2.get(0).getId())));
+                                             System.out.println(data2.get(0).getId());
 
                                           }
                                        }
@@ -210,6 +239,43 @@ public class AfficherSprintController implements Initializable {
 
             
           }
+    }
+    
+    
+    
+    
+    
+    //taches
+    
+        @FXML
+    void voir_tachesAction(ActionEvent event) throws IOException {
+
+          Sprint ss = tab.getSelectionModel().getSelectedItem();
+
+                                  if (ss == null) {
+
+                                    Image img = new Image("/com/hypocampus/uploads/error.png");
+                                    Notifications n = Notifications.create()
+                                                     .title("Error")
+                                                     .text("Aucun sprint sélectionné: veuillez sélectionner un sprint pour voir la tâche")
+                                                     .graphic(new ImageView(img))
+                                                     .position(Pos.TOP_CENTER)
+                                                      .hideAfter(Duration.seconds(2));
+                                    n.darkStyle();
+                                    n.show();
+                                }
+     else{
+                                      
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/DRAG_DROP.fxml"));              
+            Parent parent = loader.load();
+            ContentPane.getChildren().setAll(parent);
+
+            DRAG_DROPController controllerPS =(DRAG_DROPController) loader.getController();
+           controllerPS.inflateUI(ss);
+           //controllerPS.recherche(ss);
+            
+          }
+       
     }
     
 }

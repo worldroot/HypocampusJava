@@ -15,6 +15,7 @@ public class Sprint {
     private int id;
     private int project_id;
     private String name;
+    private String Completed_Task;
     private Date start_date_sprint;
     private Date end_date_sprint;
     private int etat;
@@ -39,6 +40,15 @@ public class Sprint {
         this.end_date_sprint = end_date_sprint;
    
     }    
+    public Sprint(int id, String name, Date start_date_sprint, Date end_date_sprint, int project_id,String Completed_Task) {
+        this.id = id;
+        this.project_id = project_id;
+        this.name = name;
+        this.start_date_sprint = start_date_sprint;
+        this.end_date_sprint = end_date_sprint;
+        this.Completed_Task = Completed_Task;
+   
+    }  
     public Sprint(String name, Date start_date_sprint, Date end_date_sprint, int project_id, int etat) {
         this.project_id = project_id;
         this.name = name;
@@ -60,6 +70,14 @@ public class Sprint {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getCompleted_Task() {
+        return Completed_Task;
+    }
+
+    public void setCompleted_Task(String Completed_Task) {
+        this.Completed_Task = Completed_Task;
     }
 
     public int getProject_id() {

@@ -5,7 +5,9 @@
  */
 package com.hypocampus.services;
 
+import com.hypocampus.models.Project;
 import com.hypocampus.models.Sprint;
+import com.hypocampus.models.Task;
 import com.hypocampus.utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -94,5 +96,181 @@ Connection cnx = DataSource.getInstance().getCnx();
       
         return ListSprint;
     }
-    
+      public List<Sprint> afficher_SprintProject(Project p){
+        
+              ObservableList <Sprint> ListSprint =FXCollections.observableArrayList();
+
+        try {
+            String requete = "SELECT * FROM sprint where projets_id ="+p.getId()+"";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            String Completed_Task;
+            while (rs.next()) {
+                
+                
+                Completed_Task=getDone(rs.getInt("id")) +"/"+ getDoneT(rs.getInt("id"));
+                
+                
+                
+               ListSprint.add(new Sprint(rs.getInt("id"), rs.getString("sprintname")
+                ,rs.getDate("startDatesprint"), rs.getDate("endDatesprint"),rs.getInt("projets_id"),Completed_Task));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+          return ListSprint; 
+      }
+      
+      public int getTodo(int ids) {
+       
+         int count =0;
+        try {
+            String requete = "SELECT COUNT(*)  FROM task where sprint_id="+ids+" AND (state='To Do' OR state='In Progress' )";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            rs.first();
+         count=rs.getInt(1);
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return count;
+    }     
+    public int getDone(int ids) {
+       
+         int count =0;
+        try {
+            String requete = "SELECT COUNT(*) as Done FROM task where  	sprint_id="+ids+" AND state='Done' ";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            rs.first();
+         count=rs.getInt(1);
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return count;
+    }     
+     public int getDoneT(int ids) {
+       
+         int count =0;
+        try {
+            String requete = "SELECT COUNT(*) as DoneT FROM task where  sprint_id="+ids+"";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            rs.first();
+         count=rs.getInt(1);
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return count;
+    }    
+     
+     
+     
+     
+           public List<Task> afficher_Sprintask(Sprint s){
+        
+              ObservableList <Task> ListSprint =FXCollections.observableArrayList();
+
+        try {
+            String requete = "SELECT * FROM task where sprint_id ="+s.getId()+"";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+           
+            while (rs.next()) {
+                     
+               ListSprint.add(new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
+                ,rs.getString("description_fonctionnel"), rs.getString("description_technique")
+                ,rs.getInt("story_points"), rs.getDate("created_date"), rs.getDate("finished_date")
+                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id")));
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+          return ListSprint; 
+      }
+           
+           
+           
+      //drag and drop      
+           
+      public List<String> afficher_Sprintask_toDo(Sprint s){
+        
+              ObservableList <String> ListSprint =FXCollections.observableArrayList();
+
+        try {
+            String requete = "SELECT * FROM task where sprint_id ="+s.getId()+" AND state= 'To Do'";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+           
+            while (rs.next()) {
+                     
+               ListSprint.add("Titre:"+rs.getString("title")+"\n"
+                + "Description: "+rs.getString("description_fonctionnel")+"\n"
+                + "Etat: "+rs.getString("created_date")+"\n"
+                + "Date Estimer: "+rs.getString("finished_date")+"\n\n"
+                + "                      Story Points: "+rs.getInt("story_points")+"\n"
+                + "*******************************");
+                              
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+          return ListSprint; 
+      }
+      
+       public List<String> afficher_Sprintask_INProgress(Sprint s){
+        
+              ObservableList <String> ListSprint =FXCollections.observableArrayList();
+
+        try {
+            String requete = "SELECT * FROM task where sprint_id ="+s.getId()+" AND state= 'In Progress'";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+           
+            while (rs.next()) {
+                     
+               ListSprint.add("Titre:"+rs.getString("title")+"\n"
+                + "Description: "+rs.getString("description_fonctionnel")+"\n"
+                + "Etat: "+rs.getString("created_date")+"\n"
+                + "Date Estimer: "+rs.getString("finished_date")+"\n\n"
+                + "                      Story Points: "+rs.getInt("story_points")+"\n"
+                + "*******************************");
+                              
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+          return ListSprint; 
+      }
+       
+      public List<String> afficher_Sprintask_Done(Sprint s){
+        
+              ObservableList <String> ListSprint =FXCollections.observableArrayList();
+
+        try {
+            String requete = "SELECT * FROM task where sprint_id ="+s.getId()+" AND state= 'Done'";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+           
+            while (rs.next()) {
+                     
+               ListSprint.add("Titre:"+rs.getString("title")+"\n"
+                + "Description: "+rs.getString("description_fonctionnel")+"\n"
+                + "Etat: "+rs.getString("created_date")+"\n"
+                + "Date Estimer: "+rs.getString("finished_date")+"\n\n"
+                + "                      Story Points: "+rs.getInt("story_points")+"\n"
+                + "*******************************");
+                              
+            }
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+          return ListSprint; 
+      }
 }

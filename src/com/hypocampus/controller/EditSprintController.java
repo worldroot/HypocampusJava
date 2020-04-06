@@ -117,10 +117,7 @@ public class EditSprintController implements Initializable {
                       FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/AfficherSprint.fxml"));              
                       Parent parent = loader.load();
                       //ContentPaneEditP.getChildren().setAll(parent);
-                      AfficherSprintController idd =(AfficherSprintController) loader.getController();
-
-                      idd.afficher();
-                      System.out.println(data2.get(0).getId());
+         
                       
                       
                  Project pr = ProjectName.getSelectionModel().getSelectedItem();
@@ -156,7 +153,7 @@ public class EditSprintController implements Initializable {
     public void afficherP()
      {
          try {
-            String requete = "SELECT id,projet_name FROM projets";
+            String requete = "SELECT id,projet_name FROM projets WHERE history=0";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -171,7 +168,14 @@ public class EditSprintController implements Initializable {
      } 
     @FXML
     void backEAffsprint(ActionEvent event)throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/AfficherSprint.fxml"));
-        ContentPanemodifS.getChildren().setAll(pane);
+         Project Pr = ProjectName.getSelectionModel().getSelectedItem();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/AfficherSprint.fxml"));              
+            Parent parent = loader.load();
+            ContentPanemodifS.getChildren().setAll(parent);
+
+            AfficherSprintController controllerPS =(AfficherSprintController) loader.getController();
+           controllerPS.inflateUI(Pr);
+           controllerPS.recherche(Pr);
+       
     }
 }

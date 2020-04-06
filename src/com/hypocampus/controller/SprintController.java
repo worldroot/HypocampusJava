@@ -5,6 +5,7 @@
  */
 package com.hypocampus.controller;
 
+import static com.hypocampus.controller.EditSprintController.LOCAL_DATE;
 import static com.hypocampus.controller.ProjectController.NOW_LOCAL_DATE;
 import com.hypocampus.models.Project;
 import com.hypocampus.models.Sprint;
@@ -27,6 +28,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
@@ -80,10 +82,17 @@ public class SprintController implements Initializable {
     // alert
       Alert alert = new Alert(Alert.AlertType.NONE);
     
+         public void inflateUI(Project s) {      
+        ServiceProject sP =new ServiceProject();
+        ProjectName.setValue(sP.getById(s.getId()));
+     
+    
+    }
+      
          public void afficherP()
      {
          try {
-            String requete = "SELECT id,projet_name FROM projets";
+            String requete = "SELECT id,projet_name FROM projets WHERE history=0";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -161,8 +170,14 @@ public class SprintController implements Initializable {
 
     @FXML
     void backAffsprint(ActionEvent event) throws IOException {
-   AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/AfficherSprint.fxml"));
-        ContentPaneAjouS.getChildren().setAll(pane);
+                 Project Pr = ProjectName.getSelectionModel().getSelectedItem();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/AfficherSprint.fxml"));              
+            Parent parent = loader.load();
+            ContentPaneAjouS.getChildren().setAll(parent);
+
+            AfficherSprintController controllerPS =(AfficherSprintController) loader.getController();
+           controllerPS.inflateUI(Pr);
+           controllerPS.recherche(Pr);
     }
 
     

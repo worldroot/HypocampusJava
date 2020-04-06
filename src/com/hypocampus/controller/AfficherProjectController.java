@@ -6,6 +6,7 @@
 package com.hypocampus.controller;
 
 import com.hypocampus.models.Project;
+import com.hypocampus.models.Sprint;
 import com.hypocampus.services.ServiceProject;
 import com.hypocampus.utils.DataSource;
 import java.io.IOException;
@@ -23,6 +24,7 @@ import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
@@ -52,6 +54,8 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.util.Callback;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -94,7 +98,12 @@ public class AfficherProjectController implements Initializable {
     @FXML
     private TableColumn<Project, String> Coldescription;
     @FXML
+    private TableColumn<Sprint, String> Colprogress;
+    @FXML
     private Button affSprint;
+    @FXML
+    private Button history;
+    
     
     private List<Project> L = new ArrayList();
     public List <Project> data2 ;
@@ -103,6 +112,8 @@ public class AfficherProjectController implements Initializable {
     int from =0,to=0;
     int intempage=3;
     Connection cnx = DataSource.getInstance().getCnx();
+    
+    
     
      public void afficher()
      {
@@ -114,6 +125,12 @@ public class AfficherProjectController implements Initializable {
                     Colstartdate.setCellValueFactory(new PropertyValueFactory<>("start_date"));
                     Colenddate.setCellValueFactory(new PropertyValueFactory<>("end_date"));
                     Coldescription.setCellValueFactory(new PropertyValueFactory<>("description"));
+                    Colprogress.setCellValueFactory(new PropertyValueFactory<>("progressbar"));
+                    
+                
+                            
+                    
+                    //Pagination
                     int pagecount=(sP.affPagination()/intempage)+1;
                     pagination.setPageCount(pagecount);
                     pagination.setPageFactory(this::creatPage);
@@ -125,39 +142,44 @@ public class AfficherProjectController implements Initializable {
         ContentPane.getChildren().setAll(pane);
     }
     
-    
+        @FXML
+    void historyAction(ActionEvent event) throws IOException {
+   AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/historyProject.fxml"));
+        ContentPane.getChildren().setAll(pane);
+    }
 
     
     
     @FXML
     void supprimerProject(ActionEvent event) {
-            Project Pr = tab.getSelectionModel().getSelectedItem();
+         
+          Project Pr = tab.getSelectionModel().getSelectedItem();
      
-                                  if (Pr == null) {
+            if (Pr == null) {
 
-                                    Image img = new Image("/com/hypocampus/uploads/error.png");
-                                    Notifications n = Notifications.create()
+           Image img = new Image("/com/hypocampus/uploads/error.png");
+                      Notifications n = Notifications.create()
                                                      .title("Error")
                                                      .text("  Choix invalide")
                                                      .graphic(new ImageView(img))
                                                      .position(Pos.TOP_CENTER)
-                                                      .hideAfter(Duration.seconds(5));
+                                                     .hideAfter(Duration.seconds(5));
                                     n.darkStyle();
                                     n.show();
                                 }
-                                   else{
-                                         ServiceProject sP =new ServiceProject();
-                                     Project P =new Project(Pr.getId());
-                                       Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+             else{
+                 ServiceProject sP =new ServiceProject();
+                 Project P =new Project(Pr.getId(),1);
+                 Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
                                     alert.setTitle("Confirmation ");
                                     alert.setHeaderText(null);
                                     alert.setContentText("Vous voulez vraiment supprimer ce projet ");
                                     Optional<ButtonType> action = alert.showAndWait();
-                                    if (action.get() == ButtonType.OK) {
-                                       sP.supprimer(P);
+                    if (action.get() == ButtonType.OK) {
+                                       sP.modifier_history(P);
                                        afficher();
 
-                                    }
+                                                       }
                                   }
  
     }
@@ -198,24 +220,78 @@ public class AfficherProjectController implements Initializable {
 
         @FXML
     void affSprint(ActionEvent event) throws IOException {
-           AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/AfficherSprint.fxml"));
-           ContentPane.getChildren().setAll(pane);
+         Project Pr = tab.getSelectionModel().getSelectedItem();
+
+                                  if (Pr == null) {
+
+                                    Image img = new Image("/com/hypocampus/uploads/error.png");
+                                    Notifications n = Notifications.create()
+                                                     .title("Error")
+                                                     .text("No Project selected :  Please select a project to see their sprint")
+                                                     .graphic(new ImageView(img))
+                                                     .position(Pos.TOP_CENTER)
+                                                      .hideAfter(Duration.seconds(5));
+                                    n.darkStyle();
+                                    n.show();
+                                }
+     else{
+                                      
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/AfficherSprint.fxml"));              
+            Parent parent = loader.load();
+            ContentPane.getChildren().setAll(parent);
+
+            AfficherSprintController controllerPS =(AfficherSprintController) loader.getController();
+           controllerPS.inflateUI(Pr);
+           controllerPS.recherche(Pr);
+
+            
+          }
+     
 
     }
 
    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
        public List<Project> gettabdata() {
        
         ObservableList <Project> ListProject =FXCollections.observableArrayList();
 
         try {
-            String requete = "SELECT * FROM projets LIMIT "+from+","+to+"";
+            String requete = "SELECT * FROM projets WHERE history=0 LIMIT "+from+","+to+"";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
+              ServiceProject sP =new ServiceProject();
+             Image progress =new Image("/com/hypocampus/uploads/in progress.png");
+            Image completed =new Image("/com/hypocampus/uploads/completed.png"); 
+            ImageView progressbar ;
             while (rs.next()) {
+                 if ((sP.getProgressC(rs.getInt("id"))== sP.getProgressI(rs.getInt("id"))) && (sP.getProgressI(rs.getInt("id"))!=0))
+                                         {
+                                       progressbar=new ImageView(completed);
+                                         }
+                                         /*
+                                         else if(sP.getProgressI(projects.get(i).getId())==0) {
+                                         
+                                         Colprogress.setCellValueFactory((TableColumn.CellDataFeatures<String, String> p) -> new ReadOnlyObjectWrapper(new ImageView(progress)));
+                                         }
+                                         */
+                                         else{
+                                        progressbar=new ImageView(progress);
+                                         }
+                
+                
                 ListProject.add(new Project(rs.getInt("id"), rs.getString("projet_name"),rs.getString("owner")
-                ,rs.getDate("start_date"), rs.getDate("end_date"),rs.getString("description")));
+                ,rs.getDate("start_date"), rs.getDate("end_date"),rs.getString("description"),rs.getInt("history"),progressbar));
             }
 
         } catch (SQLException ex) {
@@ -232,6 +308,7 @@ public class AfficherProjectController implements Initializable {
 
        return tab;
    }
+
     
     //recherche 
        /*  

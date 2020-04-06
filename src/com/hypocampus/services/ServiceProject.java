@@ -6,6 +6,7 @@
 package com.hypocampus.services;
 
 import com.hypocampus.models.Project;
+import com.hypocampus.models.Sprint;
 import com.hypocampus.utils.DataSource;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -13,8 +14,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.TableColumn;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -89,13 +94,27 @@ public class ServiceProject  {
        
    ObservableList <Project> ListProject =FXCollections.observableArrayList();
 
+               
         try {
-            String requete = "SELECT * FROM projets";
+            String requete = "SELECT * FROM projets WHERE history=0";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
+            Image progress =new Image("/com/hypocampus/uploads/in progress.png");
+            Image completed =new Image("/com/hypocampus/uploads/completed.png"); 
+            ImageView progressbar ;
             while (rs.next()) {
+                 if ((getProgressC(rs.getInt("id"))== getProgressI(rs.getInt("id"))) && (getProgressI(rs.getInt("id"))!=0))
+                                         {
+                                       progressbar=new ImageView(completed);
+                                         }
+                                      
+                                         else{
+                                        progressbar=new ImageView(progress);
+                                         }
+                
+                
                 ListProject.add(new Project(rs.getInt("id"), rs.getString("projet_name"),rs.getString("owner")
-                ,rs.getDate("start_date"), rs.getDate("end_date"),rs.getString("description")));
+                ,rs.getDate("start_date"), rs.getDate("end_date"),rs.getString("description"),rs.getInt("history"),progressbar));
             }
 
         } catch (SQLException ex) {
@@ -110,11 +129,24 @@ public class ServiceProject  {
    ObservableList <Project> ListProject =FXCollections.observableArrayList();
 
         try {
-            String requete = "SELECT projet_name FROM projets";
+            String requete = "SELECT * FROM projets  WHERE history = 1";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
+            Image progress =new Image("/com/hypocampus/uploads/in progress.png");
+            Image completed =new Image("/com/hypocampus/uploads/completed.png"); 
+            ImageView progressbar ;
             while (rs.next()) {
-                ListProject.add(new Project( rs.getString("projet_name")));
+                 if ((getProgressC(rs.getInt("id"))== getProgressI(rs.getInt("id"))) && (getProgressI(rs.getInt("id"))!=0))
+                                         {
+                                       progressbar=new ImageView(completed);
+                                         }
+                                         else{
+                                        progressbar=new ImageView(progress);
+                                         }
+                
+                
+                ListProject.add(new Project(rs.getInt("id"), rs.getString("projet_name"),rs.getString("owner")
+                ,rs.getDate("start_date"), rs.getDate("end_date"),rs.getString("description"),rs.getInt("history"),progressbar));
             }
 
         } catch (SQLException ex) {
@@ -123,12 +155,30 @@ public class ServiceProject  {
       
         return ListProject;
     }
+    
+    
+    public void modifier_history(Project p){
+            try {
+            String requete = "UPDATE projets SET history=? WHERE id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, p.getHistory());
+            pst.setInt(2, p.getId());
+
+            pst.executeUpdate();
+            System.out.println("projets history modifiée !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
+    }
+
                                    
     	public Project getById(int idp) {
 		 Project pp = new Project();
 
         try {
-            String requete = "SELECT * FROM projets where id="+idp+"";
+            String requete = "SELECT * FROM projets where history=0 and id="+idp+"";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
@@ -157,5 +207,52 @@ public class ServiceProject  {
       
         return count;
     }                
-    
+       public int getProgressC(int idp) {
+       
+         int count =0;
+        try {
+            String requete = "SELECT COUNT(*) FROM sprint where projets_id="+idp+" AND etat=1 ";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            rs.first();
+         count=rs.getInt(1);
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return count;
+    }   
+      public int getProgress(int idp) {
+       
+         int count =0;
+        try {
+            String requete = "SELECT COUNT(*) FROM sprint where projets_id="+idp+" AND etat=0 ";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            rs.first();
+         count=rs.getInt(1);
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return count;
+    }   
+            public int getProgressI(int idp) {
+       
+         int count =0;
+        try {
+            String requete = "SELECT COUNT(*) FROM sprint where projets_id="+idp+"";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            rs.first();
+         count=rs.getInt(1);
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return count;
+    } 
 }
