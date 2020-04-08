@@ -11,43 +11,51 @@
 
 <AnchorPane id="AnchorPane" fx:id="SmallPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EventAffichageController">
    <children>
-      <Text fill="#1a154a" layoutX="227.0" layoutY="78.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List Events">
+      <Text fill="#1a154a" layoutX="274.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="List Events">
          <font>
             <Font name="Caviar Dreams Bold" size="35.0" />
          </font>
       </Text>
-      <TableView fx:id="listEvent" layoutX="14.0" layoutY="160.0" prefHeight="350.0" prefWidth="558.0" AnchorPane.rightAnchor="424.0">
+      <TableView fx:id="listEvent" layoutX="14.0" layoutY="117.0" prefHeight="207.0" prefWidth="618.0" AnchorPane.rightAnchor="364.0">
         <columns>
           <TableColumn fx:id="colTitre" prefWidth="176.0" text="Titre Event" />
-          <TableColumn fx:id="colCap" prefWidth="70.0" text="Capacité" />
-            <TableColumn fx:id="colType" prefWidth="109.0" text="Type Event" />
-            <TableColumn fx:id="coldd" prefWidth="100.0" text="Date Debut" />
-            <TableColumn fx:id="coldf" prefWidth="102.0" text="Debut Fin" />
+          <TableColumn fx:id="colCap" prefWidth="43.0" text="Cap" />
+            <TableColumn fx:id="colType" prefWidth="117.0" text="Type Event" />
+            <TableColumn fx:id="coldd" prefWidth="97.0" text="Date Debut" />
+            <TableColumn fx:id="coldf" prefWidth="87.0" text="Debut Fin" />
+            <TableColumn fx:id="colimg" prefWidth="97.0" text="Fichier" />
         </columns>
       </TableView>
-      <ImageView fx:id="btnRetourAction" fitHeight="44.0" fitWidth="55.0" layoutX="14.0" layoutY="637.0" onMouseClicked="#RetourAction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="btnRetourAction" fitHeight="44.0" fitWidth="55.0" layoutX="8.0" layoutY="642.0" onMouseClicked="#RetourAction" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../uploads/arrow.png" />
          </image>
       </ImageView>
-      <Button fx:id="SupAction" layoutX="77.0" layoutY="547.0" mnemonicParsing="false" onAction="#btnSupAction" opacity="0.75" prefHeight="31.0" prefWidth="367.0" styleClass="Supp" stylesheets="@../stylesheets/buttons.css" text="Sélectionner le champ à supprimer" />
-      <TextField fx:id="search" layoutX="14.0" layoutY="116.0" prefHeight="31.0" prefWidth="467.0" promptText="Search..." />
-      <ImageView fx:id="Stat" fitHeight="40.0" fitWidth="40.0" layoutX="509.0" layoutY="109.0" onMouseClicked="#ViewStat" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="SupAction" layoutX="155.0" layoutY="337.0" mnemonicParsing="false" onAction="#btnSupAction" opacity="0.75" prefHeight="31.0" prefWidth="367.0" styleClass="Supp" stylesheets="@../stylesheets/buttons.css" text="Sélectionner le champ à supprimer" />
+      <TextField fx:id="search" layoutX="14.0" layoutY="78.0" prefHeight="31.0" prefWidth="574.0" promptText="Search..." />
+      <ImageView fx:id="Stat" fitHeight="35.0" fitWidth="35.0" layoutX="597.0" layoutY="76.0" onMouseClicked="#ViewStat" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../uploads/graph.png" />
          </image>
       </ImageView>
-      <Line endX="100.0" layoutX="610.0" layoutY="335.0" rotate="90.0" scaleX="2.2" scaleY="2.0" scaleZ="2.0" startX="-100.0" stroke="#1a154a" />
-      <Text fill="#1a154a" layoutX="640.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier l'evenement" textAlignment="CENTER" wrappingWidth="339.6708984375">
+      <Line endX="100.0" layoutX="653.0" layoutY="335.0" rotate="90.0" scaleX="2.7" scaleY="2.0" scaleZ="2.0" startX="-100.0" stroke="#1a154a" />
+      <Text fill="#1a154a" layoutX="642.0" layoutY="138.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier l'evenement" textAlignment="CENTER" wrappingWidth="353.6708984375">
          <font>
-            <Font name="Caviar Dreams Bold" size="35.0" />
+            <Font name="Caviar Dreams Bold" size="30.0" />
          </font>
       </Text>
-      <Button fx:id="ModifAction" layoutX="697.0" layoutY="547.0" mnemonicParsing="false" onAction="#btnModifAction" opacity="0.75" prefHeight="37.0" prefWidth="227.0" styleClass="DarkBlue" stylesheets="@../stylesheets/buttons.css" text="Valider la modifiaction" />
+      <Button fx:id="ModifAction" layoutX="707.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnModifAction" opacity="0.75" prefHeight="37.0" prefWidth="206.0" styleClass="DarkBlue" stylesheets="@../stylesheets/buttons.css" text="Valider la modifiaction" />
       <TextField fx:id="UpTitre" layoutX="684.0" layoutY="199.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouveau Titre..." />
       <TextField fx:id="UpCapa" layoutX="684.0" layoutY="262.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouvelle Capacité..." />
       <TextField fx:id="UpType" layoutX="684.0" layoutY="324.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouvelle Type..." />
       <DatePicker fx:id="UpDatedb" layoutX="684.0" layoutY="385.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouvelle Date debut..." />
-      <DatePicker fx:id="UpDatefn" layoutX="684.0" layoutY="447.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouvelle Date fin..." />
+      <DatePicker fx:id="UpDatefn" layoutX="684.0" layoutY="445.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouvelle Date fin..." />
+      <ImageView fx:id="IMAGE" fitHeight="305.0" fitWidth="574.0" layoutX="59.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true" />
+      <TextField fx:id="path" layoutX="684.0" layoutY="502.0" prefHeight="31.0" prefWidth="218.0" promptText="Nouvelle" />
+      <ImageView fx:id="upload" fitHeight="31.0" fitWidth="30.0" layoutX="908.0" layoutY="503.0" onMouseClicked="#uploadAction" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../uploads/photo.png" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

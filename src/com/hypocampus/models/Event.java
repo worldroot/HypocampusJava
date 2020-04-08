@@ -33,14 +33,14 @@ public class Event {
         this.updated_at = updated_at;
     }
 
-    public Event(String titreEvent, int numeroEvent, String typeEvent, Date dateEvent, Date enddateEvent, String image_name, Date updated_at) {
+    public Event(String titreEvent, int numeroEvent, String typeEvent, Date dateEvent, Date enddateEvent, String image_name) {
         this.titreEvent = titreEvent;
         this.numeroEvent = numeroEvent;
         this.typeEvent = typeEvent;
         this.dateEvent = dateEvent;
         this.enddateEvent = enddateEvent;
         this.image_name = image_name;
-        this.updated_at = updated_at;
+        
     }
     public Event(String titreEvent, int numeroEvent, String typeEvent, Date dateEvent, Date enddateEvent) {
         this.titreEvent = titreEvent;

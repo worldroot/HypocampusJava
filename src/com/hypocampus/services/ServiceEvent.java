@@ -5,7 +5,7 @@
  */
 package com.hypocampus.services;
 
-import com.hypocampus.models.Certif;
+
 import com.hypocampus.models.Event;
 import com.hypocampus.utils.DataSource;
 import java.sql.Connection;
@@ -29,7 +29,9 @@ public class ServiceEvent implements IService<Event>{
         try {
            
             Statement stm = cnx.createStatement();
-            String query = "INSERT INTO events_admin (idev,TitreEvent,NumeroEvent,TypeEvent,DateEvent,enddateEvent) VALUES (NULL, '"+e.getTitreEvent()+"', '"+e.getNumeroEvent()+"', '"+e.getTypeEvent()+"', '"+e.getDateEvent()+"', '"+e.getEnddateEvent()+"' )";
+            String query = "INSERT INTO events_admin (idev,TitreEvent,NumeroEvent,TypeEvent,DateEvent,enddateEvent,image_name) VALUES (NULL, '"+e.getTitreEvent()+"'"
+                    + ", '"+e.getNumeroEvent()+"', '"+e.getTypeEvent()+"' "
+                    + ", '"+e.getDateEvent()+"', '"+e.getEnddateEvent()+"',  '"+e.getImage_name()+"'  )";
             stm.executeUpdate(query);
             
             System.out.println("Event ajouté !");

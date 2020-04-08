@@ -7,6 +7,7 @@ package com.hypocampus.controller;
 
 import com.hypocampus.models.Event;
 import com.hypocampus.services.ServiceEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -20,7 +21,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
@@ -28,6 +28,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -57,6 +59,12 @@ public class EventController implements Initializable {
     private ImageView clearAction;
     @FXML
     private ImageView RetourAction;
+    @FXML
+    private ImageView upload;
+    @FXML
+    private TextField path;
+    
+    private String imgg="empty.png" ;
 
     /**
      * Initializes the controller class.
@@ -78,15 +86,16 @@ public class EventController implements Initializable {
         if (!typeEvent.getText().equals("") && !TitreEvent.getText().equals("") && !numEvent.getText().equals("")) {
             
            ServiceEvent ev = new ServiceEvent();
+           
            LocalDate ds= dateEvent.getValue();
            LocalDate df= endDateEvent.getValue();
            
-           Date dateE=Date.valueOf(ds.toString());//converting string into sql date
+           Date dateE=Date.valueOf(ds.toString());  //converting string into sql date
            Date datef=Date.valueOf(df.toString());
            
             if(ds.compareTo(df) < 0){
 
-                Event e = new Event(TitreEvent.getText(), Integer.parseInt(numEvent.getText()),typeEvent.getText(),dateE,datef);
+                Event e = new Event(TitreEvent.getText(), Integer.parseInt(numEvent.getText()),typeEvent.getText(),dateE, datef, path.getText());
                 ev.ajouter(e);
                 Image img = new Image("/com/hypocampus/uploads/Check.png");
                                 Notifications n = Notifications.create()
@@ -97,8 +106,10 @@ public class EventController implements Initializable {
                                   .hideAfter(Duration.seconds(5));
                             n.darkStyle();
                             n.show();
+                            
                 AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/EventAffichage.fxml"));
                 SmallPane.getChildren().setAll(pane);
+                
                 }
             
             else{
@@ -127,6 +138,8 @@ public class EventController implements Initializable {
                n.show();
             }
         
+        
+        
              
     }
 
@@ -144,6 +157,7 @@ public class EventController implements Initializable {
         TitreEvent.clear();
         typeEvent.clear();
         numEvent.clear();
+        path.clear();
         dateEvent.getEditor().clear();
         endDateEvent.getEditor().clear();
     }
@@ -153,5 +167,20 @@ public class EventController implements Initializable {
         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/MenuEvent.fxml"));
         SmallPane.getChildren().setAll(pane);
     }
+
+    @FXML
+    private void uploadAction(MouseEvent event) {
+        
+        final FileChooser fileChooser = new FileChooser();
+
+            Window stage = null;
+            File file = fileChooser.showOpenDialog(stage);
+            if (file != null) {
+                imgg=file.toString();
+                path.setText(imgg.substring(88));
+            }
+        }
+        
+    
     
 }

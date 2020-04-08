@@ -9,6 +9,7 @@ import com.hypocampus.models.Certif;
 import com.hypocampus.models.Event;
 import com.hypocampus.services.ServiceCertif;
 import com.hypocampus.services.ServiceEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -48,6 +49,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -66,6 +69,7 @@ public class CertifAffichageController implements Initializable {
     public ObservableList<Certif> list = FXCollections.observableArrayList(ev.afficher());
     
     private int current_id;
+    private String imgp="empty.png";
     @FXML
     private TableView<Certif> TableC;
     @FXML
@@ -74,6 +78,8 @@ public class CertifAffichageController implements Initializable {
     private TableColumn<Certif, Integer> colpoint;
     @FXML
     private TableColumn<Certif, Date> colDatec;
+    @FXML
+    private TableColumn<Certif, String> colimage;
     @FXML
     private AnchorPane SmallPane;
     @FXML
@@ -89,6 +95,13 @@ public class CertifAffichageController implements Initializable {
     private Button ModifAction;
     @FXML
     private ComboBox<String> ComTitre;
+    @FXML
+    private ImageView img;
+    @FXML
+    private ImageView upload;
+    @FXML
+    private TextField path;
+
      
    
   public void views() throws SQLException {  
@@ -100,6 +113,7 @@ public class CertifAffichageController implements Initializable {
         coltitre.setCellValueFactory((CellDataFeatures<Certif, String> p) -> new ReadOnlyObjectWrapper(se.GetById(p.getValue().getTitrec())));
         colpoint.setCellValueFactory(new PropertyValueFactory<>("pointc"));
         colDatec.setCellValueFactory(new PropertyValueFactory<>("datec"));
+        colimage.setCellValueFactory(new PropertyValueFactory<>("image_name"));
         System.out.println("View Certif !");
         TableC.setEditable(true);
         TableC.setItems(l);
@@ -114,7 +128,21 @@ public class CertifAffichageController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         
         try {
-            //For Combo List des titres d'event
+           views();
+           
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        //IMG
+            TableC.setOnMouseClicked((MouseEvent e)->{
+                   int selectedIndex = TableC.getSelectionModel().getSelectedIndex();
+                   if (selectedIndex!=-1) {                     
+                    Certif pi = (Certif) TableC.getSelectionModel().getSelectedItem();                        
+                    img.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()) );                 
+                         }                
+                    });
+        
+        //For Combo List des titres d'event
                 final ObservableList options=FXCollections.observableArrayList();
                 List<Event> Events= sv.afficher();
                 for(int i=0;i<Events.size();i++)
@@ -124,28 +152,21 @@ public class CertifAffichageController implements Initializable {
                 } 
                 ComTitre.setItems(options);
                 System.out.println("Options:"+ options);
-       
-       views();
-            
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-    }
-        
+                
         //Modifier Starts Here
-         TableC.setOnKeyReleased((KeyEvent e) -> {
+        TableC.setOnKeyReleased((KeyEvent e) -> {
              if (e.getCode() == KeyCode.UP || e.getCode() == KeyCode.DOWN) {
                  
                  Certif rowData = TableC.getSelectionModel().getSelectedItem();
-                 /**
-                  * fill the fields with the selected data *
-                  */
-                 //Event et = ComTitre.getSelectionModel().getSelectedItem();
+                 /** fill the fields with the selected data **/
+                 // Event et = ComTitre.getSelectionModel().getSelectedItem();
                  // LocalDate df= Updatec.getValue();
                  
                  String t=sv.GetById(rowData.getTitrec());
                  ComTitre.setValue(t);
                  Uppoint.setText(Integer.toString(rowData.getPointc()));
                  Updatec.setValue(LOCAL_DATE(rowData.getDatec().toString()));
+                 path.setText(rowData.getImage_name());
                  current_id = rowData.getIdc();
                  
              }
@@ -203,18 +224,13 @@ public class CertifAffichageController implements Initializable {
            
         
             int idEvent=sv.getTitreId(event_combo);
-            Certif a =new Certif(current_id,idEvent, Integer.parseInt(Uppoint.getText()),dateE);
+            Certif a =new Certif(current_id,idEvent, Integer.parseInt(Uppoint.getText()),dateE, path.getText() );
             ps.modifier(a);
             AnchorPane redirected;
                         redirected = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/CertifAffichage.fxml")); 
                         SmallPane.getChildren().setAll(redirected);
-            /**
-             * refreshing the table view *
-             */
-            TableC.setItems(list);
-
-
-                             
+            /** refreshing the table view **/
+                        TableC.setItems(list);                          
     }
 
     @FXML
@@ -234,7 +250,21 @@ public class CertifAffichageController implements Initializable {
     DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     LocalDate localDate = LocalDate.parse(dateString, formatter);
     return localDate;
-}
+    }
+
+    @FXML
+    private void uploadAction(MouseEvent event) {
+        final FileChooser fileChooser = new FileChooser();
+
+            Window stage = null;
+            File file = fileChooser.showOpenDialog(stage);
+            if (file != null) {
+               
+                imgp=file.toString();
+                path.setText(imgp.substring(88));
+                
+            }
+    }
 
 
 

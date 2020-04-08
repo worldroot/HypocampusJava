@@ -10,7 +10,12 @@
 
 <AnchorPane id="AnchorPane" fx:id="SmallPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.CertifController">
    <children>
-      <Text fill="#1a154a" layoutX="325.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Ajout Certificat" textAlignment="CENTER" wrappingWidth="345.6708984375">
+      <ImageView fitHeight="37.0" fitWidth="43.0" layoutX="631.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../uploads/redo.png" />
+         </image>
+      </ImageView>
+      <Text fill="#1a154a" layoutX="380.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Ajout Certificat" textAlignment="CENTER" wrappingWidth="298.6708984375">
          <font>
             <Font name="Caviar Dreams Bold" size="35.0" />
          </font>
@@ -29,7 +34,7 @@
          <font>
             <Font name="Caviar Dreams Bold Italic" size="15.0" />
          </font></Text>
-      <Button fx:id="validerAction" layoutX="365.0" layoutY="388.0" mnemonicParsing="false" onAction="#btnvaliderAction" prefHeight="37.0" prefWidth="258.0" styleClass="DarkBlue" stylesheets="@../stylesheets/buttons.css" text="Valider" />
+      <Button fx:id="validerAction" layoutX="365.0" layoutY="438.0" mnemonicParsing="false" onAction="#btnvaliderAction" prefHeight="37.0" prefWidth="258.0" styleClass="DarkBlue" stylesheets="@../stylesheets/buttons.css" text="Valider" />
       <ComboBox fx:id="ComboTitre" layoutX="492.0" layoutY="227.0" prefHeight="31.0" prefWidth="187.0" />
       <ImageView fitHeight="44.0" fitWidth="55.0" layoutX="14.0" layoutY="637.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -37,11 +42,17 @@
          </image>
       </ImageView>
       <Button fx:id="retourAction" layoutX="13.0" layoutY="644.0" mnemonicParsing="false" onAction="#btnretourAction" opacity="0.0" prefHeight="31.0" prefWidth="44.0" text="Retour" />
-      <ImageView fitHeight="37.0" fitWidth="43.0" layoutX="631.0" layoutY="391.0" pickOnBounds="true" preserveRatio="true">
+      <Button fx:id="clearAction" layoutX="628.0" layoutY="441.0" mnemonicParsing="false" onAction="#btnclearAction" opacity="0.0" prefHeight="37.0" prefWidth="43.0" text="Clear" />
+      <TextField fx:id="path" layoutX="492.0" layoutY="385.0" prefHeight="31.0" prefWidth="159.0" />
+      <Text fill="#1a154a" layoutX="370.0" layoutY="407.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image" wrappingWidth="120.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="15.0" />
+         </font>
+      </Text>
+      <ImageView fx:id="upload" fitHeight="31.0" fitWidth="30.0" layoutX="656.0" layoutY="386.0" onMouseClicked="#uploadAction" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../uploads/redo.png" />
+            <Image url="@../uploads/photo.png" />
          </image>
       </ImageView>
-      <Button fx:id="clearAction" layoutX="631.0" layoutY="391.0" mnemonicParsing="false" onAction="#btnclearAction" opacity="0.0" prefHeight="37.0" prefWidth="43.0" text="Clear" />
    </children>
 </AnchorPane>

@@ -20,19 +20,20 @@ public class Certif {
     private String image_name;
     private Date updated_at;
 
-    public Certif(int idc, int titrec, int pointc, Date datec, String image_name, Date updated_at) {
+    public Certif(int idc, int titrec, int pointc, Date datec, String image_name) {
         this.idc = idc;
         this.titrec = titrec;
         this.pointc = pointc;
         this.datec = datec;
         this.image_name = image_name;
-        this.updated_at = updated_at;
+       
     }
 
-    public Certif(int titrec, int pointc, Date datec) {
+    public Certif(int titrec, int pointc, Date datec, String image_name) {
         this.titrec = titrec;
         this.pointc = pointc;
         this.datec = datec;
+         this.image_name = image_name;
     }
     
 

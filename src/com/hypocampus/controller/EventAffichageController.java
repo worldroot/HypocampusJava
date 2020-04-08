@@ -5,10 +5,10 @@
  */
 package com.hypocampus.controller;
 
-import static com.hypocampus.controller.CertifAffichageController.LOCAL_DATE;
-import com.hypocampus.models.Certif;
+
 import com.hypocampus.models.Event;
 import com.hypocampus.services.ServiceEvent;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -43,6 +43,8 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Window;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -60,6 +62,8 @@ public class EventAffichageController implements Initializable {
     Event e;
     
     private int current_id;
+    private String imgp="empty.png";
+    
     @FXML
     private ImageView btnRetourAction;
     @FXML
@@ -76,6 +80,8 @@ public class EventAffichageController implements Initializable {
     private TableColumn<Event, String> coldd;
     @FXML
     private TableColumn<Event, String> coldf;
+    @FXML
+    private TableColumn<Event, String> colimg;
     @FXML
     private Button SupAction;
 
@@ -96,6 +102,12 @@ public class EventAffichageController implements Initializable {
     private DatePicker UpDatedb;
     @FXML
     private DatePicker UpDatefn;
+    @FXML
+    private ImageView IMAGE;
+    @FXML
+    private TextField path;
+    @FXML
+    private ImageView upload;
     
     
     
@@ -109,6 +121,7 @@ public class EventAffichageController implements Initializable {
         colType.setCellValueFactory(new PropertyValueFactory<>("typeEvent"));
         coldd.setCellValueFactory(new PropertyValueFactory<>("dateEvent"));
         coldf.setCellValueFactory(new PropertyValueFactory<>("enddateEvent"));
+        colimg.setCellValueFactory(new PropertyValueFactory<>("image_name"));
             System.out.println("Perfect Event Affichage!");
         listEvent.setEditable(true);
         listEvent.setItems(l);
@@ -132,12 +145,12 @@ public class EventAffichageController implements Initializable {
         FilteredList<Event> filteredData = new FilteredList<>(list, e -> true);
         search.setOnKeyReleased(e -> {
             search.textProperty().addListener((ObservableValue, oldValue, newValue) -> {
-                filteredData.setPredicate((Predicate<? super Event>) certif -> {
+                filteredData.setPredicate((Predicate<? super Event>) Event -> {
                     if (newValue == null || newValue.isEmpty()) {
                         return true;
                     }
                     String lower = newValue.toLowerCase();
-                    if (certif.getTitreEvent().toLowerCase().contains(lower)) {
+                    if (Event.getTitreEvent().toLowerCase().contains(lower)) {
                         return true;
                     }
 
@@ -164,9 +177,18 @@ public class EventAffichageController implements Initializable {
                  UpCapa.setText(Integer.toString(rowData.getNumeroEvent()));
                  UpDatedb.setValue(LOCAL_DATE(rowData.getDateEvent().toString()));
                  UpDatefn.setValue(LOCAL_DATE(rowData.getEnddateEvent().toString()));
+                 path.setText(rowData.getImage_name());
                  current_id = rowData.getIdev();    
              }
         });
+                //IMG
+        listEvent.setOnMouseClicked((MouseEvent e)->{
+                   int selectedIndex = listEvent.getSelectionModel().getSelectedIndex();
+                    if (selectedIndex!=-1) {                     
+                    Event pi = (Event) listEvent.getSelectionModel().getSelectedItem();                        
+                    IMAGE.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()));                 
+                         }                
+                    });
         
         
           
@@ -228,6 +250,7 @@ public class EventAffichageController implements Initializable {
             
             LocalDate df= UpDatefn.getValue();
             Date dateFn=Date.valueOf(df.toString());
+
             if(dd.compareTo(df) < 0){
                 
                  Event a = new Event(current_id,UpTitre.getText(),Integer.parseInt(UpCapa.getText()),UpType.getText(),dateDb,dateFn);
@@ -251,6 +274,7 @@ public class EventAffichageController implements Initializable {
                 
             }
                 else{
+                
                Image img = new Image("/com/hypocampus/uploads/error.png");
                    Notifications n = Notifications.create()
                                  .title("ERROR")
@@ -283,6 +307,20 @@ public class EventAffichageController implements Initializable {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
         LocalDate localDate = LocalDate.parse(dateString, formatter);
         return localDate;
+    }
+
+    @FXML
+    private void uploadAction(MouseEvent event) {
+        final FileChooser fileChooser = new FileChooser();
+
+            Window stage = null;
+            File file = fileChooser.showOpenDialog(stage);
+            if (file != null) {
+               
+                imgp=file.toString();
+                path.setText(imgp.substring(88));
+                
+            }
     }
 
 

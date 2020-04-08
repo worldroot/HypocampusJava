@@ -29,7 +29,7 @@ public class ServiceCertif implements IService<Certif>{
             
             Statement stm = cnx.createStatement();
             String query = ""
-            + "INSERT INTO certif (idc,titrec,pointc,datec) VALUES (NULL,'"+t.getTitrec()+"','"+t.getPointc()+"','"+t.getDatec()+"')";
+            + "INSERT INTO certif (idc,titrec,pointc,datec,image_name) VALUES (NULL,'"+t.getTitrec()+"','"+t.getPointc()+"','"+t.getDatec()+"', '"+t.getImage_name()+"' )";
             stm.executeUpdate(query);
             
             System.out.println("Certif ajoutée !");
@@ -85,7 +85,7 @@ public class ServiceCertif implements IService<Certif>{
             PreparedStatement pst = cnx.prepareStatement(req);
             ResultSet rs =  pst.executeQuery();
             while(rs.next()){
-                Certif e = new Certif (rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getString(5), rs.getDate(6));
+                Certif e = new Certif (rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDate(4), rs.getString(5));
                 list.add(e);
             }
         } catch (SQLException ex){

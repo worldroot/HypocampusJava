@@ -16,7 +16,7 @@
             <Image url="@../uploads/JavaPartici.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="Home" fitHeight="45.0" fitWidth="56.0" layoutX="23.0" layoutY="701.0" onMouseClicked="#GoHomeAction" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="Home" fitHeight="45.0" fitWidth="56.0" layoutX="23.0" layoutY="701.0" onMouseClicked="#GoHomeAction" opacity="0.8" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../uploads/arrow2.png" />
          </image>

@@ -117,9 +117,13 @@ public class ParticipantAffichageController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-           try {
-               
-                //For Combo List des titres d'event
+           try {      
+           views();
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+           
+          //For Combo List des titres d'event
                 final ObservableList options=FXCollections.observableArrayList();
                 List<Event> Events= se.afficher();
                 for(int i=0;i<Events.size();i++)
@@ -129,12 +133,6 @@ public class ParticipantAffichageController implements Initializable {
                 } 
                 UpTitre.setItems(options);
                 System.out.println("Options:"+ options);
-                
-           views();
-        
-        } catch (SQLException ex) {
-            System.err.println(ex.getMessage());
-        }
          
            //Modifier Starts Here
          Ptab.setOnKeyReleased((KeyEvent e) -> {
