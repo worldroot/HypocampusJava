@@ -56,7 +56,20 @@ public class ServiceCommentaire implements IService<Commentaire>{
             System.err.println(ex.getMessage());
         }
     }
+    
+    public void supprimerAllCommentaireFromTask(int id_task){
+                try {
+            String requete = "DELETE FROM commentaire WHERE task_id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1,id_task);
+            pst.executeUpdate();
+            System.out.println("Tous les Commentaires de la taches sont supprimées !");
 
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
+    }
     @Override
     public void modifier(Commentaire c) {
         try {

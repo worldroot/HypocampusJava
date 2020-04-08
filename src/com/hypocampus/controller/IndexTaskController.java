@@ -74,6 +74,10 @@ public class IndexTaskController implements Initializable {
     
     @FXML
     private TextField Search;
+    @FXML
+    private Text TitreListeDesTaches1;
+    @FXML
+    private Button RetourBacklogbtn1;
     /**
      * Initializes the controller class.
      */
@@ -375,11 +379,13 @@ public class IndexTaskController implements Initializable {
                 }
                 });
             
+
+            
             ///Commentaires bouton
                        
             Image CommentaireIcon = new Image("/com/hypocampus/uploads/commentaires.png");
-            editIcon.getRequestedHeight();
-            editIcon.getRequestedWidth();
+            CommentaireIcon.getRequestedHeight();
+            CommentaireIcon.getRequestedWidth();
             ImageView comment = new ImageView(CommentaireIcon);
             Button CommentButton = new Button("", comment);
             CommentButton.setBackground(Background.EMPTY);
@@ -436,9 +442,18 @@ public class IndexTaskController implements Initializable {
     private void search(KeyEvent event) throws SQLException {
                 ServiceTask SP = new ServiceTask();
         String m = Search.getText();
-        ArrayList<Task> p = (ArrayList<Task>) SP.SearchTasksAdvanced(m);
+        ArrayList<Task> p = (ArrayList<Task>) SP.SearchTasksAdvanced(m, Integer.parseInt(BackogId.getText()));
         ObservableList<Task> obs = FXCollections.observableArrayList(p);
         affichageTasks(obs);
+    }
+
+    @FXML
+    private void RetourBacklog(ActionEvent event) throws IOException {
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/backlog.fxml"));              
+        Parent parent = loader.load();
+        ContentMaine.getChildren().setAll(parent);
+     
+        
     }
 
 }

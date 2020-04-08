@@ -21,5 +21,10 @@
       </ScrollPane>
       <Button fx:id="AjoutCommentaireBtn" layoutX="885.0" layoutY="105.0" mnemonicParsing="false" onAction="#AjoutCommentaire" style="-fx-background-color: #4f86f7;" text="Ajouter" textFill="WHITE" />
       <Text fx:id="TaskId" disable="true" layoutX="215.0" layoutY="74.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" visible="false" />
+      <Button fx:id="RetourTasksbtn1" layoutX="49.0" layoutY="105.0" mnemonicParsing="false" onAction="#RetourTasks" style="-fx-background-color: #da4867;" text="Retour" textFill="WHITE">
+         <font>
+            <Font name="Caviar Dreams" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

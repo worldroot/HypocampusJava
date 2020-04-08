@@ -7,7 +7,9 @@ package com.hypocampus.controller;
 
 import com.hypocampus.models.Backlog;
 import com.hypocampus.models.Project;
+import com.hypocampus.models.Task;
 import com.hypocampus.services.ServiceBacklog;
+import com.hypocampus.services.ServiceCommentaire;
 import com.hypocampus.services.ServiceProject;
 import com.hypocampus.services.ServiceTask;
 import com.hypocampus.utils.DataSource;
@@ -142,7 +144,7 @@ public class BacklogController implements Initializable {
     }
 
     @FXML
-    private void SubmitBacklogBtn(ActionEvent event) throws SQLException {
+    private void SubmitBacklogBtn(ActionEvent event) throws SQLException, IOException {
         ServiceBacklog sb = new ServiceBacklog();
         Project pr = ListProjetAction.getSelectionModel().getSelectedItem();
         
@@ -152,7 +154,21 @@ public class BacklogController implements Initializable {
         Backlog B = new Backlog(0,0,0,pr.getId());
         sb.ajouter(B);
        
+         Image img = new Image("/com/hypocampus/uploads/Check.png");
+         Notifications n = Notifications.create()
+           .title("SUCCESS")
+           .text("Backlog Ajouté")
+           .graphic(new ImageView(img))
+           .position(Pos.TOP_CENTER)
+           .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/backlog.fxml"));              
+        Parent parent = loader.load();
+        ContentPane.getChildren().setAll(parent);
+                BacklogController controller =(BacklogController) loader.getController();
+        controller.afficherBacklogs();
         
     }
 
@@ -177,22 +193,39 @@ public class BacklogController implements Initializable {
     private void DeleteBacklog(ActionEvent event) {
         Backlog ba = TabBacklog.getSelectionModel().getSelectedItem();
         ServiceBacklog sb =new ServiceBacklog();
+        ServiceTask ST = new ServiceTask();
+        ServiceCommentaire SC = new ServiceCommentaire();
    
           Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
        alert.setTitle("Confirmation ");
        alert.setHeaderText(null);
-       alert.setContentText("Vous voulez vraiment supprimer ce Backlog ");
+       alert.setContentText("Vous voulez vraiment supprimer ce Backlog ainsi que toutes ces taches et commentaires?? ");
        Optional<ButtonType> action = alert.showAndWait();
        if (action.get() == ButtonType.OK) {
+           
+           List<Task> tasks = ST.afficherParBacklog(0, 0, ba);
+           for(int i =0; i< tasks.size(); i++){
+               SC.supprimerAllCommentaireFromTask(i);
+           }
+          ST.supprimerAllTaskFromBacklog(ba.getId());
           sb.supprimer(ba);
           afficherBacklogs();
+                   Image img = new Image("/com/hypocampus/uploads/Check.png");
+         Notifications n = Notifications.create()
+           .title("SUCCESS")
+           .text("Backlog, taches et commentaires Supprimés")
+           .graphic(new ImageView(img))
+           .position(Pos.TOP_CENTER)
+           .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
        }
         
         
     }
 
     @FXML
-    private void BacklogTasks(ActionEvent event) throws IOException {
+    public void BacklogTasks(ActionEvent event) throws IOException {
         ServiceTask ST  = new ServiceTask();
          Backlog ba = TabBacklog.getSelectionModel().getSelectedItem();
         ServiceBacklog sb =new ServiceBacklog();

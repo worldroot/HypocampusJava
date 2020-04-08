@@ -10,19 +10,19 @@
 
 <AnchorPane id="AnchorPane" fx:id="ContentMaine" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.IndexTaskController">
    <children>
-      <Text fx:id="TitreBacklog" fill="#1a154a" layoutX="439.0" layoutY="68.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Backlog" textAlignment="CENTER" wrappingWidth="139.6708984375">
+      <Text fx:id="TitreBacklog" fill="#1a154a" layoutX="421.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Backlog" textAlignment="CENTER" wrappingWidth="166.6708984375">
          <font>
-            <Font name="American Captain" size="35.0" />
+            <Font name="Caviar Dreams Bold Italic" size="37.0" />
          </font>
       </Text>
       <Text fx:id="TitreListeDesTaches" fill="#1a154a" layoutX="269.0" layoutY="142.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Taches" textAlignment="CENTER" wrappingWidth="457.6708984375">
          <font>
-            <Font name="American Captain" size="35.0" />
+            <Font name="Caviar Dreams Bold" size="37.0" />
          </font>
       </Text>
-      <ScrollPane layoutX="36.0" layoutY="225.0" prefHeight="456.0" prefWidth="937.0" style="-fx-background-color: transpartent;">
+      <ScrollPane layoutX="36.0" layoutY="225.0" prefHeight="456.0" prefWidth="937.0" style="-fx-background-color: transparent;">
          <content>
-            <HBox fx:id="TaskContainer" spacing="3.0" style="-fx-background-color: transpartent;" />
+            <HBox fx:id="TaskContainer" spacing="3.0" style="-fx-background-color: transparent;" />
          </content>
       </ScrollPane>
       <Button fx:id="AjoutTaskbtn" layoutX="875.0" layoutY="95.0" mnemonicParsing="false" onAction="#AjoutTask" style="-fx-background-color: #4f86f7;" text="Ajouter" textFill="WHITE" />
@@ -31,6 +31,16 @@
             <Font name="Caviar Dreams" size="35.0" />
          </font>
       </Text>
-      <TextField fx:id="Search" layoutX="121.0" layoutY="185.0" onKeyTyped="#search" prefHeight="27.0" prefWidth="213.0" />
+      <TextField fx:id="Search" layoutX="121.0" layoutY="185.0" onKeyTyped="#search" prefHeight="27.0" prefWidth="213.0" promptText="Rechercher par titre..." />
+      <Text fx:id="TitreListeDesTaches1" fill="#1a154a" layoutX="14.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Rechercher" textAlignment="CENTER" wrappingWidth="107.6708984375">
+         <font>
+            <Font name="Caviar Dreams" size="21.0" />
+         </font>
+      </Text>
+      <Button fx:id="RetourBacklogbtn1" layoutX="39.0" layoutY="95.0" mnemonicParsing="false" onAction="#RetourBacklog" style="-fx-background-color: #da4867;" text="Retour" textFill="WHITE">
+         <font>
+            <Font name="Caviar Dreams" size="13.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>

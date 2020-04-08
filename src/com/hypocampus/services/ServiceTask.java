@@ -70,6 +70,20 @@ public class ServiceTask implements IService<Task>{
             System.err.println(ex.getMessage());
         }
     }
+    
+    public void supprimerAllTaskFromBacklog(int id_backlog){
+                try {
+            String requete = "DELETE FROM task WHERE backlog_id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1,id_backlog);
+            pst.executeUpdate();
+            System.out.println("Toutes les Taches du backlog sont supprimées !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        
+    }
 
     @Override
     public void modifier(Task t) {
@@ -276,9 +290,9 @@ public class ServiceTask implements IService<Task>{
     
     
     
-    public List<Task> SearchTasksAdvanced(String character) throws SQLException  {
+    public List<Task> SearchTasksAdvanced(String character, int backlog_id) throws SQLException  {
         Statement stm = cnx.createStatement();
-        String req="select * from task where title  LIKE '%"+character+"%'" ;
+        String req="select * from task where title  LIKE '%"+character+"%' AND task.backlog_id ="+backlog_id+" " ;
         ResultSet rst = stm.executeQuery(req);
         List<Task> tasks = new ArrayList<>();
         while (rst.next()) {
