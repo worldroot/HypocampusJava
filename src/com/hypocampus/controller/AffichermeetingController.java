@@ -5,11 +5,19 @@
  */
 package com.hypocampus.controller;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
 import com.hypocampus.models.Project;
 import com.hypocampus.models.Sprint;
 import com.hypocampus.models.meeting;
 import com.hypocampus.models.team;
 import com.hypocampus.services.ServiceMeeting;
+import com.hypocampus.services.ServiceTeam;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Optional;
@@ -32,6 +40,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.util.Duration;
+import java.io.FileOutputStream;
+import java.io.OutputStream;
+import java.io.File;
 
 /**
  * FXML Controller class
@@ -72,6 +83,8 @@ public class AffichermeetingController implements Initializable {
 
     @FXML
     private Button newmeeting;
+    @FXML
+    private Button pdf;
 
     @FXML
     void editmeeting(ActionEvent event) throws IOException {
@@ -156,5 +169,88 @@ public class AffichermeetingController implements Initializable {
 
                                     }
                                   }
-    }  
+    }
+    
+        @FXML
+    void pdfAction(ActionEvent event) {
+           meeting ss = tab.getSelectionModel().getSelectedItem();
+        if (ss == null) {
+
+              alert.setAlertType(Alert.AlertType.WARNING);
+           
+              alert.setContentText(" Choix invalide ");
+           
+              alert.show();
+                       }
+        else {
+                                     Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                    alert.setTitle("Confirmation ");
+                                    alert.setHeaderText(null);
+                                    alert.setContentText("Voulez-vous vraiment fichier pdf pour cette réunion?");
+                                    Optional<ButtonType> action = alert.showAndWait();
+                                    if (action.get() == ButtonType.OK) {
+                                      pdf(ss);
+
+                                    }
+        }
+           
+    }
+     void pdf(meeting m )
+     {
+
+try {
+           //Path 
+         OutputStream file = new FileOutputStream(new File("C:\\Users\\utilisateur\\Desktop\\HypocampusJava\\src\\com\\hypocampus\\uploads\\meeting.pdf"));
+
+
+
+            Document document = new Document();
+
+            PdfWriter.getInstance(document, file);
+           
+
+            document.open();
+            ServiceTeam sP =new ServiceTeam();
+             document.add(new Paragraph("------------------------------------------------------------BIENVENU-------------------------------------------------------"));
+             document.add(new Paragraph("Nom de groupe :"+ sP.getById(m.getTeam_id())));
+             System.out.println(sP.getById(m.getId()));
+             document.add(new Paragraph("**************************************************************************"));
+             document.add(new Paragraph(" Duration:  "+m.getDuration()));
+             document.add(new Paragraph(" Nombre de réunions:  "+m.getNbrmeeting()));
+             document.add(new Paragraph("*************"
+                                       + "**************************"));
+             document.add(new Paragraph(" Description:  "+m.getDescription()));
+             
+/*
+             PdfPTable my_first_table = new PdfPTable(3);
+             PdfPCell table_cell;
+             table_cell=new PdfPCell(new Phrase("aza"));
+              my_first_table.addCell(table_cell);
+              table_cell=new PdfPCell(new Phrase("zaazd"));
+               my_first_table.addCell(table_cell);
+               table_cell=new PdfPCell(new Phrase(5));
+                my_first_table.addCell(table_cell);
+        
+             // my_first_table.addCell(table_cell);
+              // document.add(new Paragraph(getquantite(4)));
+
+           document.add( my_first_table);    
+
+  */
+            document.close();
+             
+            file.close();
+
+
+        } catch (Exception e) {
+
+
+            e.printStackTrace();
+
+
+     }
+}
+    
+    
+    
 }

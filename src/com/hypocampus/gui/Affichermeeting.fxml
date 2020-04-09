@@ -10,8 +10,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.hypocampus.controller.AffichermeetingController">
+<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.AffichermeetingController">
    <children>
       <AnchorPane id="AnchorPane" layoutX="30.0" layoutY="30.0" prefHeight="706.0" prefWidth="1092.0">
          <children>
@@ -39,6 +38,7 @@
                      </font>
                   </Text>
                   <Button fx:id="newmeeting" layoutX="881.0" layoutY="16.0" mnemonicParsing="false" onAction="#newmeetingAction" style="-fx-background-color: #5ed84f;" text="nouvelle réunion" textFill="WHITE" />
+                  <Button fx:id="pdf" layoutX="790.0" layoutY="16.0" mnemonicParsing="false" onAction="#pdfAction" prefHeight="31.0" prefWidth="73.0" style="-fx-background-color: #6f42c1;" text="PDF" textFill="#fcfcfc" />
                </children>
             </Pane>
          </children>

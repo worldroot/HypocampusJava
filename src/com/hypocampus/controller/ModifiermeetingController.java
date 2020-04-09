@@ -15,6 +15,9 @@ import com.hypocampus.utils.DataSource;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -49,6 +52,7 @@ public class ModifiermeetingController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        afficherM();
     }    
     
     @FXML
@@ -87,7 +91,7 @@ List <meeting> data2 =new ArrayList() ;
       // nbrmeeting.setText(Integer.parseInt(nbrmeeting.getText())); 
         description.setText(s.getDescription()); 
         teamName.setValue(sP.getById(s.getTeam_id()));
-
+System.out.println(sP.getById(s.getTeam_id()));
     
     }
      
@@ -101,7 +105,23 @@ List <meeting> data2 =new ArrayList() ;
        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/Affichermeeting.fxml"));
         ContentPanemodifM.getChildren().setAll(pane);
     }
+    public void afficherM()
+     {
+         try {
+            String requete = "SELECT * FROM team";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+         dataB.add(new team(rs.getInt("id"), rs.getString("teamname")));
 
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+         
+         teamName.setItems(dataB);
+     } 
     @FXML
     void modifiermeetingAction(ActionEvent event) throws IOException {
                       ServiceMeeting ss =new ServiceMeeting();
