@@ -8,6 +8,7 @@ package com.hypocampus.controller;
 import com.hypocampus.models.Commentaire;
 import com.hypocampus.services.ServiceCommentaire;
 import com.hypocampus.services.ServiceTask;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -60,6 +61,12 @@ public class IndexCommentaireController implements Initializable {
     private AnchorPane ContentMaine;
     @FXML
     private Button RetourTasksbtn1;
+
+    private String img="/com/hypocampus/uploads/noImage.png";
+    @FXML
+    private Text TitreApercu;
+    @FXML
+    private ImageView Apercu;
 
     /**
      * Initializes the controller class.
@@ -184,15 +191,42 @@ public class IndexCommentaireController implements Initializable {
             commentairepane.getChildren().add(postdes);
             
             // Bouton delete
-            Image DeleteIcon = new Image("/com/hypocampus/uploads/error.png");
+            Image DeleteIcon = new Image("/com/hypocampus/uploads/bin.png");
             ImageView delete = new ImageView(DeleteIcon);
             Button DeletButton = new Button("", delete);
             DeletButton.setBackground(Background.EMPTY);
             DeletButton.setPrefWidth(1);
             DeletButton.setPrefHeight(1);
-            DeletButton.setLayoutX(220);
+            DeletButton.setLayoutX(235);
             DeletButton.setLayoutY(2);
             commentairepane.getChildren().add(DeletButton);
+            
+            // preview bouton
+            
+            Image PreviewIcon = new Image("/com/hypocampus/uploads/view.png");
+            ImageView preview = new ImageView(PreviewIcon);
+            Button PreviewButton = new Button("", preview);
+            PreviewButton.setBackground(Background.EMPTY);
+            PreviewButton.setPrefWidth(1);
+            PreviewButton.setPrefHeight(1);
+            PreviewButton.setLayoutX(0);
+            PreviewButton.setLayoutY(0);
+            commentairepane.getChildren().add(PreviewButton);
+            
+                        PreviewButton.setOnMouseClicked((MouseEvent e) -> {
+                            if(current.getImage_name() != null){
+                                    Image image1 = new Image("/com/hypocampus/uploads/"+current.getImage_name());
+                            Apercu.setImage(image1);
+                                
+                            }
+                            else {
+                            Image image1 = new Image(img);
+                            Apercu.setImage(image1);
+                            }
+                        
+                
+           
+                });
             
             DeletButton.setOnMouseClicked((MouseEvent e) -> {
                 
@@ -204,7 +238,9 @@ public class IndexCommentaireController implements Initializable {
                                     if (action.get() == ButtonType.OK) {
                         try {
                             ServiceCommentaire SC = new ServiceCommentaire();
-
+                            File commentaire_file = new File("src/com/hypocampus/uploads/"+current.getImage_name());
+                            commentaire_file.delete();
+                            
                             SC.supprimer(current);
                             FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/IndexCommentaire.fxml"));
                             Parent parent = loader.load();
@@ -219,7 +255,7 @@ public class IndexCommentaireController implements Initializable {
                                                Image img = new Image("/com/hypocampus/uploads/Check.png");
                             Notifications not = Notifications.create()
                               .title("SUCCESS")
-                              .text("Commentaire Supprimé")
+                              .text("Commentaire et Image Supprimés")
                               .graphic(new ImageView(img))
                               .position(Pos.TOP_CENTER)
                               .hideAfter(Duration.seconds(5));

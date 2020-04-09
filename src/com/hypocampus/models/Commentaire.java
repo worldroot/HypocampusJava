@@ -44,6 +44,19 @@ public class Commentaire {
         this.date_creation = date_creation;
     }
 
+    public Commentaire() {
+    }
+
+    public Commentaire(int task_id, int user_id, String description, Date created_date, String img) {
+        this.task_id = task_id;
+        this.user_id = user_id;
+        this.image_name = img;
+        this.description = description;
+        this.date_creation = created_date;
+    
+        
+    }
+
 
     public int getId() {
         return id;
