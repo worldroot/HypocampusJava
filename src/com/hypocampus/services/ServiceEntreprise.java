@@ -109,6 +109,23 @@ public class ServiceEntreprise implements IService<Entreprise> {
         return e;
 	}
 	
-	
+	public List<Entreprise> search(String x,String y) {
+		 ObservableList <Entreprise> ListProject = FXCollections.observableArrayList();
+
+        try {
+            String requete = "SELECT * FROM entreprise where "+ y +" like ?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+			pst.setString(1, "%"+x+"%");
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                ListProject.add(new Entreprise(rs.getInt("id"),rs.getString("name"),rs.getString("email"),rs.getDate("createdate")));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return ListProject;
+	}
 	
 }

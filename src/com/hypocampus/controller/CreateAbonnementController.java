@@ -5,17 +5,17 @@
  */
 package com.hypocampus.controller;
 
-import static com.hypocampus.controller.EditProjectController.LOCAL_DATE;
 import static com.hypocampus.controller.ProjectController.NOW_LOCAL_DATE;
+import com.hypocampus.models.Abonnement;
 import com.hypocampus.models.Entreprise;
-import com.hypocampus.models.Project;
+import com.hypocampus.models.Type;
+import com.hypocampus.services.ServiceAbonnement;
 import com.hypocampus.services.ServiceEntreprise;
+import com.hypocampus.services.ServiceType;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -24,6 +24,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -38,77 +39,70 @@ import org.controlsfx.control.Notifications;
  *
  * @author Houcem
  */
-public class UpdateEntrepriseController implements Initializable {
+public class CreateAbonnementController implements Initializable {
 
 	/**
 	 * Initializes the controller class.
 	 */
 	
-	    List <Entreprise> data2 =new ArrayList() ;
-		Alert alert = new Alert(Alert.AlertType.NONE);
-
-
-	
-	@Override
-	public void initialize(URL url, ResourceBundle rb) {
-		// TODO
-	}	
-	
+	Alert alert = new Alert(Alert.AlertType.NONE);
 	
     @FXML
-    private AnchorPane apEupdate;
-	
-	 @FXML
+    private AnchorPane apAcc;
+
+    @FXML
     private Pane pE1;
 
     @FXML
-    private TextField leEemail;
+    private TextField leAname;
 
     @FXML
-    private TextField leEname;
+    private DatePicker leAdate;
 
     @FXML
-    private DatePicker leEdate;
+    private Button btnAcreate;
 
     @FXML
-    private Button btnEupdate;
+    private Button btnA_cancel;
 
     @FXML
-    private Button btnE_cancel;
-
-    @FXML
-    void btnE_cancel_clic(ActionEvent event) throws IOException {
-		AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/readEntreprise.fxml"));
-        apEupdate.getChildren().setAll(pane);
-    }
+    private ComboBox<Type> cmbAtype;
 	
+	@Override
+	public void initialize(URL url, ResourceBundle rb) {
+		ServiceType st = new ServiceType();
+		cmbAtype.getItems().addAll(st.afficher());
+	}	
+	
+	@FXML
+    void btnA_cancel_clic(ActionEvent event)throws IOException {
+		AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/readAbonnement.fxml"));
+        apAcc.getChildren().setAll(pane);
+    }
+
     @FXML
-    void btnEupdate_clic(ActionEvent event) throws IOException {
-		
-		ServiceEntreprise sP = new ServiceEntreprise();
-           LocalDate ds= leEdate.getValue();
+    void btnAcreate_clic(ActionEvent event) throws IOException {
+		ServiceAbonnement sP = new ServiceAbonnement();
+           LocalDate ds= leAdate.getValue();
            
            Date dateS=Date.valueOf(ds.toString());//converting string into sql date
 
 		     
-       if (!leEname.getText().equals("") && !leEemail.getText().equals(""))
+       if (!leAname.getText().equals("") && !cmbAtype.getValue().equals(""))
        {
           
            
             
-               sP.modifier(new Entreprise(data2.get(0).getId(),leEname.getText(),leEemail.getText(),dateS));
+               sP.ajouter(new Abonnement(leAname.getText(),dateS,1,cmbAtype.getValue()));
                Image img = new Image("/com/hypocampus/uploads/Check.png");
                             Notifications n = Notifications.create()
                               .title("SUCCESS")
-                              .text("  Entreprise modifie")
+                              .text("  Abonne ajouté")
                               .graphic(new ImageView(img))
                               .position(Pos.TOP_CENTER)
                               .hideAfter(Duration.seconds(1));
                n.darkStyle();
                n.show();
-               leEname.setText("");
-               leEemail.setText("");
-               leEdate.setValue(NOW_LOCAL_DATE());
               
                /*
                Alert alertA = new Alert(Alert.AlertType.NONE,"Project ajouté",ButtonType.APPLY);
@@ -117,8 +111,8 @@ public class UpdateEntrepriseController implements Initializable {
                alertA.show();
                //System.out.println();
                */
-			   AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/readEntreprise.fxml"));
-        apEupdate.getChildren().setAll(pane);
+			   AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/readAbonnement.fxml"));
+        apAcc.getChildren().setAll(pane);
           
           
            
@@ -135,17 +129,4 @@ public class UpdateEntrepriseController implements Initializable {
        }
     }
 	
-	public void inflateUI(Entreprise P) {      
-
-        leEname.setText(P.getName());
-        leEemail.setText(P.getEmail());
-      
-        leEdate.setValue(LOCAL_DATE(P.getCreatedate().toString()));
-    
-    }    
-    public void add(Entreprise P) {
-         
-         data2.add(P);
-    
-    }
 }

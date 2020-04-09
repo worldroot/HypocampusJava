@@ -8,8 +8,9 @@ package com.hypocampus.controller;
 import static com.hypocampus.controller.EditProjectController.LOCAL_DATE;
 import static com.hypocampus.controller.ProjectController.NOW_LOCAL_DATE;
 import com.hypocampus.models.Entreprise;
-import com.hypocampus.models.Project;
+import com.hypocampus.models.Type;
 import com.hypocampus.services.ServiceEntreprise;
+import com.hypocampus.services.ServiceType;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
@@ -24,7 +25,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -38,77 +38,76 @@ import org.controlsfx.control.Notifications;
  *
  * @author Houcem
  */
-public class UpdateEntrepriseController implements Initializable {
+public class UpdateTypeController implements Initializable {
 
 	/**
 	 * Initializes the controller class.
 	 */
 	
-	    List <Entreprise> data2 =new ArrayList() ;
+	 List <Type> data2 =new ArrayList() ;
 		Alert alert = new Alert(Alert.AlertType.NONE);
-
-
 	
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		// TODO
-	}	
+	}
 	
+	@FXML
+    private AnchorPane apT;
 	
-    @FXML
-    private AnchorPane apEupdate;
-	
-	 @FXML
-    private Pane pE1;
+	@FXML
+    private Pane pE11;
 
     @FXML
-    private TextField leEemail;
+    private TextField leTname;
 
     @FXML
-    private TextField leEname;
+    private Button btnTupdate;
 
     @FXML
-    private DatePicker leEdate;
+    private Button btnT_cancel;
 
     @FXML
-    private Button btnEupdate;
+    private TextField leTnp;
 
     @FXML
-    private Button btnE_cancel;
+    private TextField leTnu;
 
     @FXML
-    void btnE_cancel_clic(ActionEvent event) throws IOException {
-		AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/readEntreprise.fxml"));
-        apEupdate.getChildren().setAll(pane);
+    private TextField leTvalue;
+
+    @FXML
+    void btnT_cancel_clic(ActionEvent event) throws IOException {
+		AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/readType.fxml"));
+        apT.getChildren().setAll(pane);
     }
-	
-    @FXML
-    void btnEupdate_clic(ActionEvent event) throws IOException {
-		
-		ServiceEntreprise sP = new ServiceEntreprise();
-           LocalDate ds= leEdate.getValue();
-           
-           Date dateS=Date.valueOf(ds.toString());//converting string into sql date
 
+    @FXML
+    void btnTcreate_clic(ActionEvent event) throws IOException {
+		ServiceType sT = new ServiceType();
+     
 		     
-       if (!leEname.getText().equals("") && !leEemail.getText().equals(""))
+       if (!leTname.getText().equals("") && !leTvalue.getText().equals("") && !leTnp.getText().equals("") && !leTnu.getText().equals(""))
        {
-          
+		   int value = Integer.parseInt(leTvalue.getText());
+           int np = Integer.parseInt(leTnp.getText());
+		   int nu = Integer.parseInt(leTnu.getText());
            
             
-               sP.modifier(new Entreprise(data2.get(0).getId(),leEname.getText(),leEemail.getText(),dateS));
+               sT.modifier(new Type(data2.get(0).getId(),leTname.getText(),value,np,nu));
                Image img = new Image("/com/hypocampus/uploads/Check.png");
                             Notifications n = Notifications.create()
                               .title("SUCCESS")
-                              .text("  Entreprise modifie")
+                              .text("  Type modifie")
                               .graphic(new ImageView(img))
                               .position(Pos.TOP_CENTER)
                               .hideAfter(Duration.seconds(1));
                n.darkStyle();
                n.show();
-               leEname.setText("");
-               leEemail.setText("");
-               leEdate.setValue(NOW_LOCAL_DATE());
+               leTname.setText("");
+               leTvalue.setText("");
+               leTnp.setText("");
+			   leTnu.setText("");
               
                /*
                Alert alertA = new Alert(Alert.AlertType.NONE,"Project ajouté",ButtonType.APPLY);
@@ -117,8 +116,8 @@ public class UpdateEntrepriseController implements Initializable {
                alertA.show();
                //System.out.println();
                */
-			   AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/readEntreprise.fxml"));
-        apEupdate.getChildren().setAll(pane);
+			   AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/readType.fxml"));
+        apT.getChildren().setAll(pane);
           
           
            
@@ -135,15 +134,15 @@ public class UpdateEntrepriseController implements Initializable {
        }
     }
 	
-	public void inflateUI(Entreprise P) {      
+	public void inflateUI(Type P) {      
 
-        leEname.setText(P.getName());
-        leEemail.setText(P.getEmail());
-      
-        leEdate.setValue(LOCAL_DATE(P.getCreatedate().toString()));
-    
+        leTname.setText(P.getName());
+        leTvalue.setText(Integer.toString(P.getValue()));
+		leTnp.setText(Integer.toString(P.getNp()));
+		leTnu.setText(Integer.toString(P.getNu()));
+		    
     }    
-    public void add(Entreprise P) {
+    public void add(Type P) {
          
          data2.add(P);
     
