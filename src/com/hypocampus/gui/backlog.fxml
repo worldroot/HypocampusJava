@@ -28,7 +28,6 @@
          </font></Button>
       <TableView fx:id="TabBacklog" layoutX="22.0" layoutY="93.0" prefHeight="558.0" prefWidth="824.0">
         <columns>
-          <TableColumn fx:id="Backlog_id_column" editable="false" prefWidth="129.0" resizable="false" text="Backlog_id" />
           <TableColumn fx:id="Project_id_column" editable="false" prefWidth="114.0" resizable="false" text="Project_id" />
             <TableColumn fx:id="Points_to_do_column" editable="false" prefWidth="178.0" resizable="false" text="Points_to_do" />
             <TableColumn fx:id="Points_in_progress_column" editable="false" prefWidth="167.0" resizable="false" text="Points_in_progress" />

@@ -5,6 +5,7 @@
  */
 package com.hypocampus.controller;
 
+import static com.hypocampus.controller.AjoutTaskController.LOCAL_DATE;
 import static com.hypocampus.controller.EditProjectController.LOCAL_DATE;
 import com.hypocampus.models.Backlog;
 import com.hypocampus.models.Project;
@@ -135,7 +136,59 @@ public class EditTaskController implements Initializable {
         int archive = 0;
         // to implement sprint id after 
         int sprint_id =2;
+        
+        
+              // controle saisie date
+        
+         LocalDate created= LOCAL_DATE(created_date.toString());
+         LocalDate deadline= Deadline.getValue();
+         boolean conditionTitre = false;
+        boolean conditionDescription = false;
+        boolean conditionDate = false;
+        boolean conditionStoryPoints = false;
+        //condition titre
+        if (title.length() < 5){
+            conditionTitre= false;
+            Image img = new Image("/com/hypocampus/uploads/error.png");
+            Notifications n = Notifications.create()
+           .title("Echec")
+           .text("Verifier Longeur Titre > 5")
+           .graphic(new ImageView(img))
+           .position(Pos.TOP_CENTER)
+           .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
+            return;
+        }else{
+            conditionTitre= true;
+        }
+        
+        //condition description
+        if (description_fonctionnel.length() < 5){
+            conditionDescription= false;
+            conditionTitre= false;
+            Image img = new Image("/com/hypocampus/uploads/error.png");
+            Notifications n = Notifications.create()
+           .title("Echec")
+           .text("Verifier Longeur Description > 5")
+           .graphic(new ImageView(img))
+           .position(Pos.TOP_CENTER)
+           .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
+            return;
+        }else{
+            conditionDescription= true;
+        }
+           
+           
+           
+        if (created.compareTo(deadline) < 0){
+           
+           
+        
         Task oldTask = ST.getTaskbyid(taskid);
+        
                 
         // alghorithme points false to remove old points
         ST.point_algortime_1(oldTask, false);
@@ -164,5 +217,17 @@ public class EditTaskController implements Initializable {
                               .hideAfter(Duration.seconds(5));
                n.darkStyle();
                n.show();
+    } else{
+                            Image img = new Image("/com/hypocampus/uploads/Check.png");
+                            Notifications n = Notifications.create()
+                              .title("Echec")
+                              .text("Verifier La date Merci")
+                              .graphic(new ImageView(img))
+                              .position(Pos.TOP_CENTER)
+                              .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
+        }
     }
+    
 }

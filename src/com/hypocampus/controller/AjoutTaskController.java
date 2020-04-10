@@ -11,6 +11,7 @@ import com.hypocampus.utils.Email;
 import java.net.URL;
 import java.sql.Date;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -100,10 +101,15 @@ public class AjoutTaskController implements Initializable {
         String title = TItreTask.getText();
         String description_fonctionnel = DescriptionTask.getText();
         String description_technique = "";
+       
         int story_points = StoryPointsList.getSelectionModel().getSelectedItem();
         long millis=System.currentTimeMillis();
         Date created_date =new java.sql.Date(millis);
+        // controle saisie date
         
+         LocalDate created= LOCAL_DATE(created_date.toString());
+           LocalDate deadline= Deadline.getValue();
+           
       //  Date finished_date = new Date(Deadline.getValue().getYear()-1900, Deadline.getValue().getMonthValue()-1, Deadline.getValue().getDayOfMonth());
         Date finished_date = Date.valueOf(Deadline.getValue().toString());
         
@@ -112,7 +118,49 @@ public class AjoutTaskController implements Initializable {
         int archive = 0;
         // to implement sprint id after 
         int sprint_id =2;
+        boolean conditionTitre = false;
+        boolean conditionDescription = false;
+        boolean conditionDate = false;
+        boolean conditionStoryPoints = false;
+        //condition titre
+        if (title.length() < 5){
+            conditionTitre= false;
+            Image img = new Image("/com/hypocampus/uploads/error.png");
+            Notifications n = Notifications.create()
+           .title("Echec")
+           .text("Verifier Longeur Titre > 5")
+           .graphic(new ImageView(img))
+           .position(Pos.TOP_CENTER)
+           .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
+            return;
+        }else{
+            conditionTitre= true;
+        }
+        
+        //condition description
+        if (description_fonctionnel.length() < 5){
+            conditionDescription= false;
+            conditionTitre= false;
+            Image img = new Image("/com/hypocampus/uploads/error.png");
+            Notifications n = Notifications.create()
+           .title("Echec")
+           .text("Verifier Longeur Description > 5")
+           .graphic(new ImageView(img))
+           .position(Pos.TOP_CENTER)
+           .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
+            return;
+        }else{
+            conditionDescription= true;
+        }
+
+
                 
+        if (created.compareTo(deadline) < 0){
+                    
         Task t = new Task(Integer.parseInt(BacklogId.getText()), title, description_fonctionnel, description_technique, story_points, created_date, finished_date, state, priority, archive, sprint_id);
         
         ST.ajouter(t);
@@ -150,7 +198,27 @@ public class AjoutTaskController implements Initializable {
         // email    
         new Email("hypocampus.platforms@gmail.com", "3A192020", "mehdibehira@gmail.com", titreMail, text); // Send a message
         // redirection
+            
+        } else
+        {
+         Image img = new Image("/com/hypocampus/uploads/error.png");
+         Notifications n = Notifications.create()
+           .title("Echec")
+           .text("Verifier La date Merci")
+           .graphic(new ImageView(img))
+           .position(Pos.TOP_CENTER)
+           .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
+        }
+
         
     }
+    
+     public static final LocalDate LOCAL_DATE (String dateString){
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate localDate = LocalDate.parse(dateString, formatter);
+            return localDate;
+     }
     
 }

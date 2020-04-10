@@ -92,7 +92,8 @@ public class AjoutCommentaireController implements Initializable {
         long millis=System.currentTimeMillis();
         Date created_date =new java.sql.Date(millis);
         
-      //  Date finished_date = new Date(Deadline.getValue().getYear()-1900, Deadline.getValue().getMonthValue()-1, Deadline.getValue().getDayOfMonth());
+        if(description.length()>5){
+                  //  Date finished_date = new Date(Deadline.getValue().getYear()-1900, Deadline.getValue().getMonthValue()-1, Deadline.getValue().getDayOfMonth());
         Commentaire c = new Commentaire(task_id, user_id, description, created_date, image_name);
         SC.ajouter(c);
                        Image img = new Image("/com/hypocampus/uploads/Check.png");
@@ -105,6 +106,21 @@ public class AjoutCommentaireController implements Initializable {
                n.darkStyle();
                n.show();
                RetourTask(event);
+        }
+        else{
+                Image img = new Image("/com/hypocampus/uploads/error.png");
+                            Notifications n = Notifications.create()
+                              .title("Echec")
+                              .text("Verifier Longeur Description > 5")
+                              .graphic(new ImageView(img))
+                              .position(Pos.TOP_CENTER)
+                              .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
+            
+        }
+        
+
     }
 
     @FXML

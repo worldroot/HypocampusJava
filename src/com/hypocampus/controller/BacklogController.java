@@ -75,8 +75,6 @@ public class BacklogController implements Initializable {
     @FXML
     private TableView<Backlog> TabBacklog;
     @FXML
-    private TableColumn<Backlog, Integer> Backlog_id_column;
-    @FXML
     private TableColumn<Backlog, String> Project_id_column;
     @FXML
     private TableColumn<Backlog, Integer> Points_to_do_column;
@@ -113,7 +111,7 @@ public class BacklogController implements Initializable {
         TabBacklog.setVisible(true);
         ServiceBacklog sb = new ServiceBacklog();
         ServiceProject sp =new ServiceProject(); 
-         Backlog_id_column.setCellValueFactory(new PropertyValueFactory<>("id"));
+        // Backlog_id_column.setCellValueFactory(new PropertyValueFactory<>("id"));
          Project_id_column.setCellValueFactory(new PropertyValueFactory<>("project_id"));
          Project_id_column.setCellValueFactory((CellDataFeatures<Backlog, String> p) -> new ReadOnlyObjectWrapper(sp.GetById(p.getValue().getProject_id()))); 
          Points_to_do_column.setCellValueFactory(new PropertyValueFactory<>("points_to_do")); 
