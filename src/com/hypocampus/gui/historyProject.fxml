@@ -9,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.hypocampus.controller.HistoryProjectController">
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.HistoryProjectController">
    <children>
       <AnchorPane id="AnchorPane" layoutX="20.0" layoutY="20.0" prefHeight="706.0" prefWidth="1092.0">
          <children>
@@ -34,7 +33,7 @@
                </children>
             </Pane>
             <Button fx:id="Restaurer" layoutX="622.0" layoutY="567.0" mnemonicParsing="false" onAction="#RestaurerAction" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: #28afd0;" text="Restaurer" textFill="WHITE" />
-            <TextField fx:id="filterField" layoutX="863.0" layoutY="116.0" />
+            <TextField fx:id="filterField" layoutX="863.0" layoutY="116.0" promptText="Search" />
          </children>
       </AnchorPane>
    </children>

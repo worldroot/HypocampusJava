@@ -19,6 +19,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -110,8 +111,12 @@ public class SprintController implements Initializable {
          
          
     @FXML
-    void ajouterSprint(ActionEvent event) {           
-           
+    void ajouterSprint(ActionEvent event) throws SQLException { 
+         Project pr = ProjectName.getSelectionModel().getSelectedItem();
+          Statement stmt = cnx.createStatement();
+          String SQL = "SELECT * FROM sprint WHERE  projets_id='" +pr.getId()+"'and sprintname ='" +SprintName.getText()+"'";
+          ResultSet rs = stmt.executeQuery(SQL);
+        if(!rs.next()){
        if (!SprintName.getText().equals(""))
        {
    
@@ -124,7 +129,7 @@ public class SprintController implements Initializable {
 
            if(ds.compareTo(df) < 0)
            {
-             Project pr = ProjectName.getSelectionModel().getSelectedItem();
+            
                ss.ajouter(new Sprint(SprintName.getText(),dateS,datef,pr.getId(),00));
              
                Image img = new Image("/com/hypocampus/uploads/Check.png");
@@ -164,6 +169,19 @@ public class SprintController implements Initializable {
            // show the dialog
            alert.show();
        }
+        }
+                else {
+             Image img = new Image("/com/hypocampus/uploads/Check.png");
+                              Notifications n = Notifications.create()
+                              .title("SUCCESS")
+                              .text(" sprint déjà existe")
+                              .graphic(new ImageView(img))
+                              .position(Pos.TOP_CENTER)
+                              .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
+      
+        }
         
         
     }

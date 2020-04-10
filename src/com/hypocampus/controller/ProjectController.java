@@ -12,11 +12,17 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
@@ -25,6 +31,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -47,7 +54,7 @@ public class ProjectController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+    afficherUser();
     }
 
     @FXML
@@ -59,7 +66,7 @@ public class ProjectController implements Initializable {
     private Button backAffprojet;
 
     @FXML
-    private TextField NameEmployee;
+    private ComboBox<String> NameEmployee;
 
     @FXML
     private TextField NameProject;
@@ -77,12 +84,40 @@ public class ProjectController implements Initializable {
 // alert
       Alert alert = new Alert(Alert.AlertType.NONE);
       Connection cnx = DataSource.getInstance().getCnx();
+     ObservableList  dataB =FXCollections.observableArrayList();
+      
+      
+               public void afficherUser()
+     {
+         try {
+            String requete = "SELECT username FROM fos_user";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                dataB.add(rs.getString("username"));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+         
+         NameEmployee.setItems(dataB);
+     }
+      
+      
+      
     @FXML
-    void ajouterProject(ActionEvent event) {   
-       if (!NameEmployee.getText().equals("") && !NameProject.getText().equals("")&& !description.getText().equals(""))
+    void ajouterProject(ActionEvent event) throws SQLException {
+         String pr = NameEmployee.getSelectionModel().getSelectedItem();
+            ServiceProject sP =new ServiceProject();
+          Statement stmt = cnx.createStatement();
+          String SQL = "SELECT * FROM projets WHERE  history=0 and projet_name ='" +NameProject.getText()+"'";
+           ResultSet rs = stmt.executeQuery(SQL);
+        if(!rs.next()){
+       if (pr != null && !NameProject.getText().equals("")&& !description.getText().equals(""))
        {
 
-           ServiceProject sP =new ServiceProject();
+           
            LocalDate ds= StartDateProject.getValue();
            LocalDate df= EndDateProject.getValue();
            
@@ -92,7 +127,7 @@ public class ProjectController implements Initializable {
            if(ds.compareTo(df) < 0)
            {
             
-               sP.ajouter(new Project(NameProject.getText(),NameEmployee.getText(),dateS,datef,description.getText(),00));
+               sP.ajouter(new Project(NameProject.getText(),pr,dateS,datef,description.getText(),00));
                Image img = new Image("/com/hypocampus/uploads/Check.png");
                             Notifications n = Notifications.create()
                               .title("SUCCESS")
@@ -103,7 +138,6 @@ public class ProjectController implements Initializable {
                n.darkStyle();
                n.show();
                NameProject.setText("");
-               NameEmployee.setText("");
                EndDateProject.setValue(NOW_LOCAL_DATE());
                description.setText("");
            }
@@ -132,6 +166,19 @@ public class ProjectController implements Initializable {
            // show the dialog
            alert.show();
            }
+        }
+        else {
+             Image img = new Image("/com/hypocampus/uploads/error.png");
+                              Notifications n = Notifications.create()
+                              .title("SUCCESS")
+                              .text("  Project déjà existe")
+                              .graphic(new ImageView(img))
+                              .position(Pos.TOP_CENTER)
+                              .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
+
+        }
 
     }
 

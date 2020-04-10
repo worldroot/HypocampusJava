@@ -45,6 +45,6 @@
             <Button fx:id="voirtaches" layoutX="621.0" layoutY="487.0" mnemonicParsing="false" onAction="#voir_tachesAction" prefHeight="31.0" prefWidth="145.0" style="-fx-background-color: #5ed84f;" text="voir les taches" textFill="WHITE" />
          </children>
       </AnchorPane>
-      <TextField fx:id="filterField" layoutX="890.0" layoutY="149.0" />
+      <TextField fx:id="filterField" layoutX="890.0" layoutY="149.0" promptText="Search" />
    </children>
 </AnchorPane>

@@ -206,7 +206,11 @@ public class ServiceProject  {
         }
       
         return count;
-    }                
+    } 
+       
+
+            
+       
        public int getProgressC(int idp) {
        
          int count =0;

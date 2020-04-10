@@ -13,7 +13,13 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.TreeMap;
+import java.util.stream.Collectors;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -199,34 +205,50 @@ Connection cnx = DataSource.getInstance().getCnx();
            
       //drag and drop      
            
-      public List<String> afficher_Sprintask_toDo(Sprint s){
-        
+      public List<String>afficher_Sprintask_toDo(Sprint s){
               ObservableList <String> ListSprint =FXCollections.observableArrayList();
+              Map<Task, String> map =  new TreeMap<>(
+		                (Comparator<Task>) (o1, o2) -> o1.getFinished_date().compareTo(o2.getFinished_date())
+		        );
 
         try {
             String requete = "SELECT * FROM task where sprint_id ="+s.getId()+" AND state= 'To Do'";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
-           
+
+
+
             while (rs.next()) {
-                     
-               ListSprint.add("Titre:"+rs.getString("title")+"\n"
+                
+
+               
+                map.put(new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
+                ,rs.getString("description_fonctionnel"), rs.getString("description_technique")
+                ,rs.getInt("story_points"), rs.getDate("created_date"), rs.getDate("finished_date")
+                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id")),
+                //Value
+                "Titre:"+rs.getString("title")+"\n"
                 + "Description: "+rs.getString("description_fonctionnel")+"\n"
-                + "Etat: "+rs.getString("created_date")+"\n"
+                + "created_date: "+rs.getString("created_date")+"\n"
                 + "Date Estimer: "+rs.getString("finished_date")+"\n\n"
                 + "                      Story Points: "+rs.getInt("story_points")+"\n"
-                + "*******************************");
-                              
+                + "*******************************");                              
             }
+            map.entrySet().stream().map((entry) -> entry.getValue()).forEachOrdered((v) -> {
+                ListSprint.add(v);
+                   });
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-          return ListSprint; 
+          return  ListSprint ; 
       }
       
        public List<String> afficher_Sprintask_INProgress(Sprint s){
         
               ObservableList <String> ListSprint =FXCollections.observableArrayList();
+              Map<Task, String> map =  new TreeMap<>(
+		                (Comparator<Task>) (o1, o2) -> o1.getFinished_date().compareTo(o2.getFinished_date())
+		        );
 
         try {
             String requete = "SELECT * FROM task where sprint_id ="+s.getId()+" AND state= 'In Progress'";
@@ -235,14 +257,24 @@ Connection cnx = DataSource.getInstance().getCnx();
            
             while (rs.next()) {
                      
-               ListSprint.add("Titre:"+rs.getString("title")+"\n"
+                
+
+               
+                map.put(new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
+                ,rs.getString("description_fonctionnel"), rs.getString("description_technique")
+                ,rs.getInt("story_points"), rs.getDate("created_date"), rs.getDate("finished_date")
+                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id")),
+                //Value
+                "Titre:"+rs.getString("title")+"\n"
                 + "Description: "+rs.getString("description_fonctionnel")+"\n"
-                + "Etat: "+rs.getString("created_date")+"\n"
+                + "created_date: "+rs.getString("created_date")+"\n"
                 + "Date Estimer: "+rs.getString("finished_date")+"\n\n"
                 + "                      Story Points: "+rs.getInt("story_points")+"\n"
-                + "*******************************");
-                              
+                + "*******************************");                              
             }
+            map.entrySet().stream().map((entry) -> entry.getValue()).forEachOrdered((v) -> {
+                ListSprint.add(v);
+                   });
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
@@ -252,6 +284,9 @@ Connection cnx = DataSource.getInstance().getCnx();
       public List<String> afficher_Sprintask_Done(Sprint s){
         
               ObservableList <String> ListSprint =FXCollections.observableArrayList();
+              Map<Task, String> map =  new TreeMap<>(
+		                (Comparator<Task>) (o1, o2) -> o1.getFinished_date().compareTo(o2.getFinished_date())
+		        );
 
         try {
             String requete = "SELECT * FROM task where sprint_id ="+s.getId()+" AND state= 'Done'";
@@ -260,14 +295,21 @@ Connection cnx = DataSource.getInstance().getCnx();
            
             while (rs.next()) {
                      
-               ListSprint.add("Titre:"+rs.getString("title")+"\n"
+                map.put(new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
+                ,rs.getString("description_fonctionnel"), rs.getString("description_technique")
+                ,rs.getInt("story_points"), rs.getDate("created_date"), rs.getDate("finished_date")
+                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id")),
+                //Value
+                "Titre:"+rs.getString("title")+"\n"
                 + "Description: "+rs.getString("description_fonctionnel")+"\n"
-                + "Etat: "+rs.getString("created_date")+"\n"
+                + "created_date: "+rs.getString("created_date")+"\n"
                 + "Date Estimer: "+rs.getString("finished_date")+"\n\n"
                 + "                      Story Points: "+rs.getInt("story_points")+"\n"
-                + "*******************************");
-                              
+                + "*******************************");                              
             }
+            map.entrySet().stream().map((entry) -> entry.getValue()).forEachOrdered((v) -> {
+                ListSprint.add(v);
+                   });
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
