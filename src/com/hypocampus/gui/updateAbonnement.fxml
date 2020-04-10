@@ -14,7 +14,7 @@
    <children>
       <Pane fx:id="pE1" layoutX="8.0" layoutY="9.0" prefHeight="516.0" prefWidth="854.0" style="-fx-background-color: #ffff;">
          <children>
-            <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="20.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajouter Abonnement" wrappingWidth="258.9999888539314">
+            <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="20.0" layoutY="54.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Abonnement" wrappingWidth="258.9999888539314">
                <font>
                   <Font size="24.0" />
                </font>
