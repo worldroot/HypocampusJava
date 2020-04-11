@@ -90,11 +90,6 @@ public class Project {
         this.progressbar = progressbar;
     }
 
-
- 
-
-    public Project() {
-    }
     
     
 
