@@ -177,7 +177,10 @@ public class EventController implements Initializable {
             File file = fileChooser.showOpenDialog(stage);
             if (file != null) {
                 imgg=file.toString();
-                path.setText(imgg.substring(88));
+                // pc mehdi 
+                path.setText(file.getName());
+                // pcc ghassen
+                //path.setText(imgg.substring(88));
             }
         }
         

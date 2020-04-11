@@ -137,8 +137,11 @@ public class CertifAffichageController implements Initializable {
             TableC.setOnMouseClicked((MouseEvent e)->{
                    int selectedIndex = TableC.getSelectionModel().getSelectedIndex();
                    if (selectedIndex!=-1) {                     
-                    Certif pi = (Certif) TableC.getSelectionModel().getSelectedItem();                        
-                    img.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()) );                 
+                    Certif pi = (Certif) TableC.getSelectionModel().getSelectedItem();   
+                    //pc mehdi uncomment to work
+                    img.setImage(new Image("/com/hypocampus/uploads/Event/"+pi.getImage_name()) );  
+                    // PC ghassen uncomment this to work
+                  //  img.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()) );                 
                          }                
                     });
         
@@ -261,7 +264,10 @@ public class CertifAffichageController implements Initializable {
             if (file != null) {
                
                 imgp=file.toString();
-                path.setText(imgp.substring(88));
+                //pc mehdi
+                path.setText(file.getName());
+                // pc ghassen
+           //     path.setText(imgp.substring(88));
                 
             }
     }

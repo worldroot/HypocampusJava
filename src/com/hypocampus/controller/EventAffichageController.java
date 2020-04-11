@@ -185,8 +185,12 @@ public class EventAffichageController implements Initializable {
         listEvent.setOnMouseClicked((MouseEvent e)->{
                    int selectedIndex = listEvent.getSelectionModel().getSelectedIndex();
                     if (selectedIndex!=-1) {                     
-                    Event pi = (Event) listEvent.getSelectionModel().getSelectedItem();                        
-                    IMAGE.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()));                 
+                    Event pi = (Event) listEvent.getSelectionModel().getSelectedItem();  
+                    //pc mehdi
+                         IMAGE.setImage(new Image("/com/hypocampus/uploads/Event/"+pi.getImage_name()));                 
+
+                    // pc ghassen
+                   // IMAGE.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()));                 
                          }                
                     });
         
@@ -318,7 +322,10 @@ public class EventAffichageController implements Initializable {
             if (file != null) {
                
                 imgp=file.toString();
-                path.setText(imgp.substring(88));
+                // pc mehdi
+                path.setText(file.getName());
+              //pc ghassen
+                // path.setText(imgp.substring(88));
                 
             }
     }

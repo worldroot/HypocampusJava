@@ -151,7 +151,11 @@ public class CertifController implements Initializable {
             if (file != null) {
                
                 imgg=file.toString();
-                path.setText(imgg.substring(88));    
+                //pc ghassen
+              //  path.setText(imgg.substring(88));    
+              
+              //pc mehdi
+              path.setText(file.getName());  
             }
     }
         
