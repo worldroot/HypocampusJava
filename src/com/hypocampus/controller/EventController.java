@@ -22,6 +22,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -46,7 +47,7 @@ public class EventController implements Initializable {
     @FXML
     private TextField numEvent;
     @FXML
-    private TextField typeEvent;
+    private ComboBox<String> typeEvent;
     @FXML
     private Button btnvalider;
     @FXML
@@ -73,7 +74,7 @@ public class EventController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-       
+      typeEvent.getItems().addAll("Cours", "Formation", "Workshop"); 
     }    
 
     @FXML
@@ -83,7 +84,7 @@ public class EventController implements Initializable {
         //Date dateevent = new Date(dateEvent.getValue().getYear()-1900, dateEvent.getValue().getMonthValue()-1, dateEvent.getValue().getDayOfMonth());
         //Date enddateEvent = new Date(endDateEvent.getValue().getYear()-1900, endDateEvent.getValue().getMonthValue()-1, endDateEvent.getValue().getDayOfMonth());
         
-        if (!typeEvent.getText().equals("") && !TitreEvent.getText().equals("") && !numEvent.getText().equals("")) {
+        if (!TitreEvent.getText().equals("") && !numEvent.getText().equals("") && !dateEvent.getEditor().equals("") && !endDateEvent.getEditor().equals("") ) {
             
            ServiceEvent ev = new ServiceEvent();
            
@@ -95,7 +96,7 @@ public class EventController implements Initializable {
            
             if(ds.compareTo(df) < 0){
 
-                Event e = new Event(TitreEvent.getText(), Integer.parseInt(numEvent.getText()),typeEvent.getText(),dateE, datef, path.getText());
+                Event e = new Event(TitreEvent.getText(), Integer.parseInt(numEvent.getText()),typeEvent.getSelectionModel().getSelectedItem(),dateE, datef, path.getText());
                 ev.ajouter(e);
                 Image img = new Image("/com/hypocampus/uploads/Check.png");
                                 Notifications n = Notifications.create()
@@ -155,7 +156,7 @@ public class EventController implements Initializable {
     @FXML
     private void btnclearAction(MouseEvent event) {
         TitreEvent.clear();
-        typeEvent.clear();
+        typeEvent.getSelectionModel().clearSelection();
         numEvent.clear();
         path.clear();
         dateEvent.getEditor().clear();

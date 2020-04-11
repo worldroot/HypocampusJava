@@ -115,13 +115,120 @@ try {
             System.out.println(ex.getMessage());
         } 
         return list.getTitreEvent();
-    } 
+    }
+    
+     public String getMail(String email) throws SQLException {
+        Statement stm = cnx.createStatement();
+        String query = "select email from participant c where c.email ='"+email+"' ";
+        ResultSet rst = stm.executeQuery(query);
+        String mail = null ;
+        while (rst.next()) {
+           mail = rst.getString("email");
+        }
+        return mail;
+    }
+     
+     public String getPwd(String passwordp) throws SQLException {
+        Statement stm = cnx.createStatement();
+        String query = "select passwordp from participant c where c.passwordp= '"+passwordp+"' ";
+        ResultSet rst = stm.executeQuery(query);
+        String pwd = null ;
+        while (rst.next()) {
+           pwd = rst.getString("passwordp");
+        }
+        return pwd;
+    }
+    public void updateReviewAndStatus(String email)  {
+       try {
+            String requete = "UPDATE `participant` SET review=review+1,status=1 WHERE email='"+email+"'";
+               PreparedStatement pst = cnx.prepareStatement(requete);
+            
+            pst.executeUpdate();
+            System.out.println("Revie< updated succesfully ! ");
+        
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+    }
+    public void Deconnected()  {
+       try {
+            String requete = "UPDATE `participant` SET status=0 ";
+               PreparedStatement pst = cnx.prepareStatement(requete);
+            
+            pst.executeUpdate();
+            System.out.println("Status updated succesfully ! ");
+        
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+
+        }
+    }
+    
+     public String getMailConnected() throws SQLException {
+        Statement stm = cnx.createStatement();
+        String query = "select email from participant c where c.status =1 ";
+        ResultSet rst = stm.executeQuery(query);
+        String mail = null ;
+        while (rst.next()) {
+           mail = rst.getString("email");
+        }
+        return mail;
+    }
+     
+     public boolean test(String email){
+        boolean test = false;
+          try {
+          String req="select (certif.pointc) as p,(participant.review) as r from certif,participant where certif.titrec=participant.choix and participant.email='"+email+"' ";
+          
+             Statement stm = cnx.createStatement();
+              
+          ResultSet rs=  stm.executeQuery(req);
+
+          while (rs.next() && (test==false)) {
+            if (rs.getInt(1)<= rs.getInt(2))  {
+                System.out.println("asasasas");
+                 test=true;
+                 System.out.println(test);
+            }
+            
+            else{
+           System.out.println("erreur");
+
+            test=false;
+            }
+         
+    
+         
+          }
+    }   catch (SQLException ex) {
+              System.out.println("erreur de test");
+        }
+        return test;
+        }
+      public String getImageCertif(String type,int idEvent) throws SQLException {
+        Statement stm = cnx.createStatement();
+        String query = "select certif.image_name from certif,events_admin  where certif.titrec=events_admin.idev and events_admin.typeEvent='"+type+"' and events_admin.idev='"+idEvent+"'  ";
+        ResultSet rst = stm.executeQuery(query);
+        String image_name = null ;
+        while (rst.next()) {
+           image_name = rst.getString("image_name");
+        }
+        return image_name;
+    }
+      
+      
+      
+      
+     
+     
+     
+    }
     
     
     
     
-    
-}
+
 
 
     

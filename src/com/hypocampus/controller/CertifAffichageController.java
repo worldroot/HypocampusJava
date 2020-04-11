@@ -133,18 +133,10 @@ public class CertifAffichageController implements Initializable {
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-        //IMG
-            TableC.setOnMouseClicked((MouseEvent e)->{
-                   int selectedIndex = TableC.getSelectionModel().getSelectedIndex();
-                   if (selectedIndex!=-1) {                     
-                    Certif pi = (Certif) TableC.getSelectionModel().getSelectedItem();   
-                    //pc mehdi uncomment to work
-                    img.setImage(new Image("/com/hypocampus/uploads/Event/"+pi.getImage_name()) );  
-                    // PC ghassen uncomment this to work
-                  //  img.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()) );                 
-                         }                
-                    });
-        
+            /*TableC.setOnMouseClicked((MouseEvent e)->{
+                                  
+                    });     */
+            
         //For Combo List des titres d'event
                 final ObservableList options=FXCollections.observableArrayList();
                 List<Event> Events= sv.afficher();
@@ -157,14 +149,19 @@ public class CertifAffichageController implements Initializable {
                 System.out.println("Options:"+ options);
                 
         //Modifier Starts Here
-        TableC.setOnKeyReleased((KeyEvent e) -> {
-             if (e.getCode() == KeyCode.UP || e.getCode() == KeyCode.DOWN) {
+        //TableC.setOnKeyReleased((KeyEvent e) -> {
+            // if (e.getCode() == KeyCode.UP || e.getCode() == KeyCode.DOWN) {
+        TableC.setOnMouseClicked((MouseEvent e)->{        
+                //IMG 
+                 int selectedIndex = TableC.getSelectionModel().getSelectedIndex();
+                   if (selectedIndex!=-1) {                     
+                    Certif pi = (Certif) TableC.getSelectionModel().getSelectedItem();                        
+                    img.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()) );                 
+                         } 
+                 //End IMG
                  
                  Certif rowData = TableC.getSelectionModel().getSelectedItem();
                  /** fill the fields with the selected data **/
-                 // Event et = ComTitre.getSelectionModel().getSelectedItem();
-                 // LocalDate df= Updatec.getValue();
-                 
                  String t=sv.GetById(rowData.getTitrec());
                  ComTitre.setValue(t);
                  Uppoint.setText(Integer.toString(rowData.getPointc()));
@@ -172,7 +169,7 @@ public class CertifAffichageController implements Initializable {
                  path.setText(rowData.getImage_name());
                  current_id = rowData.getIdc();
                  
-             }
+             
         });
          
        

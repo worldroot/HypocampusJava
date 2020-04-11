@@ -17,6 +17,9 @@ public class Participant {
     private String passwordp;
     private int choix;
     private int review;
+    private int status;
+
+    
 
     public Participant(String nomp, String prenomp, String email, String passwordp, int choix, int review) {
         this.nomp = nomp;
@@ -85,6 +88,13 @@ public class Participant {
 
     public void setReview(int review) {
         this.review = review;
+    }
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
     
     

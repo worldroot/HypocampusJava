@@ -11,7 +11,7 @@
 
 <AnchorPane id="AnchorPane" fx:id="ContentPane" maxHeight="769.0" maxWidth="1200.0" minHeight="769.0" minWidth="1200.0" prefHeight="769.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.ParticipantController">
    <children>
-      <ImageView fitHeight="768.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="775.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../uploads/JavaPartici.png" />
          </image>
@@ -29,7 +29,6 @@
          </font>
       </Text>
       <PasswordField fx:id="mdp" layoutX="386.0" layoutY="385.0" opacity="0.65" prefHeight="31.0" prefWidth="429.0" />
-      <PasswordField fx:id="email" layoutX="388.0" layoutY="305.0" opacity="0.65" prefHeight="31.0" prefWidth="429.0" />
       <Text fill="WHITE" layoutX="388.0" layoutY="291.0" strokeType="OUTSIDE" strokeWidth="0.0" text="E-mail:">
          <font>
             <Font name="Caviar Dreams Bold Italic" size="16.0" />
@@ -46,5 +45,6 @@
             <Font name="Caviar Dreams Bold" size="31.0" />
          </font>
       </Text>
+      <TextField fx:id="email" layoutX="388.0" layoutY="305.0" opacity="0.65" prefHeight="31.0" prefWidth="429.0" />
    </children>
 </AnchorPane>

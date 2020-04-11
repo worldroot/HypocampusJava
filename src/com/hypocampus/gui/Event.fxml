@@ -14,7 +14,6 @@
    <children>
       <TextField fx:id="TitreEvent" layoutX="447.0" layoutY="211.0" prefHeight="31.0" prefWidth="219.0" />
       <TextField fx:id="numEvent" layoutX="447.0" layoutY="256.0" prefHeight="31.0" prefWidth="219.0" />
-      <TextField fx:id="typeEvent" layoutX="447.0" layoutY="298.0" prefHeight="31.0" prefWidth="219.0" />
       <Text fill="#262d47" layoutX="336.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre event" wrappingWidth="90.6708984375">
          <font>
             <Font name="Caviar Dreams Bold Italic" size="15.0" />
@@ -67,5 +66,6 @@
             <Font name="Caviar Dreams Bold Italic" size="15.0" />
          </font>
       </Text>
+      <ComboBox fx:id="typeEvent" layoutX="447.0" layoutY="298.0" prefHeight="31.0" prefWidth="219.0" />
    </children>
 </AnchorPane>
