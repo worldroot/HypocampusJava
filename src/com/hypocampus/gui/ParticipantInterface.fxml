@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane id="AnchorPane" fx:id="ContentPane" maxHeight="769.0" maxWidth="1200.0" minHeight="769.0" minWidth="1200.0" prefHeight="769.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.ParticipantInterfaceController">
+   <children>
+      <ImageView fitHeight="769.0" fitWidth="1200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../uploads/JavaPartici.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="Re" fitHeight="44.0" fitWidth="44.0" layoutX="14.0" layoutY="711.0" onMouseClicked="#ReAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../uploads/arrow2.png" />
+         </image>
+      </ImageView>
+      <Label fx:id="titre" layoutX="506.0" layoutY="215.0" prefHeight="21.0" prefWidth="188.0" text="Label" textFill="WHITE" />
+      <Label fx:id="type" layoutX="506.0" layoutY="256.0" prefHeight="21.0" prefWidth="188.0" text="Label" textFill="WHITE" />
+      <Label fx:id="cap" layoutX="506.0" layoutY="309.0" prefHeight="21.0" prefWidth="188.0" text="Label" textFill="WHITE" />
+      <Label fx:id="dated" layoutX="506.0" layoutY="363.0" prefHeight="21.0" prefWidth="188.0" text="Label" textFill="WHITE" />
+      <Label fx:id="datef" layoutX="506.0" layoutY="411.0" prefHeight="21.0" prefWidth="188.0" text="Label" textFill="WHITE" />
+      <ImageView fx:id="IMAGE" fitHeight="482.0" fitWidth="522.0" layoutX="663.0" layoutY="267.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fx:id="imgcertif" fitHeight="621.0" fitWidth="854.0" layoutX="173.0" layoutY="63.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
+</AnchorPane>

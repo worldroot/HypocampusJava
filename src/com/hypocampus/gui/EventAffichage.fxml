@@ -47,7 +47,6 @@
       <Button fx:id="ModifAction" layoutX="707.0" layoutY="564.0" mnemonicParsing="false" onAction="#btnModifAction" opacity="0.75" prefHeight="37.0" prefWidth="206.0" styleClass="DarkBlue" stylesheets="@../stylesheets/buttons.css" text="Valider la modifiaction" />
       <TextField fx:id="UpTitre" layoutX="684.0" layoutY="199.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouveau Titre..." />
       <TextField fx:id="UpCapa" layoutX="684.0" layoutY="262.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouvelle Capacité..." />
-      <TextField fx:id="UpType" layoutX="684.0" layoutY="324.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouvelle Type..." />
       <DatePicker fx:id="UpDatedb" layoutX="684.0" layoutY="385.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouvelle Date debut..." />
       <DatePicker fx:id="UpDatefn" layoutX="684.0" layoutY="445.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouvelle Date fin..." />
       <ImageView fx:id="IMAGE" fitHeight="305.0" fitWidth="574.0" layoutX="59.0" layoutY="378.0" pickOnBounds="true" preserveRatio="true" />
@@ -57,5 +56,6 @@
             <Image url="@../uploads/photo.png" />
          </image>
       </ImageView>
+      <TextField fx:id="UpType" layoutX="684.0" layoutY="322.0" prefHeight="31.0" prefWidth="252.0" promptText="Nouveau Type ..." />
    </children>
 </AnchorPane>

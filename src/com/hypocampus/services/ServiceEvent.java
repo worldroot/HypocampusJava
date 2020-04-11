@@ -129,6 +129,27 @@ public class ServiceEvent implements IService<Event>{
         }
         return id;
     }
+     public Event getEvent(String email ) throws SQLException {
+        Statement stm = cnx.createStatement();
+        String query = "select events_admin.* from events_admin ,participant where participant.choix=events_admin.idev and participant.email='"+email+"'";
+        ResultSet rst = stm.executeQuery(query);
+
+        Event pst = new Event();
+
+        while (rst.next()) {
+
+            pst.setIdev(rst.getInt(1));
+            pst.setTitreEvent(rst.getString(2));
+            pst.setNumeroEvent(rst.getInt(3));
+            pst.setTypeEvent(rst.getString(4));
+            pst.setDateEvent(rst.getDate(5));
+            pst.setEnddateEvent(rst.getDate(6));
+            pst.setImage_name(rst.getString(7));
+            
+
+        }
+        return pst;
+    }
 }
 
 

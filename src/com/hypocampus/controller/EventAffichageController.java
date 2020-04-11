@@ -32,6 +32,7 @@ import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -166,12 +167,17 @@ public class EventAffichageController implements Initializable {
         
         listEvent.setOnKeyReleased((KeyEvent e) -> {
              if (e.getCode() == KeyCode.UP || e.getCode() == KeyCode.DOWN) {
-                 
+                
+                 // Show Image
+                 int selectedIndex = listEvent.getSelectionModel().getSelectedIndex();
+                    if (selectedIndex!=-1) {                     
+                    Event pi = (Event) listEvent.getSelectionModel().getSelectedItem();                        
+                    IMAGE.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()));                 
+                         }  
+                 // 
                  Event rowData = listEvent.getSelectionModel().getSelectedItem();
-                 /**
-                  * fill the fields with the selected data *
-                  */
-                  
+                 
+                 /* fill the fields with the selected data */ 
                  UpTitre.setText(rowData.getTitreEvent());
                  UpType.setText(rowData.getTypeEvent());
                  UpCapa.setText(Integer.toString(rowData.getNumeroEvent()));
@@ -181,14 +187,11 @@ public class EventAffichageController implements Initializable {
                  current_id = rowData.getIdev();    
              }
         });
-                //IMG
-        listEvent.setOnMouseClicked((MouseEvent e)->{
-                   int selectedIndex = listEvent.getSelectionModel().getSelectedIndex();
-                    if (selectedIndex!=-1) {                     
-                    Event pi = (Event) listEvent.getSelectionModel().getSelectedItem();                        
-                    IMAGE.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()));                 
-                         }                
-                    });
+        
+        //IMG
+        /*listEvent.setOnMouseClicked((MouseEvent e)->{
+                                 
+                    });*/
         
         
           
@@ -253,7 +256,7 @@ public class EventAffichageController implements Initializable {
 
             if(dd.compareTo(df) < 0){
                 
-                 Event a = new Event(current_id,UpTitre.getText(),Integer.parseInt(UpCapa.getText()),UpType.getText(),dateDb,dateFn);
+                 Event a = new Event(current_id,UpTitre.getText(),Integer.parseInt(UpCapa.getText()),UpType.getText(),dateDb,dateFn,path.getText(),null);
                  ev.modifier(a);
         
                 AnchorPane redirected;
