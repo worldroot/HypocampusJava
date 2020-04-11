@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" fx:id="ContentPaneAjouS" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.hypocampus.controller.SprintController">
+   <children>
+      <Pane layoutX="58.0" layoutY="10.0" prefHeight="516.0" prefWidth="973.0" style="-fx-background-color: #ffff;">
+         <children>
+            <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="14.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Créer un Sprint" wrappingWidth="186.99998885393143">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Text>
+            <Text layoutX="24.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Name" wrappingWidth="186.9999859035015" />
+            <TextField fx:id="SprintName" layoutX="337.0" layoutY="113.0" prefHeight="31.0" prefWidth="399.0" promptText="Sprint Name" />
+            <Text layoutX="339.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprint Name" wrappingWidth="186.99999265372753" />
+            <Text layoutX="22.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Start Date" />
+            <DatePicker fx:id="StartDateSprint" layoutX="22.0" layoutY="186.0" prefHeight="31.0" prefWidth="283.0" />
+            <Text layoutX="331.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" End Date" />
+            <DatePicker fx:id="EndDateSprint" layoutX="335.0" layoutY="186.0" prefHeight="31.0" prefWidth="399.0" />
+            <Button fx:id="AjouterSprint" layoutX="846.0" layoutY="476.0" mnemonicParsing="false" onAction="#ajouterSprint" prefHeight="31.0" prefWidth="79.0" style="-fx-background-color: #5ed84f;" text="ajouter" textFill="WHITE" />
+            <Button fx:id="backAffsprint" layoutX="25.0" layoutY="476.0" mnemonicParsing="false" onAction="#backAffsprint" style="-fx-background-color: #fa626b;" text="Annuler" textFill="WHITE" />
+            <ComboBox fx:id="ProjectName" layoutX="26.0" layoutY="113.0" prefHeight="31.0" prefWidth="283.0" promptText="ProjectName" style="-fx-background-color: e6e6ff;" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

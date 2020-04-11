@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
@@ -18,9 +19,8 @@
                   <Font size="24.0" />
                </font>
             </Text>
-            <Text layoutX="22.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Name" wrappingWidth="186.9999859035015" />
-            <TextField fx:id="NameEmployee" layoutX="337.0" layoutY="113.0" prefHeight="31.0" prefWidth="399.0" promptText="Employee Name" />
-            <Text layoutX="339.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Project Name" wrappingWidth="186.99999265372753" />
+            <Text layoutX="22.0" layoutY="100.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Project Name" wrappingWidth="186.9999859035015" />
+            <Text layoutX="339.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Employee Name" wrappingWidth="186.99999265372753" />
             <TextField fx:id="NameProject" layoutX="20.0" layoutY="111.0" prefHeight="31.0" prefWidth="283.0" promptText="Project Name" />
             <Text layoutX="22.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Start Date" />
             <DatePicker fx:id="StartDateProject" layoutX="22.0" layoutY="186.0" prefHeight="31.0" prefWidth="283.0" />
@@ -30,6 +30,7 @@
             <Text fx:id="Description" layoutX="22.0" layoutY="243.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Description" />
             <Button fx:id="AjouterProject" layoutX="846.0" layoutY="476.0" mnemonicParsing="false" onAction="#ajouterProject" prefHeight="31.0" prefWidth="79.0" style="-fx-background-color: #5ed84f;" text="ajouter" textFill="WHITE" />
             <Button fx:id="backAffprojet" layoutX="25.0" layoutY="476.0" mnemonicParsing="false" onAction="#backAffprojet" style="-fx-background-color: #fa626b;" text="Annuler" textFill="WHITE" />
+            <ComboBox fx:id="NameEmployee" layoutX="335.0" layoutY="111.0" prefHeight="31.0" prefWidth="399.0" promptText="Employee Name" style="-fx-background-color: e6e6ff;" />
          </children>
       </Pane>
    </children>

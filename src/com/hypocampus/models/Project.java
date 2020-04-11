@@ -6,7 +6,7 @@
 package com.hypocampus.models;
 
 import java.sql.Date;
-import java.util.Objects;
+import javafx.scene.image.ImageView;
 
 /**
  *
@@ -19,9 +19,13 @@ public class Project {
     private Date start_date;
     private Date end_date;
     private String description;
+    private ImageView progressbar;
     private int history;
 
-    public Project(int id, String name, String owner, Date start_date, Date end_date, String description, int history) {
+    public Project() {
+    }
+
+    public Project(int id, String name, String owner, Date start_date, Date end_date, String description, int history, ImageView progressbar) {
         this.id = id;
         this.name = name;
         this.owner = owner;
@@ -29,6 +33,17 @@ public class Project {
         this.end_date = end_date;
         this.description = description;
         this.history = history;
+        this.progressbar = progressbar;
+    }
+        public Project(int id, String name, String owner, Date start_date, Date end_date, String description, int history) {
+        this.id = id;
+        this.name = name;
+        this.owner = owner;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.description = description;
+        this.history = history;
+     
     }
     public Project(int id, String name, String owner, Date start_date, Date end_date, String description) {
         this.id = id;
@@ -52,6 +67,31 @@ public class Project {
     public Project(int id) {
         this.id = id;
     }
+
+    public Project(String name) {
+        this.name = name;
+    }
+
+    public Project(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Project(int id, int history) {
+        this.id = id;
+        this.history = history;
+    }
+
+    public ImageView getProgressbar() {
+        return progressbar;
+    }
+
+    public void setProgressbar(ImageView progressbar) {
+        this.progressbar = progressbar;
+    }
+
+
+ 
 
     public Project() {
     }
@@ -117,7 +157,7 @@ public class Project {
 
     @Override
     public String toString() {
-        return "Project{" + "id=" + id + ", name=" + name + ", owner=" + owner + ", start_date=" + start_date + ", end_date=" + end_date + ", description=" + description + '}';
+        return  name ;
     }
     
  

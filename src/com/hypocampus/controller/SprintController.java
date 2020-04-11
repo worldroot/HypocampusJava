@@ -5,8 +5,12 @@
  */
 package com.hypocampus.controller;
 
+import static com.hypocampus.controller.EditSprintController.LOCAL_DATE;
+import static com.hypocampus.controller.ProjectController.NOW_LOCAL_DATE;
 import com.hypocampus.models.Project;
+import com.hypocampus.models.Sprint;
 import com.hypocampus.services.ServiceProject;
+import com.hypocampus.services.ServiceSprint;
 import com.hypocampus.utils.DataSource;
 import java.io.IOException;
 import java.net.URL;
@@ -16,29 +20,25 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.SimpleDateFormat;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
-import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -47,79 +47,82 @@ import org.controlsfx.control.Notifications;
  *
  * @author 21694
  */
-public class ProjectController implements Initializable {
+public class SprintController implements Initializable {
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-    afficherUser();
-    }
-
-    @FXML
-    private AnchorPane ContentPaneAjouP;
-    @FXML
-    private Button ajouterProject;
+       afficherP();
+    }  
     
     @FXML
-    private Button backAffprojet;
+    private AnchorPane ContentPaneAjouS;
 
     @FXML
-    private ComboBox<String> NameEmployee;
+    private TextField SprintName;
 
     @FXML
-    private TextField NameProject;
-    @FXML
-    private TextArea description;
-    @FXML
-    private Text Description;
+    private DatePicker StartDateSprint;
 
     @FXML
-    private DatePicker StartDateProject;
+    private DatePicker EndDateSprint;
 
     @FXML
-    private DatePicker EndDateProject;
+    private Button AjouterSprint;
+
+    @FXML
+    private Button backAffsprint;
+
+    @FXML
+    private ComboBox<Project> ProjectName;
     
-// alert
+    ObservableList  dataB =FXCollections.observableArrayList();
+    Connection cnx = DataSource.getInstance().getCnx();
+    // alert
       Alert alert = new Alert(Alert.AlertType.NONE);
-      Connection cnx = DataSource.getInstance().getCnx();
-     ObservableList  dataB =FXCollections.observableArrayList();
+    
+         public void inflateUI(Project s) {      
+        ServiceProject sP =new ServiceProject();
+        ProjectName.setValue(sP.getById(s.getId()));
+     
+    
+    }
       
-      
-               public void afficherUser()
+         public void afficherP()
      {
          try {
-            String requete = "SELECT username FROM fos_user";
+            String requete = "SELECT id,projet_name FROM projets WHERE history=0";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
-                dataB.add(rs.getString("username"));
+                dataB.add(new Project(rs.getInt("id"),rs.getString("projet_name")));
             }
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
          
-         NameEmployee.setItems(dataB);
+         ProjectName.setItems(dataB);
      }
-      
-      
-      
+         
+         
+         
+         
     @FXML
-    void ajouterProject(ActionEvent event) throws SQLException {
-         String pr = NameEmployee.getSelectionModel().getSelectedItem();
-            ServiceProject sP =new ServiceProject();
+    void ajouterSprint(ActionEvent event) throws SQLException { 
+         Project pr = ProjectName.getSelectionModel().getSelectedItem();
           Statement stmt = cnx.createStatement();
-          String SQL = "SELECT * FROM projets WHERE  history=0 and projet_name ='" +NameProject.getText()+"'";
-           ResultSet rs = stmt.executeQuery(SQL);
+          String SQL = "SELECT * FROM sprint WHERE  projets_id='" +pr.getId()+"'and sprintname ='" +SprintName.getText()+"'";
+          ResultSet rs = stmt.executeQuery(SQL);
         if(!rs.next()){
-       if (pr != null && !NameProject.getText().equals("")&& !description.getText().equals(""))
+       if (!SprintName.getText().equals(""))
        {
-
-           
-           LocalDate ds= StartDateProject.getValue();
-           LocalDate df= EndDateProject.getValue();
+   
+           ServiceSprint ss =new ServiceSprint();
+           LocalDate ds= StartDateSprint.getValue();
+           LocalDate df= EndDateSprint.getValue();
            
            Date dateS=Date.valueOf(ds.toString());//converting string into sql date
            Date datef=Date.valueOf(df.toString());
@@ -127,26 +130,26 @@ public class ProjectController implements Initializable {
            if(ds.compareTo(df) < 0)
            {
             
-               sP.ajouter(new Project(NameProject.getText(),pr,dateS,datef,description.getText(),00));
+               ss.ajouter(new Sprint(SprintName.getText(),dateS,datef,pr.getId(),00));
+             
                Image img = new Image("/com/hypocampus/uploads/Check.png");
                             Notifications n = Notifications.create()
                               .title("SUCCESS")
-                              .text("  Project ajouté")
+                              .text("  Sprint ajouté")
                               .graphic(new ImageView(img))
                               .position(Pos.TOP_CENTER)
                               .hideAfter(Duration.seconds(5));
                n.darkStyle();
                n.show();
-               NameProject.setText("");
-               EndDateProject.setValue(NOW_LOCAL_DATE());
-               description.setText("");
+               SprintName.setText("");
+               StartDateSprint.setValue(NOW_LOCAL_DATE());
            }
            else
            {
              Image img = new Image("/com/hypocampus/uploads/error.png");
              Notifications n = Notifications.create()
                               .title("Error")
-                              .text("  vérifier date de création du projet")
+                              .text("  vérifier date de création du Sprint")
                               .graphic(new ImageView(img))
                               .position(Pos.TOP_CENTER)
                               .hideAfter(Duration.seconds(5));
@@ -165,32 +168,35 @@ public class ProjectController implements Initializable {
            
            // show the dialog
            alert.show();
-           }
+       }
         }
-        else {
-             Image img = new Image("/com/hypocampus/uploads/error.png");
+                else {
+             Image img = new Image("/com/hypocampus/uploads/Check.png");
                               Notifications n = Notifications.create()
                               .title("SUCCESS")
-                              .text("  Project déjà existe")
+                              .text(" sprint déjà existe")
                               .graphic(new ImageView(img))
                               .position(Pos.TOP_CENTER)
                               .hideAfter(Duration.seconds(5));
                n.darkStyle();
                n.show();
-
+      
         }
-
+        
+        
     }
 
-      public static final LocalDate NOW_LOCAL_DATE (){
-        String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate localDate = LocalDate.parse(date , formatter);
-        return localDate;
+    @FXML
+    void backAffsprint(ActionEvent event) throws IOException {
+                 Project Pr = ProjectName.getSelectionModel().getSelectedItem();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/AfficherSprint.fxml"));              
+            Parent parent = loader.load();
+            ContentPaneAjouS.getChildren().setAll(parent);
+
+            AfficherSprintController controllerPS =(AfficherSprintController) loader.getController();
+           controllerPS.inflateUI(Pr);
+           controllerPS.recherche(Pr);
     }
-        @FXML
-    void backAffprojet(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/afficherProject.fxml"));
-        ContentPaneAjouP.getChildren().setAll(pane);
-    }
+
+    
 }

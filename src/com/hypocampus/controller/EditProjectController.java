@@ -114,12 +114,7 @@ public class EditProjectController implements Initializable {
            {
                ServiceProject sP =new ServiceProject();
              
-          FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/afficherProject.fxml"));              
-        Parent parent = loader.load();
-        //ContentPaneEditP.getChildren().setAll(parent);
-        AfficherProjectController idd =(AfficherProjectController) loader.getController();
-
-idd.afficher();
+ 
 //System.out.println(data2.get(0).getId());
                
                sP.modifier(new Project(data2.get(0).getId(),NameProject.getText(),NameEmployee.getText(),dateS,datef,description.getText(),00));
