@@ -7,8 +7,11 @@ package com.hypocampus.controller;
 
 import com.hypocampus.models.Backlog;
 import com.hypocampus.models.Project;
+import com.hypocampus.models.Task;
 import com.hypocampus.services.ServiceBacklog;
+import com.hypocampus.services.ServiceCommentaire;
 import com.hypocampus.services.ServiceProject;
+import com.hypocampus.services.ServiceTask;
 import com.hypocampus.utils.DataSource;
 import java.io.IOException;
 import java.net.URL;
@@ -42,6 +45,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
 
@@ -71,8 +75,6 @@ public class BacklogController implements Initializable {
     @FXML
     private TableView<Backlog> TabBacklog;
     @FXML
-    private TableColumn<Backlog, Integer> Backlog_id_column;
-    @FXML
     private TableColumn<Backlog, String> Project_id_column;
     @FXML
     private TableColumn<Backlog, Integer> Points_to_do_column;
@@ -88,6 +90,12 @@ public class BacklogController implements Initializable {
     private AnchorPane ContentPane;
     @FXML
     private MenuItem deleteAction;
+    @FXML
+    private MenuItem Taches;
+    @FXML
+    private Text TitreListeBacklog;
+    @FXML
+    private Text TitreAjoutBacklog;
     
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -98,10 +106,12 @@ public class BacklogController implements Initializable {
     
     
     public void afficherBacklogs(){
+        TitreAjoutBacklog.setVisible(false);
+        TitreListeBacklog.setVisible(true);
         TabBacklog.setVisible(true);
         ServiceBacklog sb = new ServiceBacklog();
         ServiceProject sp =new ServiceProject(); 
-         Backlog_id_column.setCellValueFactory(new PropertyValueFactory<>("id"));
+        // Backlog_id_column.setCellValueFactory(new PropertyValueFactory<>("id"));
          Project_id_column.setCellValueFactory(new PropertyValueFactory<>("project_id"));
          Project_id_column.setCellValueFactory((CellDataFeatures<Backlog, String> p) -> new ReadOnlyObjectWrapper(sp.GetById(p.getValue().getProject_id()))); 
          Points_to_do_column.setCellValueFactory(new PropertyValueFactory<>("points_to_do")); 
@@ -126,11 +136,13 @@ public class BacklogController implements Initializable {
          
          TabBacklog.setVisible(false);
         AjoutBacklogPane.setVisible(true);
+        TitreAjoutBacklog.setVisible(true);
+        TitreListeBacklog.setVisible(false);
  
     }
 
     @FXML
-    private void SubmitBacklogBtn(ActionEvent event) throws SQLException {
+    private void SubmitBacklogBtn(ActionEvent event) throws SQLException, IOException {
         ServiceBacklog sb = new ServiceBacklog();
         Project pr = ListProjetAction.getSelectionModel().getSelectedItem();
         
@@ -140,7 +152,21 @@ public class BacklogController implements Initializable {
         Backlog B = new Backlog(0,0,0,pr.getId());
         sb.ajouter(B);
        
+         Image img = new Image("/com/hypocampus/uploads/Check.png");
+         Notifications n = Notifications.create()
+           .title("SUCCESS")
+           .text("Backlog Ajouté")
+           .graphic(new ImageView(img))
+           .position(Pos.TOP_CENTER)
+           .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/backlog.fxml"));              
+        Parent parent = loader.load();
+        ContentPane.getChildren().setAll(parent);
+                BacklogController controller =(BacklogController) loader.getController();
+        controller.afficherBacklogs();
         
     }
 
@@ -165,17 +191,55 @@ public class BacklogController implements Initializable {
     private void DeleteBacklog(ActionEvent event) {
         Backlog ba = TabBacklog.getSelectionModel().getSelectedItem();
         ServiceBacklog sb =new ServiceBacklog();
+        ServiceTask ST = new ServiceTask();
+        ServiceCommentaire SC = new ServiceCommentaire();
    
           Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
        alert.setTitle("Confirmation ");
        alert.setHeaderText(null);
-       alert.setContentText("Vous voulez vraiment supprimer ce Backlog ");
+       alert.setContentText("Vous voulez vraiment supprimer ce Backlog ainsi que toutes ces taches et commentaires?? ");
        Optional<ButtonType> action = alert.showAndWait();
        if (action.get() == ButtonType.OK) {
+           
+           List<Task> tasks = ST.afficherParBacklog(0, 0, ba);
+           for(int i =0; i< tasks.size(); i++){
+               SC.supprimerAllCommentaireFromTask(i);
+           }
+          ST.supprimerAllTaskFromBacklog(ba.getId());
           sb.supprimer(ba);
           afficherBacklogs();
+                   Image img = new Image("/com/hypocampus/uploads/Check.png");
+         Notifications n = Notifications.create()
+           .title("SUCCESS")
+           .text("Backlog, taches et commentaires Supprimés")
+           .graphic(new ImageView(img))
+           .position(Pos.TOP_CENTER)
+           .hideAfter(Duration.seconds(5));
+               n.darkStyle();
+               n.show();
        }
         
+        
+    }
+
+    @FXML
+    public void BacklogTasks(ActionEvent event) throws IOException {
+        ServiceTask ST  = new ServiceTask();
+         Backlog ba = TabBacklog.getSelectionModel().getSelectedItem();
+        ServiceBacklog sb =new ServiceBacklog();
+        
+         FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/IndexTask.fxml"));
+           Parent root = loader.load();
+       
+        IndexTaskController ITC = loader.getController();
+        ITC.affichageTasks(ST.afficherParBacklog(0, 0, ba));
+        ITC.setBacklogId(Integer.toString(ba.getId()));
+
+        
+        // AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/IndexTask.fxml"));
+        ContentPane.getChildren().setAll(root);
+        
+       
         
     }
     

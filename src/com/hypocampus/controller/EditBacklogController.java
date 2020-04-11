@@ -17,11 +17,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 
 /**
  * FXML Controller class
@@ -38,6 +40,8 @@ public class EditBacklogController implements Initializable {
     private ComboBox<Project> comboBox;
     @FXML
     private TextField BacklogId;
+    @FXML
+    private AnchorPane ContentPane;
     /**
      * Initializes the controller class.
      */
@@ -57,7 +61,10 @@ public class EditBacklogController implements Initializable {
     }
 
     @FXML
-    private void BackBacklog(ActionEvent event) {
+    private void BackBacklog(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/backlog.fxml"));
+        ContentPane.getChildren().setAll(pane);
+        
     }
     
     public void inflateUI(Backlog B) throws IOException {
