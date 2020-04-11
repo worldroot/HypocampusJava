@@ -5,6 +5,7 @@
  */
 package com.hypocampus.services;
 
+
 import com.hypocampus.models.Event;
 import com.hypocampus.utils.DataSource;
 import java.sql.Connection;
@@ -28,10 +29,12 @@ public class ServiceEvent implements IService<Event>{
         try {
            
             Statement stm = cnx.createStatement();
-            String query = "INSERT INTO events_admin (idev,TitreEvent,NumeroEvent,TypeEvent,DateEvent,enddateEvent) VALUES (NULL, '"+e.getTitreEvent()+"', '"+e.getNumeroEvent()+"', '"+e.getTypeEvent()+"', '"+e.getDateEvent()+"', '"+e.getEnddateEvent()+"')";
+            String query = "INSERT INTO events_admin (idev,TitreEvent,NumeroEvent,TypeEvent,DateEvent,enddateEvent,image_name) VALUES (NULL, '"+e.getTitreEvent()+"'"
+                    + ", '"+e.getNumeroEvent()+"', '"+e.getTypeEvent()+"' "
+                    + ", '"+e.getDateEvent()+"', '"+e.getEnddateEvent()+"',  '"+e.getImage_name()+"'  )";
             stm.executeUpdate(query);
             
-            System.out.println("Event ajoutée !");
+            System.out.println("Event ajouté !");
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -41,12 +44,12 @@ public class ServiceEvent implements IService<Event>{
 
     @Override
     public void supprimer(Event t) {
- try {
+        try {
             String requete = "DELETE FROM events_admin WHERE idev=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setInt(1,t.getIdev());
             pst.executeUpdate();
-            System.out.println("Event supprimée !");
+            System.out.println("Event supprimé !");
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -71,7 +74,7 @@ public class ServiceEvent implements IService<Event>{
             pst.setInt(8, t.getIdev());
             
             pst.executeUpdate();
-            System.out.println("Event modifiée !");
+            System.out.println("Event modifié !");
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
@@ -95,11 +98,45 @@ public class ServiceEvent implements IService<Event>{
         } 
         return list;
     }    
-
-
-
-
+    
+    
+    
+    public String GetById(int id) {
+        
+        Event list = new Event();
+        String req = "select * from events_admin where idev="+id+"";
+        
+        try {
+            PreparedStatement pst = cnx.prepareStatement(req);
+            ResultSet rs =  pst.executeQuery();
+            while(rs.next()){
+                Event e = new Event(rs.getInt(1), rs.getString(2), rs.getInt(3), rs.getString(4), rs.getDate(5), rs.getDate(6), rs.getString(7), rs.getDate(8));
+                list=e;
+            }
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
+        } 
+        return list.getTitreEvent();
+    } 
+    
+    public int getTitreId(String TitreEvent) throws SQLException {
+        Statement stm = cnx.createStatement();
+        String query = "select idev  from events_admin where TitreEvent='"+TitreEvent+"'";
+        ResultSet rst = stm.executeQuery(query);
+        int id = 0;
+        while (rst.next()) {
+            id = rst.getInt("idev");
+        }
+        return id;
+    }
 }
+
+
+    
+    
+
+
+
 
 
 

@@ -13,6 +13,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
 /**
@@ -30,15 +32,18 @@ public class BackendController implements Initializable {
     private Button ProjetsAction;
     @FXML
     private AnchorPane ContentPane;
+    @FXML
+    private Button EventsAction;
 
     /**
      * Initializes the controller class.
+     * @param url
+     * @param rb
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        // TODO
-             
+        // TODO     
     }    
 
     @FXML
@@ -51,5 +56,13 @@ public class BackendController implements Initializable {
     AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/afficherProject.fxml"));
         ContentPane.getChildren().setAll(pane);
     }
+    
+    @FXML
+    private void btnEventsAction(ActionEvent event) throws IOException {
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/MenuEvent.fxml"));
+        ContentPane.getChildren().setAll(pane);
+    }
+
+    
     
 }

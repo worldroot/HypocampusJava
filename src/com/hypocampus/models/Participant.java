@@ -26,15 +26,11 @@ public class Participant {
         this.choix = choix;
         this.review = review;
     }
-
-    public Participant(String nomp, String prenomp, String email, String passwordp, int review) {
+    
+    public Participant(String nomp) {
         this.nomp = nomp;
-        this.prenomp = prenomp;
-        this.email = email;
-        this.passwordp = passwordp;
-        this.review = review;
     }
-   
+          
     public Participant() {
     }
     
