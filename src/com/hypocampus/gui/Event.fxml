@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
 <?import javafx.scene.paint.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.image.*?>
@@ -9,31 +10,62 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EventController">
+<AnchorPane id="AnchorPane" fx:id="SmallPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EventController">
    <children>
-      <ImageView fx:id="back" fitHeight="768.0" fitWidth="1366.0" pickOnBounds="true">
+      <TextField fx:id="TitreEvent" layoutX="447.0" layoutY="211.0" prefHeight="31.0" prefWidth="219.0" />
+      <TextField fx:id="numEvent" layoutX="447.0" layoutY="256.0" prefHeight="31.0" prefWidth="219.0" />
+      <TextField fx:id="typeEvent" layoutX="447.0" layoutY="298.0" prefHeight="31.0" prefWidth="219.0" />
+      <Text fill="#262d47" layoutX="336.0" layoutY="232.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre event" wrappingWidth="90.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="15.0" />
+         </font></Text>
+      <Text fill="#262d47" layoutX="336.0" layoutY="277.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacite" wrappingWidth="90.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="15.0" />
+         </font></Text>
+      <Text fill="#262d47" layoutX="336.0" layoutY="319.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type event" wrappingWidth="90.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="15.0" />
+         </font></Text>
+      <Text fill="#262d47" layoutX="336.0" layoutY="364.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date event" wrappingWidth="90.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="15.0" />
+         </font></Text>
+      <Text fill="#262d47" layoutX="336.0" layoutY="411.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date fin event" wrappingWidth="102.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="15.0" />
+         </font></Text>
+      <Text fill="#262d47" layoutX="418.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Ajout Event" textAlignment="CENTER" wrappingWidth="242.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold" size="35.0" />
+         </font>
+      </Text>
+      <Button fx:id="btnvalider" layoutX="454.0" layoutY="481.0" mnemonicParsing="false" onAction="#AddAction" prefHeight="37.0" prefWidth="171.0" styleClass="DarkBlue" stylesheets="@../stylesheets/buttons.css" text="Valider" textOverrun="WORD_ELLIPSIS">
+         <font>
+            <Font name="Caviar Dreams Italic" size="15.0" />
+         </font></Button>
+      <DatePicker fx:id="dateEvent" layoutX="447.0" layoutY="343.0" prefHeight="31.0" prefWidth="219.0" />
+      <DatePicker fx:id="endDateEvent" layoutX="447.0" layoutY="390.0" prefHeight="31.0" prefWidth="219.0" />
+      <ImageView fx:id="clearAction" fitHeight="31.0" fitWidth="32.0" layoutX="630.0" layoutY="484.0" onMouseClicked="#btnclearAction" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../Capture%20d’écran%20(26).png" />
-         </image></ImageView>
-      <Pane fx:id="panemain" layoutX="235.0" layoutY="74.0" prefHeight="694.0" prefWidth="1130.0">
-         <children>
-            <TextField fx:id="TitreEvent" layoutX="146.0" layoutY="116.0" />
-            <TextField fx:id="numEvent" layoutX="146.0" layoutY="161.0" />
-            <TextField fx:id="typeEvent" layoutX="146.0" layoutY="203.0" />
-            <Text layoutX="35.0" layoutY="137.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Titre event" wrappingWidth="90.6708984375" />
-            <Text layoutX="35.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Capacite" wrappingWidth="90.6708984375" />
-            <Text layoutX="35.0" layoutY="224.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Type event" wrappingWidth="90.6708984375" />
-            <Text layoutX="35.0" layoutY="269.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date event" wrappingWidth="90.6708984375" />
-            <Text layoutX="35.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date event" wrappingWidth="90.6708984375" />
-            <Text fill="#1a154a" layoutX="137.0" layoutY="85.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Ajout Event" textAlignment="CENTER" wrappingWidth="203.6708984375">
-               <font>
-                  <Font name="American Captain" size="35.0" />
-               </font>
-            </Text>
-            <Button fx:id="btnvalider" layoutX="205.0" layoutY="352.0" mnemonicParsing="false" onAction="#AddAction" text="Valider" />
-            <DatePicker fx:id="dateEvent" layoutX="146.0" layoutY="248.0" prefHeight="31.0" prefWidth="186.0" />
-            <DatePicker fx:id="endDateEvent" layoutX="146.0" layoutY="295.0" prefHeight="31.0" prefWidth="186.0" />
-         </children>
-      </Pane>
+            <Image url="@../uploads/redo.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="RetourAction" fitHeight="44.0" fitWidth="55.0" layoutX="32.0" layoutY="630.0" onMouseClicked="#btnRetourAction" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../uploads/arrow.png" />
+         </image>
+      </ImageView>
+      <ImageView fx:id="upload" fitHeight="31.0" fitWidth="30.0" layoutX="639.0" layoutY="435.0" onMouseClicked="#uploadAction" opacity="0.9" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../uploads/photo.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="path" layoutX="447.0" layoutY="434.0" prefHeight="31.0" prefWidth="187.0" />
+      <Text fill="#262d47" layoutX="336.0" layoutY="456.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Image" wrappingWidth="102.6708984375">
+         <font>
+            <Font name="Caviar Dreams Bold Italic" size="15.0" />
+         </font>
+      </Text>
    </children>
 </AnchorPane>
