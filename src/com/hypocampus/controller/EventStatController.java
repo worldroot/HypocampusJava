@@ -63,7 +63,7 @@ public class EventStatController implements Initializable {
    
     //String query="Select entrainement.categorie ,SUM(entrainement.id)*100/Tot.total as pourcentage from entrainement ,(select SUM(id) as total from entrainement) as Tot Group By entrainement.categorie";
     String query="Select events_admin.titreEvent, SUM(events_admin.NumeroEvent)*100/Tot.total as pourcentage from events_admin ,"
-            + "(select SUM(NumeroEvent) as total from events_admin) as Tot Group By events_admin.TitreEvent ";
+            + "(Select SUM(NumeroEvent) as total from events_admin) as Tot Group By events_admin.TitreEvent, events_admin.idev ";
          
     piechartdata = FXCollections.observableArrayList();
 
