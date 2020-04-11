@@ -21,5 +21,8 @@
       <AnchorPane fx:id="ContentPane" layoutX="204.0" layoutY="73.0" prefHeight="695.0" prefWidth="996.0" />
       <AnchorPane fx:id="ContentPane" layoutX="203.0" layoutY="72.0" prefHeight="695.0" prefWidth="996.0" />
       <Button fx:id="ProjetsAction" layoutX="55.0" layoutY="232.0" mnemonicParsing="false" onAction="#btnProjetAction" opacity="0.0" prefHeight="50.0" prefWidth="140.0" text="Button" />
+      <Button fx:id="TeamAction" layoutX="55.0" layoutY="371.0" mnemonicParsing="false" onAction="#btnTeamAction" opacity="0.0" prefHeight="50.0" prefWidth="140.0" text="Button" />
+      <Button fx:id="meeting" layoutX="55.0" layoutY="298.0" mnemonicParsing="false" onAction="#btnmeetingAction" opacity="0.0" prefHeight="50.0" prefWidth="140.0" text="Button" />
+      <AnchorPane fx:id="ContentPane" layoutX="231.0" layoutY="73.0" prefHeight="695.0" prefWidth="1135.0" />
    </children>
 </AnchorPane>
