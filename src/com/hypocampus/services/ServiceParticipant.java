@@ -144,8 +144,9 @@ try {
                PreparedStatement pst = cnx.prepareStatement(requete);
             
             pst.executeUpdate();
-            System.out.println("Revie< updated succesfully ! ");
-        
+            System.out.println("Status 1 LOGIN ! ");
+            System.out.println("Review +1 updated succesfully ! ");
+            
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
 
@@ -154,10 +155,9 @@ try {
     public void Deconnected()  {
        try {
             String requete = "UPDATE `participant` SET status=0 ";
-               PreparedStatement pst = cnx.prepareStatement(requete);
-            
+            PreparedStatement pst = cnx.prepareStatement(requete);
             pst.executeUpdate();
-            System.out.println("Status updated succesfully ! ");
+            System.out.println("Status 0 LOGOUT ! ");
         
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -168,6 +168,7 @@ try {
      public String getMailConnected() throws SQLException {
         Statement stm = cnx.createStatement();
         String query = "select email from participant c where c.status =1 ";
+        
         ResultSet rst = stm.executeQuery(query);
         String mail = null ;
         while (rst.next()) {
@@ -187,18 +188,15 @@ try {
 
           while (rs.next() && (test==false)) {
             if (rs.getInt(1)<= rs.getInt(2))  {
-                System.out.println("asasasas");
+                System.out.println("Test Points & Review Done !");
                  test=true;
                  System.out.println(test);
             }
             
             else{
-           System.out.println("erreur");
-
+          
             test=false;
             }
-         
-    
          
           }
     }   catch (SQLException ex) {
@@ -206,6 +204,8 @@ try {
         }
         return test;
         }
+     
+     
       public String getImageCertif(String type,int idEvent) throws SQLException {
         Statement stm = cnx.createStatement();
         String query = "select certif.image_name from certif,events_admin  where certif.titrec=events_admin.idev and events_admin.typeEvent='"+type+"' and events_admin.idev='"+idEvent+"'  ";

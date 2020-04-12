@@ -146,11 +146,12 @@ public class ParticipantAffichageController implements Initializable {
                  // LocalDate df= Updatec.getValue();
                  
                  String t=se.GetById(rowData.getChoix());
-                 UpTitre.setValue(t);
+                 
                  UpNom.setText(rowData.getNomp());
                  UpPrenom.setText(rowData.getPrenomp());
                  UpMail.setText(rowData.getEmail());
                  UpPass.setText(rowData.getPasswordp());
+                 UpTitre.setValue(t);
                  UpRev.setText(Integer.toString(rowData.getReview()));
                 
                  
@@ -223,7 +224,7 @@ public class ParticipantAffichageController implements Initializable {
             Image img = new Image("/com/hypocampus/uploads/Check.png");
                                 Notifications n = Notifications.create()
                                   .title("SUCCESS")
-                                  .text("  Event Modifié")
+                                  .text("  Participant Modifié")
                                   .graphic(new ImageView(img))
                                   .position(Pos.TOP_CENTER)
                                   .hideAfter(Duration.seconds(5));
