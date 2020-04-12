@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane id="AnchorPane" fx:id="apEread" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.ReadEntrepriseController">
+   <children>
+      <AnchorPane id="AnchorPane" fx:id="viewEntreprise2" layoutX="20.0" layoutY="20.0" prefHeight="706.0" prefWidth="1064.0">
+         <children>
+            <TableView fx:id="tabE" layoutX="33.0" layoutY="152.0" prefHeight="300.0" prefWidth="922.0">
+               <columns>
+                  <TableColumn fx:id="clmEid" prefWidth="60.0" text="#" />
+                  <TableColumn fx:id="clmEname" prefWidth="210.0" text="Name" />
+                  <TableColumn fx:id="clmEemail" prefWidth="386.0" text="Email" />
+                  <TableColumn fx:id="clmEdate" prefWidth="265.0" text="Date" />
+               </columns>
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#upadateE_clic" text="Modifier Entreprise" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </TableView>
+            <Button fx:id="btnEdelete" layoutX="866.0" layoutY="491.0" mnemonicParsing="false" onAction="#btnEdelete_clic" style="-fx-background-color: #fa626b;" text="Supprimer" textFill="WHITE" />
+            <Pane layoutX="41.0" layoutY="52.0" prefHeight="63.0" prefWidth="910.0" style="-fx-background-color: #ffff;">
+               <children>
+                  <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="14.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste Entreprise" wrappingWidth="186.99998885393143">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="btnEcreate" layoutX="762.0" layoutY="17.0" mnemonicParsing="false" onAction="#btnEcreate_clic" style="-fx-background-color: #5ed84f;" text="New Entreprose" textFill="WHITE" />
+                  <TextField fx:id="leSearch" layoutX="213.0" layoutY="16.0" onInputMethodTextChanged="#leSearch_text_changed" onKeyReleased="#leSearch_key_released" prefHeight="31.0" prefWidth="364.0" />
+                  <ComboBox fx:id="cbSearch" layoutX="593.0" layoutY="16.0" prefWidth="150.0" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

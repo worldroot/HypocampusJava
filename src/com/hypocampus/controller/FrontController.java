@@ -41,7 +41,7 @@ public class FrontController implements Initializable {
 
     @FXML
     private void btnloginAction(ActionEvent event) throws IOException {
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/backend.fxml"));
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/login_.fxml"));
         FrontPane.getChildren().setAll(pane);
         
     }
