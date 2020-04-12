@@ -55,16 +55,16 @@ public class Login_Controller implements Initializable {
 		String inputPassword = lePwd.getText();
 		lePwd.setText(""); 
 		ServiceUser su = new ServiceUser();
-		User u = su.login(inputUsername,inputPassword);
+//		User u = su.login(inputUsername,inputPassword);
 		
-		if(u.getRoles().equals("a:1:{i:0;s:10:\"ROLE_ADMIN\";}")) {
+//		if(u.getRoles().equals("a:1:{i:0;s:10:\"ROLE_ADMIN\";}")) {
 			AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/backback_.fxml"));
 			apLogin.getChildren().setAll(pane);
-		}
-		else if(u.getRoles().equals("a:1:{i:0;s:14:\"ROLE_DEVELOPER\";}") || u.getRoles().equals("a:1:{i:0;s:17:\"ROLE_SCRUM_MASTER\";}") ){
-			AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/backend.fxml"));
-			apLogin.getChildren().setAll(pane);
-		}  
+//		}
+//		else if(u.getRoles().equals("a:1:{i:0;s:14:\"ROLE_DEVELOPER\";}") || u.getRoles().equals("a:1:{i:0;s:17:\"ROLE_SCRUM_MASTER\";}") ){
+//			AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/backend.fxml"));
+//			apLogin.getChildren().setAll(pane);
+//		}  
     }
 	
 }
