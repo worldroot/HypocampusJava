@@ -6,12 +6,13 @@
 package com.hypocampus.models;
 
 import java.sql.Date;
+import java.io.Serializable;
 
 /**
  *
  * @author mehdibehira
  */
-public class Task {
+public class Task implements Serializable {
     private int id;
     private int backlog_id;
     private String title;
@@ -26,6 +27,7 @@ public class Task {
     private int sprint_id;
     private int user_id;
 
+    private static final long serialVersionUID = 1L;
     public Task(int id, int backlog_id, String title, String description_fonctionnel, String description_technique, int story_points, Date created_date, Date finished_date, String state, int priority, int archive, int sprint_id) {
         this.id = id;
         this.backlog_id = backlog_id;
@@ -158,12 +160,12 @@ public class Task {
 
     @Override
     public String toString() {
-        return "Task{" + "id=" + id + ", backlog_id=" + backlog_id + ","
-                + " title=" + title + ", description_fonctionnel="
-                + description_fonctionnel + ", description_technique=" + description_technique +
-                ", story_points=" + story_points + ", created_date=" + created_date +
-                ", finished_date=" + finished_date + ", state=" + state +
-                ", priority=" + priority + ", archive=" + archive + ", sprint_id=" + sprint_id + '}';
+        return  "Titre:"+title+"\n"
+                + "Description: "+description_fonctionnel+"\n"
+                + "created_date: "+created_date+"\n"
+                + "Date Estimer: "+finished_date+"\n\n"
+                + "                      Story Points: "+story_points+"\n"
+                + "*******************************";
     }
     
     
