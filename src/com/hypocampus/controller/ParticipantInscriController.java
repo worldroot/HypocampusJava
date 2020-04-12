@@ -89,12 +89,8 @@ public class ParticipantInscriController implements Initializable {
              Event et = listTitre.getSelectionModel().getSelectedItem();
              System.out.println("et:"+et.getIdev());
              Participant p;
-             int x = 0;
              
-             
-             int y = 0;
-                    if(y > x){
-                     Participant p2 = new Participant( nom.getText(),  prenom.getText(),  mail.getText(),  pass.getText(),  et.getIdev(), 0);
+                     Participant p2 = new Participant( nom.getText(),  prenom.getText(),  mail.getText(),  pass.getText(),  et.getIdev(), 0, 0);
                      pa.ajouter(p2);
                      System.out.println("Done");
                       Image img = new Image("/com/hypocampus/uploads/Check.png");
@@ -106,18 +102,8 @@ public class ParticipantInscriController implements Initializable {
                                        .hideAfter(Duration.seconds(5));
                                    n.darkStyle();
                                    n.show();
-                    }
-                        else{
-                           Image img = new Image("/com/hypocampus/uploads/error.png");
-                           Notifications n = Notifications.create()
-                                         .title("ERROR")
-                                         .text("  L'event choisi est saturé !")
-                                         .graphic(new ImageView(img))
-                                         .position(Pos.TOP_CENTER)
-                                         .hideAfter(Duration.seconds(5));
-                                   n.darkStyle();
-                                   n.show(); 
-                        }
+                   
+                        
            
                           
              //AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/EventAffichage.fxml"));
@@ -135,6 +121,10 @@ public class ParticipantInscriController implements Initializable {
                         n.darkStyle();
                         n.show();
                }
+         AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/Participant.fxml"));
+        ContentPane.getChildren().setAll(pane);
+         
+         
         
     }
 
