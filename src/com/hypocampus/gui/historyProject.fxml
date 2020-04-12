@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.HistoryProjectController">
+<AnchorPane id="AnchorPane" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.HistoryProjectController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="20.0" layoutY="20.0" prefHeight="706.0" prefWidth="1092.0">
+      <AnchorPane id="AnchorPane" layoutX="20.0" layoutY="20.0" prefHeight="695.0" prefWidth="996.0">
          <children>
             <TableView fx:id="tab" layoutX="28.0" layoutY="162.0" prefHeight="300.0" prefWidth="1026.0">
                <columns>
@@ -23,7 +23,7 @@
                </columns>
             </TableView>
             <Button fx:id="SupprimerProject" layoutX="279.0" layoutY="567.0" mnemonicParsing="false" onAction="#SupprimerProject" style="-fx-background-color: #fa626b;" text="Supprimer le projet de sélection" textFill="WHITE" />
-            <Pane layoutX="41.0" layoutY="39.0" prefHeight="70.0" prefWidth="1026.0" style="-fx-background-color: #ffff;">
+            <Pane layoutX="14.0" layoutY="39.0" prefHeight="70.0" prefWidth="1026.0" style="-fx-background-color: #ffff;">
                <children>
                   <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="15.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Projets archivés" wrappingWidth="186.99998885393143">
                      <font>
@@ -33,7 +33,7 @@
                </children>
             </Pane>
             <Button fx:id="Restaurer" layoutX="622.0" layoutY="567.0" mnemonicParsing="false" onAction="#RestaurerAction" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: #28afd0;" text="Restaurer" textFill="WHITE" />
-            <TextField fx:id="filterField" layoutX="863.0" layoutY="116.0" promptText="Search" />
+            <TextField fx:id="filterField" layoutX="853.0" layoutY="118.0" promptText="Search" />
          </children>
       </AnchorPane>
    </children>

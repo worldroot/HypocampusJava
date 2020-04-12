@@ -11,17 +11,17 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.AfficherSprintController">
+<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.AfficherSprintController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="20.0" layoutY="20.0" prefHeight="706.0" prefWidth="1092.0">
+      <AnchorPane id="AnchorPane" layoutX="20.0" layoutY="20.0" prefHeight="695.0" prefWidth="996.0">
          <children>
-            <TableView fx:id="tab" layoutX="33.0" layoutY="169.0" prefHeight="300.0" prefWidth="1026.0">
+            <TableView fx:id="tab" layoutX="14.0" layoutY="171.0" prefHeight="300.0" prefWidth="977.0">
                <columns>
                   <TableColumn fx:id="Colsprintname" prefWidth="269.0" text="sprint name" />
                   <TableColumn fx:id="Colstartdate" prefWidth="199.0" text="start_date" />
                   <TableColumn fx:id="Colenddate" prefWidth="200.0" text="end_date" />
                   <TableColumn fx:id="Colnameproject" prefWidth="176.0" text="Project Name" />
-                  <TableColumn fx:id="ColCompletedTask" prefWidth="181.0" text="Completed Task" />
+                  <TableColumn fx:id="ColCompletedTask" prefWidth="134.0" text="Completed Task" />
                </columns>
                <contextMenu>
                   <ContextMenu>
@@ -31,8 +31,8 @@
                   </ContextMenu>
                </contextMenu>
             </TableView>
-            <Button fx:id="supprimerSprint" layoutX="341.0" layoutY="487.0" mnemonicParsing="false" onAction="#supprimerSprint" style="-fx-background-color: #fa626b;" text="Supprimer le sprint de sélection" textFill="WHITE" />
-            <Pane layoutX="20.0" layoutY="52.0" prefHeight="63.0" prefWidth="1047.0" style="-fx-background-color: #fff;">
+            <Button fx:id="supprimerSprint" layoutX="275.0" layoutY="487.0" mnemonicParsing="false" onAction="#supprimerSprint" style="-fx-background-color: #fa626b;" text="Supprimer le sprint de sélection" textFill="WHITE" />
+            <Pane layoutX="-4.0" layoutY="54.0" prefHeight="63.0" prefWidth="1013.0" style="-fx-background-color: #fff;">
                <children>
                   <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="15.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des Sprints" wrappingWidth="186.99998885393143">
                      <font>
@@ -42,9 +42,9 @@
                   <Button fx:id="newSprint" layoutX="899.0" layoutY="16.0" mnemonicParsing="false" onAction="#newSprintAction" style="-fx-background-color: #5ed84f;" text="New Sprint" textFill="WHITE" />
                </children>
             </Pane>
-            <Button fx:id="voirtaches" layoutX="621.0" layoutY="487.0" mnemonicParsing="false" onAction="#voir_tachesAction" prefHeight="31.0" prefWidth="145.0" style="-fx-background-color: #5ed84f;" text="voir les taches" textFill="WHITE" />
+            <Button fx:id="voirtaches" layoutX="587.0" layoutY="487.0" mnemonicParsing="false" onAction="#voir_tachesAction" prefHeight="31.0" prefWidth="145.0" style="-fx-background-color: #5ed84f;" text="voir les taches" textFill="WHITE" />
+            <TextField fx:id="filterField" layoutX="831.0" layoutY="129.0" prefHeight="31.0" prefWidth="160.0" promptText="Search" />
          </children>
       </AnchorPane>
-      <TextField fx:id="filterField" layoutX="890.0" layoutY="149.0" promptText="Search" />
    </children>
 </AnchorPane>
