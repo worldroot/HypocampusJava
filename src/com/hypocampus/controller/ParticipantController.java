@@ -75,16 +75,11 @@ public class ParticipantController implements Initializable {
 //        Participant p = new Participant();
 //        p=SP.getParticipant();
         if((email.getText().equals(SP.getMail(email.getText()))==true) && (mdp.getText().equals(SP.getPwd(mdp.getText()))==true) )
-        {
-            System.out.println("LOTF");
-            SP.updateReviewAndStatus(email.getText());
-            
-            
-            
-            
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/ParticipantInterface.fxml"));
-        ContentPane.getChildren().setAll(pane);
-        }
+            {
+            SP.updateReviewAndStatus(email.getText());    
+            AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/ParticipantInterface.fxml"));
+            ContentPane.getChildren().setAll(pane);
+            }
         
         
     }

@@ -24,6 +24,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -47,11 +48,19 @@ public class ParticipantInterfaceController implements Initializable {
     @FXML
     private Label datef;
     @FXML
-    private Label image;
-    @FXML
     private ImageView IMAGE;
     @FXML
     private ImageView imgcertif;
+    @FXML
+    private Text texttit;
+    @FXML
+    private Text texttype;
+    @FXML
+    private Text textcap;
+    @FXML
+    private Text textdd;
+    @FXML
+    private Text textdf;
 
     /**
      * Initializes the controller class.
@@ -82,6 +91,11 @@ public class ParticipantInterfaceController implements Initializable {
             dated.setVisible(false);
             datef.setVisible(false);
             IMAGE.setVisible(false);
+            texttit.setVisible(false);
+            texttype.setVisible(false);
+            textcap.setVisible(false);
+            textdd.setVisible(false);
+            textdf.setVisible(false);
             String typeE="";
             if("Formation".equals(v.getTypeEvent())==true)
             {
