@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" fx:id="viewType" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.hypocampus.controller.ReadTypeController">
+   <children>
+      <AnchorPane id="AnchorPane" fx:id="viewType2" layoutY="8.0" prefHeight="706.0" prefWidth="1064.0">
+         <children>
+            <TableView fx:id="tabT" layoutX="33.0" layoutY="152.0" prefHeight="300.0" prefWidth="922.0">
+               <columns>
+                  <TableColumn fx:id="clmTid" prefWidth="60.0" text="#" />
+                  <TableColumn fx:id="clmTname" prefWidth="285.0" text="Name" />
+                  <TableColumn fx:id="clmTvalue" prefWidth="172.0" text="Value" />
+                  <TableColumn fx:id="clmTnp" prefWidth="184.0" text="n°Projects" />
+                  <TableColumn fx:id="clmTnu" prefWidth="220.0" text="n°Users" />
+               </columns>
+               <contextMenu>
+                  <ContextMenu>
+                     <items>
+                        <MenuItem mnemonicParsing="false" onAction="#upadateT_clic" text="Modifier Type" />
+                     </items>
+                  </ContextMenu>
+               </contextMenu>
+            </TableView>
+            <Button fx:id="btnTdelete" layoutX="866.0" layoutY="491.0" mnemonicParsing="false" onAction="#btnEdelete_clic" style="-fx-background-color: #fa626b;" text="Supprimer" textFill="WHITE" />
+            <Pane layoutX="41.0" layoutY="52.0" prefHeight="63.0" prefWidth="910.0" style="-fx-background-color: #ffff;">
+               <children>
+                  <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="14.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste Type" wrappingWidth="186.99998885393143">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Text>
+                  <Button fx:id="btnTcreate" layoutX="695.0" layoutY="17.0" mnemonicParsing="false" onAction="#btnEcreate_clic" prefHeight="31.0" prefWidth="153.0" style="-fx-background-color: #5ed84f;" text="New Type" textFill="WHITE" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
