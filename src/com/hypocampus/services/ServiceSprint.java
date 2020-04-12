@@ -205,114 +205,141 @@ Connection cnx = DataSource.getInstance().getCnx();
            
       //drag and drop      
            
-      public List<String>afficher_Sprintask_toDo(Sprint s){
-              ObservableList <String> ListSprint =FXCollections.observableArrayList();
-              Map<Task, String> map =  new TreeMap<>(
-		                (Comparator<Task>) (o1, o2) -> o1.getFinished_date().compareTo(o2.getFinished_date())
-		        );
+    public List<Task> afficher_Sprintask_toDo2(Sprint s) {
+        
+         ObservableList <Task> ListSprint =FXCollections.observableArrayList();
 
         try {
             String requete = "SELECT * FROM task where sprint_id ="+s.getId()+" AND state= 'To Do'";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
-
-
-
             while (rs.next()) {
-                
-
-               
-                map.put(new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
+                ListSprint.add(new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
                 ,rs.getString("description_fonctionnel"), rs.getString("description_technique")
                 ,rs.getInt("story_points"), rs.getDate("created_date"), rs.getDate("finished_date")
-                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id")),
-                //Value
-                "Titre:"+rs.getString("title")+"\n"
-                + "Description: "+rs.getString("description_fonctionnel")+"\n"
-                + "created_date: "+rs.getString("created_date")+"\n"
-                + "Date Estimer: "+rs.getString("finished_date")+"\n\n"
-                + "                      Story Points: "+rs.getInt("story_points")+"\n"
-                + "*******************************");                              
+                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id")));
             }
-            map.entrySet().stream().map((entry) -> entry.getValue()).forEachOrdered((v) -> {
-                ListSprint.add(v);
-                   });
+           ListSprint.sort((o1, o2) -> o1.getFinished_date().compareTo(o2.getFinished_date()));
+           //ListSprint.sorted(comparator);
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-          return  ListSprint ; 
-      }
       
-       public List<String> afficher_Sprintask_INProgress(Sprint s){
-        
-              ObservableList <String> ListSprint =FXCollections.observableArrayList();
-              Map<Task, String> map =  new TreeMap<>(
-		                (Comparator<Task>) (o1, o2) -> o1.getFinished_date().compareTo(o2.getFinished_date())
-		        );
+        return ListSprint;
+    }
+
+    public List<Task> afficher_Sprintask_INProgress2(Sprint s) {
+         ObservableList <Task> ListSprint =FXCollections.observableArrayList();
 
         try {
             String requete = "SELECT * FROM task where sprint_id ="+s.getId()+" AND state= 'In Progress'";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
-           
             while (rs.next()) {
-                     
-                
-
-               
-                map.put(new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
+                ListSprint.add(new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
                 ,rs.getString("description_fonctionnel"), rs.getString("description_technique")
                 ,rs.getInt("story_points"), rs.getDate("created_date"), rs.getDate("finished_date")
-                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id")),
-                //Value
-                "Titre:"+rs.getString("title")+"\n"
-                + "Description: "+rs.getString("description_fonctionnel")+"\n"
-                + "created_date: "+rs.getString("created_date")+"\n"
-                + "Date Estimer: "+rs.getString("finished_date")+"\n\n"
-                + "                      Story Points: "+rs.getInt("story_points")+"\n"
-                + "*******************************");                              
+                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id")));
             }
-            map.entrySet().stream().map((entry) -> entry.getValue()).forEachOrdered((v) -> {
-                ListSprint.add(v);
-                   });
+         ListSprint.sort((o1, o2) -> o1.getFinished_date().compareTo(o2.getFinished_date()));
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-          return ListSprint; 
-      }
-       
-      public List<String> afficher_Sprintask_Done(Sprint s){
-        
-              ObservableList <String> ListSprint =FXCollections.observableArrayList();
-              Map<Task, String> map =  new TreeMap<>(
-		                (Comparator<Task>) (o1, o2) -> o1.getFinished_date().compareTo(o2.getFinished_date())
-		        );
+      
+        return ListSprint;
+    }
+  
+    public List<Task> afficher_Sprintask_Done2(Sprint s) {
+         ObservableList <Task> ListSprint =FXCollections.observableArrayList();
 
         try {
             String requete = "SELECT * FROM task where sprint_id ="+s.getId()+" AND state= 'Done'";
             PreparedStatement pst = cnx.prepareStatement(requete);
             ResultSet rs = pst.executeQuery();
-           
             while (rs.next()) {
-                     
-                map.put(new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
+                ListSprint.add(new Task(rs.getInt("id"), rs.getInt("backlog_id"), rs.getString("title")
                 ,rs.getString("description_fonctionnel"), rs.getString("description_technique")
                 ,rs.getInt("story_points"), rs.getDate("created_date"), rs.getDate("finished_date")
-                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id")),
-                //Value
-                "Titre:"+rs.getString("title")+"\n"
-                + "Description: "+rs.getString("description_fonctionnel")+"\n"
-                + "created_date: "+rs.getString("created_date")+"\n"
-                + "Date Estimer: "+rs.getString("finished_date")+"\n\n"
-                + "                      Story Points: "+rs.getInt("story_points")+"\n"
-                + "*******************************");                              
+                ,rs.getString("state"), rs.getInt("priority"), rs.getInt("archive"), rs.getInt("sprint_id")));
             }
-            map.entrySet().stream().map((entry) -> entry.getValue()).forEachOrdered((v) -> {
-                ListSprint.add(v);
-                   });
+         ListSprint.sort((o1, o2) -> o1.getFinished_date().compareTo(o2.getFinished_date()));
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
-          return ListSprint; 
-      }
+      
+        return ListSprint;
+    }
+    
+    
+    
+        public void modifierstate_todo(Task t) {
+                        try {
+            String requete = "UPDATE task SET state ='To Do'  WHERE id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, t.getId());
+            pst.executeUpdate();
+            System.out.println("task_To Do modifiée !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+    public void modifierstate_InProgress(Task t) {
+                        try {
+            String requete = "UPDATE task SET state ='In Progress' WHERE id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, t.getId());
+            pst.executeUpdate();
+            System.out.println("task In Progress modifiée !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+    public void modifierstate_Done(Task t) {
+                        try {
+            String requete = "UPDATE task SET state='Done' WHERE id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, t.getId());
+            pst.executeUpdate();
+            System.out.println("task_Done modifiée !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+        public void updatesprintetat(Task t) {
+                        try {
+            String requete = "UPDATE sprint s \n" +
+"JOIN task t ON t.sprint_id = s.id \n" +
+"SET etat = 1\n" +
+"WHERE \n" +
+"  t.state ='Done' AND t.sprint_id =? AND s.id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, t.getSprint_id());
+            pst.setInt(2, t.getSprint_id());
+            pst.executeUpdate();
+            System.out.println("task_state_Done modifiée !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
+        public void updatesprintetat2(Task t) {
+                        try {
+            String requete = "UPDATE sprint s \n" +
+"JOIN task t ON t.sprint_id = s.id \n" +
+"SET etat = 0\n" +
+"WHERE \n" +
+"  t.state ='To Do' OR t.state ='In Progress' AND t.sprint_id =? AND s.id=?";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            pst.setInt(1, t.getSprint_id());
+            pst.setInt(2, t.getSprint_id());
+            pst.executeUpdate();
+            System.out.println("task_state_To Do modifiée !");
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+    }
 }

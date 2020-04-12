@@ -1,21 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ContextMenu?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.Pagination?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.AfficherProjectController">
+<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.AfficherProjectController">
    <children>
-      <AnchorPane id="AnchorPane" layoutX="14.0" layoutY="5.0" prefHeight="706.0" prefWidth="1092.0">
+      <AnchorPane id="AnchorPane" prefHeight="695.0" prefWidth="996.0">
          <children>
-            <TableView fx:id="tab" layoutX="28.0" layoutY="162.0" prefHeight="300.0" prefWidth="1026.0">
+            <TableView fx:id="tab" layoutX="29.0" layoutY="199.0" prefHeight="300.0" prefWidth="1026.0">
               <columns>
                 <TableColumn fx:id="Colprojetname" prefWidth="164.00003051757812" text="projet_name" />
                 <TableColumn fx:id="Colowner" prefWidth="111.0" text="owner" />
@@ -32,8 +38,8 @@
                   </ContextMenu>
                </contextMenu>
             </TableView>
-            <Pagination fx:id="pagination" layoutX="29.0" layoutY="164.0" prefHeight="353.0" prefWidth="1026.0" />
-            <Button fx:id="supprimerProject" layoutX="279.0" layoutY="567.0" mnemonicParsing="false" onAction="#supprimerProject" style="-fx-background-color: #fa626b;" text="Supprimer le projet de sélection" textFill="WHITE" />
+            <Pagination fx:id="pagination" layoutX="30.0" layoutY="201.0" prefHeight="353.0" prefWidth="1026.0" />
+            <Button fx:id="supprimerProject" layoutX="310.0" layoutY="604.0" mnemonicParsing="false" onAction="#supprimerProject" style="-fx-background-color: #fa626b;" text="Supprimer le projet de sélection" textFill="WHITE" />
             <Pane layoutX="18.0" layoutY="52.0" prefHeight="63.0" prefWidth="1049.0" style="-fx-background-color: #ffff;">
                <children>
                   <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="15.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des projets" wrappingWidth="186.99998885393143">
@@ -41,11 +47,27 @@
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Button fx:id="newProject" layoutX="899.0" layoutY="16.0" mnemonicParsing="false" onAction="#newProjectAction" style="-fx-background-color: #5ed84f;" text="New Project" textFill="WHITE" />
-                  <Button fx:id="history" layoutX="800.0" layoutY="16.0" mnemonicParsing="false" onAction="#historyAction" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #28afd0;" text="history" textFill="WHITE" />
+                  <Button fx:id="newProject" layoutX="927.0" layoutY="16.0" mnemonicParsing="false" onAction="#newProjectAction" style="-fx-background-color: #5ed84f;" text="New Project" textFill="WHITE" />
+                  <Button fx:id="history" layoutX="826.0" layoutY="16.0" mnemonicParsing="false" onAction="#historyAction" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #28afd0;" text="history" textFill="WHITE" />
                </children>
             </Pane>
-            <Button fx:id="affSprint" layoutX="622.0" layoutY="567.0" mnemonicParsing="false" onAction="#affSprint" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: #6f42c1;" text="Voir les sprints" textFill="WHITE" />
+            <ImageView fx:id="stat" fitHeight="51.0" fitWidth="40.0" layoutX="39.0" layoutY="132.0" onMouseClicked="#statAction" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../uploads/107-512.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+               <effect>
+                  <DropShadow />
+               </effect>
+            </ImageView>
+            <Button fx:id="affSprint" layoutX="553.0" layoutY="604.0" mnemonicParsing="false" onAction="#affSprint" prefHeight="31.0" prefWidth="213.0" style="-fx-background-color: #6f42c1;" text="Voir les sprints" textFill="WHITE" />
+            <Label layoutX="91.0" layoutY="142.0" text="Pour voir les statistiques" textFill="#28afd0">
+               <effect>
+                  <Blend />
+               </effect>
+            </Label>
          </children>
       </AnchorPane>
    </children>

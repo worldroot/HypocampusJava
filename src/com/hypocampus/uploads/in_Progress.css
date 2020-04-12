@@ -1,0 +1,24 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Apr 8, 2020, 6:59:31 PM
+    Author     : 21694
+*/
+
+#in_Progress{
+  .list-cell:filled:selected:focused,.list-cell:filled:selected {
+    /* 3:, 4: */
+    -fx-background-color: linear-gradient(  #fdb901 0%,   #fec11b 25%,   #fdb901 75%,   #fdb901 100%);
+    -fx-text-fill:  #fdb901; /* 5 */
+}
+.list-cell { -fx-text-fill: black; /* 5 */ }
+.list-cell:odd { -fx-background-color: #fdb901; /* 1 */ }
+.list-cell:even { -fx-background-color:  #fec11b; /* for information */ }
+.list-cell:filled:hover { 
+    -fx-background-color:   #e4a801; /* 2 */
+    -fx-text-fill: white; /* 5 */
+}  
+}

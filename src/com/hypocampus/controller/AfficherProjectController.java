@@ -9,6 +9,7 @@ import com.hypocampus.models.Project;
 import com.hypocampus.models.Sprint;
 import com.hypocampus.services.ServiceProject;
 import com.hypocampus.utils.DataSource;
+import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -16,19 +17,12 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -36,28 +30,23 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Label;
 import javafx.scene.control.Pagination;
-import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.FlowPane;
-import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import javafx.util.Callback;
 import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.CellDataFeatures;
 import javafx.util.Duration;
 import org.controlsfx.control.Notifications;
+
+import org.jfree.data.general.DefaultPieDataset;
+import org.jfree.data.general.PieDataset;
+
+
 
 /**
  * FXML Controller class
@@ -72,7 +61,8 @@ public class AfficherProjectController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
       
-        afficher();                   
+        afficher();    
+        //createChart();
 
     }    
     
@@ -103,7 +93,11 @@ public class AfficherProjectController implements Initializable {
     private Button affSprint;
     @FXML
     private Button history;
-    
+    @FXML 
+    private javafx.scene.control.Button closeButton;
+    @FXML
+    private ImageView stat;
+
     
     private List<Project> L = new ArrayList();
     public List <Project> data2 ;
@@ -112,12 +106,12 @@ public class AfficherProjectController implements Initializable {
     int from =0,to=0;
     int intempage=3;
     Connection cnx = DataSource.getInstance().getCnx();
-    
-    
+
+
     
      public void afficher()
      {
-           //ObservableList <Project> data =FXCollections.observableArrayList();
+          
              ServiceProject sP =new ServiceProject();
 
                     Colprojetname.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -250,17 +244,7 @@ public class AfficherProjectController implements Initializable {
 
     }
 
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+  
     
        public List<Project> gettabdata() {
        
@@ -279,12 +263,6 @@ public class AfficherProjectController implements Initializable {
                                          {
                                        progressbar=new ImageView(completed);
                                          }
-                                         /*
-                                         else if(sP.getProgressI(projects.get(i).getId())==0) {
-                                         
-                                         Colprogress.setCellValueFactory((TableColumn.CellDataFeatures<String, String> p) -> new ReadOnlyObjectWrapper(new ImageView(progress)));
-                                         }
-                                         */
                                          else{
                                         progressbar=new ImageView(progress);
                                          }
@@ -308,48 +286,55 @@ public class AfficherProjectController implements Initializable {
 
        return tab;
    }
+   
+   
+     private  PieDataset criarDadosFake() {
+        Project Pr = tab.getSelectionModel().getSelectedItem();
+        ServiceProject sP =new ServiceProject();
+        DefaultPieDataset dataSet = new DefaultPieDataset();
+         if (Pr == null) {
 
-    
-    //recherche 
-       /*  
-    void recherche(){
-    
-           ServiceProject sP =new ServiceProject();
-        // Wrap the ObservableList in a FilteredList (initially display all data).
-        FilteredList<Project> filteredData = new FilteredList<>((ObservableList<Project>) gettabdata(), b -> true);
-		
-		// 2. Set the filter Predicate whenever the filter changes.
-		filterField.textProperty().addListener((observable, oldValue, newValue) -> {
-			filteredData.setPredicate(Project -> {
-				// If filter text is empty, display all persons.
-								
-				if (newValue == null || newValue.isEmpty()) {
-					return true;
-				}
-				
-				// Compare first name and last name of every person with filter text.
-				String lowerCaseFilter = newValue.toLowerCase();
-				
-				if (Project.getName().toLowerCase().indexOf(lowerCaseFilter) != -1 ) {
-					return true; // Filter matches first name.
-				} 
-				     else  
-				    	 return false; // Does not match.
-			});
-		});
-		
-		// 3. Wrap the FilteredList in a SortedList. 
-		SortedList<Project> sortedData = new SortedList<>(filteredData);
-		
-		// 4. Bind the SortedList comparator to the TableView comparator.
-		// 	  Otherwise, sorting the TableView would have no effect.
-		sortedData.comparatorProperty().bind(tab.comparatorProperty());
-		
-		// 5. Add sorted (and filtered) data to the table.
-		tab.setItems(sortedData);
-               
-        
-    
+            Image img = new Image("/com/hypocampus/uploads/error.png");
+            Notifications n = Notifications.create()
+                                           .title("Error")
+                                           .text("  Choix invalide")
+                                           .graphic(new ImageView(img))
+                                           .position(Pos.TOP_CENTER)
+                                           .hideAfter(Duration.seconds(5));
+                                    n.darkStyle();
+                                    n.show();
+                                     
+                                }
+         else{ 
+             if( sP.getProgressI(Pr.getId())==0){
+             dataSet.setValue("Pas des sprints",0);
+             }
+             else{
+             dataSet.setValue("Sprints terminés", sP.getProgressC(Pr.getId()));
+             dataSet.setValue("les sprints non réalisés",sP.getProgress(Pr.getId()));
+             return dataSet;
+             }
+         }
+
+        return dataSet;
     }
-*/
+   
+     
+     //stat
+    @FXML
+    void statAction(MouseEvent event) {
+        PieDataset pizzaDataSet = criarDadosFake();
+         Project Pr = tab.getSelectionModel().getSelectedItem();
+        if(Pr!= null){
+        SprintStat grafico = new SprintStat(
+                "Statistique sur les sprints",
+                Pr.getName(),
+                pizzaDataSet
+        );
+         grafico.pack();
+        grafico.setVisible(true);
+        
+        }
+    }
+ 
 }

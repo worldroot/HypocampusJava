@@ -9,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" fx:id="ContentPanemodifS" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.hypocampus.controller.EditSprintController">
+<AnchorPane id="AnchorPane" fx:id="ContentPanemodifS" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EditSprintController">
    <children>
       <Pane layoutX="68.0" layoutY="20.0" prefHeight="516.0" prefWidth="973.0" style="-fx-background-color: #ffff;">
          <children>
