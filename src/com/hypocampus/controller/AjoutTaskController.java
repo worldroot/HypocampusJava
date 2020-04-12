@@ -7,9 +7,13 @@ package com.hypocampus.controller;
 
 import com.hypocampus.models.Task;
 import com.hypocampus.services.ServiceTask;
+import com.hypocampus.utils.DataSource;
 import com.hypocampus.utils.Email;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
@@ -97,6 +101,7 @@ public class AjoutTaskController implements Initializable {
     
     @FXML
     private void SubmitTask(ActionEvent event) throws Exception {
+        System.out.println("hellooo");
         ServiceTask  ST =new ServiceTask();
         String title = TItreTask.getText();
         String description_fonctionnel = DescriptionTask.getText();
@@ -160,45 +165,60 @@ public class AjoutTaskController implements Initializable {
 
                 
         if (created.compareTo(deadline) < 0){
-                    
-        Task t = new Task(Integer.parseInt(BacklogId.getText()), title, description_fonctionnel, description_technique, story_points, created_date, finished_date, state, priority, archive, sprint_id);
-        
-        ST.ajouter(t);
-        // alghorithme points
-        ST.point_algortime_1(t, true);
-        String titreMail ="Vous Etes Affecter A Une Nouvelle Tache";
-        String text = "\"<h1> Bonsoir, \n </h1>"
-                + " <h2>Vous Etes Affecter A Une Nouvelle Tache,"
-                + " Vous Pouvez vous connecter est commencer a travailler\n </h2> "
-                + "<h2>Titre: "+t.getTitle()+"\n</h2> "
-                + "<h2>Description: "+t.getDescription_fonctionnel()+"\n</h2>"
-                + "<h2>Story Points: "+t.getStory_points()+"\n</h2>"
-                + "<h2>Etat: "+t.getState()+"\n</h2>"
-                + "<h2>Date Estimer: "+t.getFinished_date()+"\n</h2>"
-                + "<h3> ,Bonne Chance et Bon Courage </h3>";
-        // notification
-        
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/IndexTask.fxml"));
-        Parent root = loader.load();
-       
-        IndexTaskController ITC = loader.getController();
-        ITC.affichageTasks(ST.afficherParBacklogId(0, 0, t.getBacklog_id()));
-        ITC.setBacklogId(Integer.toString(t.getBacklog_id()));
-         ContentMaine.getChildren().setAll(root);
-        
-         Image img = new Image("/com/hypocampus/uploads/Check.png");
-         Notifications n = Notifications.create()
-           .title("SUCCESS")
-           .text("Tache ajoutée")
-           .graphic(new ImageView(img))
-           .position(Pos.TOP_CENTER)
-           .hideAfter(Duration.seconds(5));
-               n.darkStyle();
-               n.show();
-        // email    
-        new Email("hypocampus.platforms@gmail.com", "3A192020", "mehdibehira@gmail.com", titreMail, text); // Send a message
-        // redirection
-            
+            Connection cnx = DataSource.getInstance().getCnx(); 
+            Statement stmt = cnx.createStatement(); 
+          String SQL = "SELECT * FROM task WHERE  backlog_id='" +BacklogId.getText()+"'and title ='" +title+"'"; 
+          ResultSet rs = stmt.executeQuery(SQL); 
+                    if(!rs.next()){ 
+                    Task t = new Task(Integer.parseInt(BacklogId.getText()), title, description_fonctionnel, description_technique, story_points, created_date, finished_date, state, priority, archive, sprint_id);
+
+                    ST.ajouter(t);
+                    // alghorithme points
+                    ST.point_algortime_1(t, true);
+                    String titreMail ="Vous Etes Affecter A Une Nouvelle Tache";
+                    String text = "\"<h1> Bonsoir, \n </h1>"
+                            + " <h2>Vous Etes Affecter A Une Nouvelle Tache,"
+                            + " Vous Pouvez vous connecter est commencer a travailler\n </h2> "
+                            + "<h2>Titre: "+t.getTitle()+"\n</h2> "
+                            + "<h2>Description: "+t.getDescription_fonctionnel()+"\n</h2>"
+                            + "<h2>Story Points: "+t.getStory_points()+"\n</h2>"
+                            + "<h2>Etat: "+t.getState()+"\n</h2>"
+                            + "<h2>Date Estimer: "+t.getFinished_date()+"\n</h2>"
+                            + "<h3> ,Bonne Chance et Bon Courage </h3>";
+                    // notification
+
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/hypocampus/gui/IndexTask.fxml"));
+                    Parent root = loader.load();
+
+                    IndexTaskController ITC = loader.getController();
+                    ITC.affichageTasks(ST.afficherParBacklogId(0, 0, t.getBacklog_id()));
+                    ITC.setBacklogId(Integer.toString(t.getBacklog_id()));
+                     ContentMaine.getChildren().setAll(root);
+
+                     Image img = new Image("/com/hypocampus/uploads/Check.png");
+                     Notifications n = Notifications.create()
+                       .title("SUCCESS")
+                       .text("Tache ajoutée")
+                       .graphic(new ImageView(img))
+                       .position(Pos.TOP_CENTER)
+                       .hideAfter(Duration.seconds(5));
+                           n.darkStyle();
+                           n.show();
+                    // email    
+                    new Email("hypocampus.platforms@gmail.com", "3A192020", "mehdibehira@gmail.com", titreMail, text); // Send a message
+                    // redirection
+                    } else{
+                                 Image img = new Image("/com/hypocampus/uploads/error.png");
+                                Notifications n = Notifications.create()
+                                  .title("Echec")
+                                  .text("Tache Avec ce titre existe deja Merci")
+                                  .graphic(new ImageView(img))
+                                  .position(Pos.TOP_CENTER)
+                                  .hideAfter(Duration.seconds(5));
+                                      n.darkStyle();
+                                      n.show();
+                        
+                    }
         } else
         {
          Image img = new Image("/com/hypocampus/uploads/error.png");
