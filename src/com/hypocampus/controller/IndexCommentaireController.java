@@ -215,9 +215,11 @@ public class IndexCommentaireController implements Initializable {
             
                         PreviewButton.setOnMouseClicked((MouseEvent e) -> {
                             if(current.getImage_name() != null){
-                                                                    System.out.println("/com/hypocampus/uploads/"+current.getImage_name());
+                    System.out.println("/com/hypocampus/uploads/"+current.getImage_name());
 
-                                    Image image1 = new Image("/com/hypocampus/uploads/"+current.getImage_name());
+                    //Image image1 = new Image("/com/hypocampus/uploads/"+current.getImage_name());
+                    Image image1 = new Image("file:/Users/mehdibehira/Desktop/Esprit_3/ProjetPi/Hypocampus/web/uploads/commentaires/files/"+current.getImage_name());
+                    
                             Apercu.setImage(image1);
                                 
                             }
