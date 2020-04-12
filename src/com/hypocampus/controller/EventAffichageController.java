@@ -171,8 +171,12 @@ public class EventAffichageController implements Initializable {
                  // Show Image
                  int selectedIndex = listEvent.getSelectionModel().getSelectedIndex();
                     if (selectedIndex!=-1) {                     
-                    Event pi = (Event) listEvent.getSelectionModel().getSelectedItem();                        
-                    IMAGE.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()));                 
+                    Event pi = (Event) listEvent.getSelectionModel().getSelectedItem();    
+                    // pc mehdi
+                    IMAGE.setImage(new Image("file:/Users/mehdibehira/Desktop/Esprit_3/ProjetPi/Hypocampus/web/uploads/commentaires/files/"+pi.getImage_name()));                 
+
+                    //pc ghassen
+                    //IMAGE.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()));                 
                          }  
                  // 
                  Event rowData = listEvent.getSelectionModel().getSelectedItem();

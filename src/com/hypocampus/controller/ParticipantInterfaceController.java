@@ -69,7 +69,11 @@ public class ParticipantInterfaceController implements Initializable {
             cap.setText(Integer.toString(v.getNumeroEvent()));
             dated.setText(v.getDateEvent().toString());
             datef.setText(v.getEnddateEvent().toString());
-            IMAGE.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+v.getImage_name())); 
+            //pc mehdi
+                     IMAGE.setImage(new Image("file:/Users/mehdibehira/Desktop/Esprit_3/ProjetPi/Hypocampus/web/uploads/commentaires/files/"+v.getImage_name()) );                 
+
+            //pc ghassen
+         //   IMAGE.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+v.getImage_name())); 
             if(SP.test(SP.getMailConnected())==true)
             {
             titre.setVisible(false);
@@ -82,21 +86,28 @@ public class ParticipantInterfaceController implements Initializable {
             if("Formation".equals(v.getTypeEvent())==true)
             {
                 typeE="Formation";
-           imgcertif.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+SP.getImageCertif(typeE,v.getIdev()))); 
+             imgcertif.setImage(new Image("file:/Users/mehdibehira/Desktop/Esprit_3/ProjetPi/Hypocampus/web/uploads/commentaires/files/"+SP.getImageCertif(typeE,v.getIdev()))); 
+
+                //imgcertif.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+SP.getImageCertif(typeE,v.getIdev()))); 
                     }
              else if("Cours".equals(v.getTypeEvent())==true)
             {
                 typeE="Cours";
-           imgcertif.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+SP.getImageCertif(typeE,v.getIdev()))); 
+              imgcertif.setImage(new Image("file:/Users/mehdibehira/Desktop/Esprit_3/ProjetPi/Hypocampus/web/uploads/commentaires/files/"+SP.getImageCertif(typeE,v.getIdev()))); 
+
+         //  imgcertif.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+SP.getImageCertif(typeE,v.getIdev()))); 
                     }
              else if("Workshop".equals(v.getTypeEvent())==true)
             {
                 typeE="Workshop";
-           imgcertif.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+SP.getImageCertif(typeE,v.getIdev()))); 
+               imgcertif.setImage(new Image("file:/Users/mehdibehira/Desktop/Esprit_3/ProjetPi/Hypocampus/web/uploads/commentaires/files/"+SP.getImageCertif(typeE,v.getIdev()))); 
+
+        //   imgcertif.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+SP.getImageCertif(typeE,v.getIdev()))); 
                     }
             else 
             { 
-           imgcertif.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/")); 
+                imgcertif.setImage(new Image("file:/Users/mehdibehira/Desktop/Esprit_3/ProjetPi/Hypocampus/web/uploads/commentaires/files/")); 
+          // imgcertif.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/")); 
                     }
             
             }

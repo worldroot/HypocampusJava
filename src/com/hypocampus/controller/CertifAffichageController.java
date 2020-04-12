@@ -156,7 +156,10 @@ public class CertifAffichageController implements Initializable {
                  int selectedIndex = TableC.getSelectionModel().getSelectedIndex();
                    if (selectedIndex!=-1) {                     
                     Certif pi = (Certif) TableC.getSelectionModel().getSelectedItem();                        
-                    img.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()) );                 
+                   // pc mehdi
+                     img.setImage(new Image("file:/Users/mehdibehira/Desktop/Esprit_3/ProjetPi/Hypocampus/web/uploads/commentaires/files/"+pi.getImage_name()) );                 
+                      //pc ghassen
+                    //img.setImage(new Image("file:/C:/Users/ASUS/Desktop/PiDev/Sprint%20Java/HypocampusJava/src/com/hypocampus/uploads/Event/"+pi.getImage_name()) );                 
                          } 
                  //End IMG
                  
