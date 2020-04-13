@@ -5,7 +5,10 @@
  */
 package com.hypocampus.controller;
 
+import com.hypocampus.models.Project;
+import com.hypocampus.models.Sprint;
 import com.hypocampus.models.Task;
+import com.hypocampus.services.ServiceSprint;
 import com.hypocampus.services.ServiceTask;
 import com.hypocampus.utils.DataSource;
 import com.hypocampus.utils.Email;
@@ -16,13 +19,17 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -74,6 +81,13 @@ public class AjoutTaskController implements Initializable {
     private Label BacklogId;
     @FXML
     private AnchorPane ContentMaine;
+    @FXML
+    private Text SprintTitre1;
+    
+    public int  backlog_project_id;
+    @FXML
+    private ChoiceBox<Sprint> SprintTask2;
+    
 
     /**
      * Initializes the controller class.
@@ -88,6 +102,10 @@ public class AjoutTaskController implements Initializable {
         BacklogId.setText(id);
     }
     
+        public void set_backlog_project_id(int id){
+        backlog_project_id = id;
+            System.out.println(backlog_project_id);
+    }
     
     
     public void initForm(){
@@ -97,8 +115,25 @@ public class AjoutTaskController implements Initializable {
         Priority.getItems().addAll(1, 2, 3);
         // init story points list
         StoryPointsList.getItems().addAll(0,1,2,3,5,8,13,21); 
+        
+
     }
     
+    
+    public void liste_sprints(int Backlog_project_id){
+                ServiceSprint SS = new ServiceSprint();
+                 final ObservableList<Sprint> options = FXCollections.observableArrayList();
+                 
+     
+          List <Sprint>sprints= SS.afficher_SprintProject_GetById(backlog_project_id);
+          
+             for(int i=0;i<sprints.size();i++) 
+                { 
+                    options.add(sprints.get(i)); 
+
+              }
+              SprintTask2.setItems(options);
+    }
     @FXML
     private void SubmitTask(ActionEvent event) throws Exception {
         System.out.println("hellooo");
@@ -122,7 +157,7 @@ public class AjoutTaskController implements Initializable {
         int priority= Priority.getSelectionModel().getSelectedItem();
         int archive = 0;
         // to implement sprint id after 
-        int sprint_id =2;
+        int sprint_id =  SprintTask2.getSelectionModel().getSelectedItem().getId();
         boolean conditionTitre = false;
         boolean conditionDescription = false;
         boolean conditionDate = false;

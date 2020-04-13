@@ -78,6 +78,9 @@ public class IndexTaskController implements Initializable {
     private Text TitreListeDesTaches1;
     @FXML
     private Button RetourBacklogbtn1;
+    
+    public int Backlog_project_id;
+    
     /**
      * Initializes the controller class.
      */
@@ -95,6 +98,10 @@ public class IndexTaskController implements Initializable {
     
     public void setBacklogId(String id){
         BackogId.setText(id);
+    }
+    public void setProjectBacklogId(int id){
+        Backlog_project_id = id;
+        
     }
     public void affichageTasks(List<Task> tasks){
        
@@ -435,6 +442,8 @@ public class IndexTaskController implements Initializable {
         ContentMaine.getChildren().setAll(parent);
         AjoutTaskController ATC = loader.getController();
         ATC.setBacklogId(BackogId.getText());
+        ATC.set_backlog_project_id(Backlog_project_id);
+        ATC.liste_sprints(Backlog_project_id);
  
     }
 

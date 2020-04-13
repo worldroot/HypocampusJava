@@ -342,4 +342,24 @@ Connection cnx = DataSource.getInstance().getCnx();
             System.err.println(ex.getMessage());
         }
     }
+        
+          public List<Sprint> afficher_SprintProject_GetById(int id) {
+
+         ObservableList <Sprint> ListSprint =FXCollections.observableArrayList();
+
+        try {
+            String requete = "SELECT * FROM sprint where projets_id="+id+"";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                ListSprint.add(new Sprint(rs.getInt("id"), rs.getString("sprintname")
+                ,rs.getDate("startDatesprint"), rs.getDate("endDatesprint"),rs.getInt("projets_id")));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return ListSprint;
+    }  
 }

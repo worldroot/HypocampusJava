@@ -234,6 +234,7 @@ public class BacklogController implements Initializable {
         IndexTaskController ITC = loader.getController();
         ITC.affichageTasks(ST.afficherParBacklog(0, 0, ba));
         ITC.setBacklogId(Integer.toString(ba.getId()));
+        ITC.setProjectBacklogId(ba.getProject_id());
 
         
         // AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/IndexTask.fxml"));
