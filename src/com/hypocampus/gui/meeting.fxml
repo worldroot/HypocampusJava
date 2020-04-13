@@ -9,8 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" fx:id="ContentPaneAjouM" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.hypocampus.controller.MeetingController">
+<AnchorPane id="AnchorPane" fx:id="ContentPaneAjouM" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.MeetingController">
    <children>
       <Pane layoutX="68.0" layoutY="20.0" prefHeight="516.0" prefWidth="973.0" style="-fx-background-color: #ffff;">
          <children>
@@ -22,13 +21,13 @@
             <Text layoutX="24.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="team Name" wrappingWidth="186.9999859035015" />
             <TextField fx:id="duration" layoutX="337.0" layoutY="113.0" prefHeight="31.0" prefWidth="399.0" promptText="duration min" />
             <Text layoutX="24.0" layoutY="246.0" strokeType="OUTSIDE" strokeWidth="0.0" text="description" wrappingWidth="186.99999265372753" />
-            <Text layoutX="22.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="nbrmeeting" />
+            <Text layoutX="22.0" layoutY="173.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Nombre de réunions" />
             <Button fx:id="Ajoutermeeting" layoutX="846.0" layoutY="476.0" mnemonicParsing="false" onAction="#ajoutermeeting" prefHeight="31.0" prefWidth="79.0" style="-fx-background-color: #5ed84f;" text="ajouter" textFill="WHITE" />
             <Button fx:id="backAffmeeting" layoutX="25.0" layoutY="476.0" mnemonicParsing="false" onAction="#backAffmeeting" style="-fx-background-color: #fa626b;" text="Annuler" textFill="WHITE" />
             <ComboBox fx:id="teamName" layoutX="26.0" layoutY="113.0" prefHeight="31.0" prefWidth="283.0" promptText="teamName" style="-fx-background-color: e6e6ff;" />
             <TextArea fx:id="description" layoutX="26.0" layoutY="266.0" prefHeight="65.0" prefWidth="283.0" />
             <Text layoutX="338.0" layoutY="99.0" strokeType="OUTSIDE" strokeWidth="0.0" text="duration" />
-            <TextField fx:id="nbrmeeting" layoutX="20.0" layoutY="187.0" prefHeight="31.0" prefWidth="399.0" promptText="duration min" />
+            <TextField fx:id="nbrmeeting" layoutX="20.0" layoutY="187.0" prefHeight="31.0" prefWidth="399.0" promptText="nombre de réunions" />
          </children>
       </Pane>
    </children>

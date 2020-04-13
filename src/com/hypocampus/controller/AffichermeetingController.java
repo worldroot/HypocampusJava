@@ -127,11 +127,12 @@ public class AffichermeetingController implements Initializable {
      {
            //ObservableList <Project> data =FXCollections.observableArrayList();
              ServiceMeeting sm =new ServiceMeeting();
+             ServiceTeam st =new ServiceTeam();
      
                        
                     Colteamname.setCellValueFactory(new PropertyValueFactory<>("team_id"));
                     Coldescription.setCellValueFactory(new PropertyValueFactory<>("description"));
-                    //Colnameproject.setCellValueFactory((TableColumn.CellDataFeatures<Sprint, String> p) -> new ReadOnlyObjectWrapper(sP.getById(p.getValue().getProject_id()))); 
+                    Colteamname.setCellValueFactory((TableColumn.CellDataFeatures<meeting, String> p) -> new ReadOnlyObjectWrapper(st.getById(p.getValue().getTeam_id()))); 
                     Colduration.setCellValueFactory(new PropertyValueFactory<>("duration"));
                     Colnbrmeeting.setCellValueFactory(new PropertyValueFactory<>("nbrmeeting"));
                     tab.setItems((ObservableList<meeting>) sm.afficher());

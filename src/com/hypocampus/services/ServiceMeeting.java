@@ -88,6 +88,7 @@ public class ServiceMeeting implements IService<meeting>{
                 Listmeeting.add(new meeting(rs.getInt("id"), rs.getInt("team_id")
                 ,rs.getString("description"),rs.getString("duration"),rs.getInt("nbrmeeting")));
             }
+            Listmeeting.sort((o1, o2) -> o1.getDuration().compareTo(o2.getDuration()));
 
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());

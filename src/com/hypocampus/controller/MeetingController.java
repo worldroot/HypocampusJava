@@ -11,6 +11,10 @@ import com.hypocampus.models.meeting;
 import com.hypocampus.models.team;
 import com.hypocampus.services.ServiceMeeting;
 import com.hypocampus.utils.DataSource;
+import com.nexmo.client.NexmoClient;
+import com.nexmo.client.sms.MessageStatus;
+import com.nexmo.client.sms.SmsSubmissionResponse;
+import com.nexmo.client.sms.messages.TextMessage;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Connection;
@@ -131,7 +135,19 @@ public class MeetingController implements Initializable {
            // show the dialog
            alert.show();
        }
-        
+              
+       NexmoClient client = NexmoClient.builder().apiKey("09444ba7").apiSecret("GLTN6BKeO3WuWSoO").build();
+  TextMessage message = new TextMessage("Meeting",
+                   "+21693991868",
+                    "Meeting soon !"
+            );
+
+SmsSubmissionResponse response = client.getSmsClient().submitMessage(message);
+  if (response.getMessages().get(0).getStatus() == MessageStatus.OK) {
+    System.out.println("Message sent successfully.");
+} else {
+    System.out.println("Message failed with error: " + response.getMessages().get(0).getErrorText());
+}
     }
 
     @FXML

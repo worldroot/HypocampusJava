@@ -8,9 +8,18 @@ package com.hypocampus.controller;
 
 import com.hypocampus.models.team;
 import com.hypocampus.services.ServiceTeam;
+import com.hypocampus.utils.DataSource;
+import com.nexmo.client.NexmoClient;
+import com.nexmo.client.sms.MessageStatus;
+import com.nexmo.client.sms.SmsSubmissionResponse;
+import com.nexmo.client.sms.messages.TextMessage;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -56,26 +65,21 @@ public class TeamController implements Initializable {
 
     @FXML
     private Button backAffTeam;
+   Connection cnx = DataSource.getInstance().getCnx();
 // alert
       Alert alert = new Alert(Alert.AlertType.NONE);
       
     @FXML
-    void ajouterTeam(ActionEvent event) {
-       /*
-    String str="2015-03-31";
-    String str2="2016-03-31";
-    Date date=Date.valueOf(str);//converting string into sql date
-    Date date2=Date.valueOf(str2); 
-    */
+    void ajouterTeam(ActionEvent event) throws SQLException {
    
            
-           
+          Statement stmt = cnx.createStatement();
+          String SQL = "SELECT * FROM team WHERE teamname ='" +NameTeam.getText()+"'";
+           ResultSet rs = stmt.executeQuery(SQL);
+        if(!rs.next()){  
        if (!NameTeam.getText().equals(""))
        {
-           
-           
-           
-           
+          
            ServiceTeam st =new ServiceTeam();
            
            LocalDate ds= StartDateteam.getValue();
@@ -123,6 +127,20 @@ public class TeamController implements Initializable {
            // show the dialog
            alert.show();
        }
+        }
+               else {
+           
+           alert.setAlertType(Alert.AlertType.WARNING);
+           
+           // set content text
+           alert.setContentText("Team déjà existe ");
+           
+           // show the dialog
+           alert.show();
+       }
+ 
+       
+       
     }
        public static final LocalDate NOW_LOCAL_DATE (){
         String date = new SimpleDateFormat("dd-MM-yyyy").format(Calendar.getInstance().getTime());

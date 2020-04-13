@@ -89,7 +89,7 @@ public class ServiceTeam implements IService<team> {
                 Listteam.add(new team(rs.getInt("id"), rs.getString("teamname"),
                rs.getDate("dateofcreation")));
             }
-
+Listteam.sort((o1, o2) -> o1.getTeamname().compareTo(o2.getTeamname()));
         } catch (SQLException ex) {
             System.err.println(ex.getMessage());
         }
