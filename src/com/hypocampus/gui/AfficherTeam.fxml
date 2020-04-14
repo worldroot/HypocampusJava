@@ -5,21 +5,20 @@
 <?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.hypocampus.controller.AfficherTeamController">
+<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.AfficherTeamController">
    <children>
       <AnchorPane id="AnchorPane" layoutX="-11.0" layoutY="20.0" prefHeight="706.0" prefWidth="1092.0">
          <children>
-            <TableView fx:id="tab" layoutX="119.0" layoutY="157.0" prefHeight="300.0" prefWidth="870.0">
+            <TableView fx:id="tab" layoutX="119.0" layoutY="177.0" prefHeight="300.0" prefWidth="870.0">
                <columns>
-                  <TableColumn fx:id="ColTeamid" prefWidth="186.0" text="id" />
-                  <TableColumn fx:id="ColTeamname" prefWidth="390.0" text="Nom de groupe" />
-                  <TableColumn fx:id="Colcreationdate" prefWidth="293.0" text="Date de création" />
+                  <TableColumn fx:id="ColTeamname" prefWidth="415.0" text="Nom de groupe" />
+                  <TableColumn fx:id="Colcreationdate" prefWidth="453.0" text="Date de création" />
                </columns>
                <contextMenu>
                   <ContextMenu>
@@ -29,7 +28,7 @@
                   </ContextMenu>
                </contextMenu>
             </TableView>
-            <Button fx:id="supprimerTeam" layoutX="430.0" layoutY="477.0" mnemonicParsing="false" onAction="#supprimerTeam" style="-fx-background-color: #fa626b;" text="Supprimer l'équipe de sélection" textFill="WHITE" />
+            <Button fx:id="supprimerTeam" layoutX="431.0" layoutY="499.0" mnemonicParsing="false" onAction="#supprimerTeam" style="-fx-background-color: #fa626b;" text="Supprimer l'équipe de sélection" textFill="WHITE" />
             <Pane layoutX="41.0" layoutY="52.0" prefHeight="63.0" prefWidth="1026.0" style="-fx-background-color: #ffff;">
                <children>
                   <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="15.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des groupes" wrappingWidth="186.99998885393143">
@@ -40,6 +39,7 @@
                   <Button fx:id="newTeam" layoutX="888.0" layoutY="16.0" mnemonicParsing="false" onAction="#newTeamAction" style="-fx-background-color: #5ed84f;" text="Nouvelle équipe" textFill="WHITE" />
                </children>
             </Pane>
+            <TextField fx:id="filterField" layoutX="829.0" layoutY="134.0" prefHeight="31.0" prefWidth="160.0" promptText="Search" />
          </children>
       </AnchorPane>
    </children>
