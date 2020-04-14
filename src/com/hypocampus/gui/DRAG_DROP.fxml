@@ -9,13 +9,13 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.DRAG_DROPController">
+<AnchorPane id="AnchorPane" fx:id="ContentPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.DRAG_DROPController">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="695.0" prefWidth="996.0">
+      <AnchorPane id="AnchorPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0">
          <children>
-            <Pane layoutX="27.0" layoutY="52.0" prefHeight="63.0" prefWidth="1010.0" style="-fx-background-color: #fff;">
+            <Pane layoutX="27.0" layoutY="52.0" prefHeight="63.0" prefWidth="956.0" style="-fx-background-color: #fff;">
                <children>
-                  <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="463.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Liste des taches" wrappingWidth="186.99998885393143">
+                  <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="409.0" layoutY="41.0" strokeType="OUTSIDE" strokeWidth="0.0" text=" Liste des taches" wrappingWidth="186.99998885393143">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -31,7 +31,7 @@
                   <Cursor fx:constant="CLOSED_HAND" />
                </cursor>
             </ListView>
-            <ListView fx:id="in_Progress" layoutX="420.0" layoutY="165.0" prefHeight="382.0" prefWidth="296.0" style="-fx-background-color: #fdb901;" stylesheets="@../uploads/in_Progress.css">
+            <ListView fx:id="in_Progress" layoutX="396.0" layoutY="165.0" prefHeight="382.0" prefWidth="296.0" style="-fx-background-color: #fdb901;" stylesheets="@../uploads/in_Progress.css">
                <effect>
                   <DropShadow />
                </effect>
@@ -39,7 +39,7 @@
                   <Cursor fx:constant="CLOSED_HAND" />
                </cursor>
             </ListView>
-            <ListView fx:id="Done" layoutX="766.0" layoutY="165.0" prefHeight="382.0" prefWidth="257.0" style="-fx-background-color: #5ed84f;" stylesheets="@../uploads/done.css">
+            <ListView fx:id="Done" layoutX="725.0" layoutY="165.0" prefHeight="382.0" prefWidth="257.0" style="-fx-background-color: #5ed84f;" stylesheets="@../uploads/done.css">
                <cursor>
                   <Cursor fx:constant="CLOSED_HAND" />
                </cursor>
@@ -52,12 +52,12 @@
                   <Font name="Sylfaen" size="21.0" />
                </font>
             </Text>
-            <Text fill="#fdb901" fontSmoothingType="LCD" layoutX="517.0" layoutY="146.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Progress" textAlignment="CENTER" wrappingWidth="119.37890625">
+            <Text fill="#fdb901" fontSmoothingType="LCD" layoutX="494.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="In Progress" textAlignment="CENTER" wrappingWidth="119.37890625">
                <font>
                   <Font name="Sylfaen" size="21.0" />
                </font>
             </Text>
-            <Text fill="#5ed84f" fontSmoothingType="LCD" layoutX="877.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Done" textAlignment="CENTER" wrappingWidth="61.37890625">
+            <Text fill="#5ed84f" fontSmoothingType="LCD" layoutX="843.0" layoutY="148.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Done" textAlignment="CENTER" wrappingWidth="61.37890625">
                <font>
                   <Font name="Sylfaen" size="21.0" />
                </font>
