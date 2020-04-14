@@ -61,5 +61,11 @@
       <ComboBox fx:id="Priority" layoutX="85.0" layoutY="615.0" prefHeight="27.0" prefWidth="194.0" />
       <Button layoutX="761.0" layoutY="601.0" mnemonicParsing="false" onAction="#SubmitTask" prefHeight="41.0" prefWidth="111.0" text="Valider" />
       <Label fx:id="BacklogId" disable="true" layoutX="140.0" layoutY="121.0" prefHeight="17.0" prefWidth="57.0" visible="false" />
+      <Text fx:id="SprintTitre1" fill="#1a154a" layoutX="518.0" layoutY="614.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sprint" textAlignment="CENTER" wrappingWidth="88.6708984375">
+         <font>
+            <Font name="Caviar Dreams" size="34.0" />
+         </font>
+      </Text>
+      <ComboBox fx:id="SprintTask2" layoutX="487.0" layoutY="629.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

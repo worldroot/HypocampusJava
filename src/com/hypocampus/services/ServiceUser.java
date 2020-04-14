@@ -60,6 +60,8 @@ public class ServiceUser implements IService<User> {
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
 				hashedPassword = rs.getString("password");
+                                System.out.println(hashedPassword);
+                                System.out.println(inputPassword);
             }
 			
 			if(BCrypt.checkpw(inputPassword, hashedPassword)) {

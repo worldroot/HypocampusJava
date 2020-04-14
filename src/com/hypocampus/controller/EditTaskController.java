@@ -9,8 +9,10 @@ import static com.hypocampus.controller.AjoutTaskController.LOCAL_DATE;
 import static com.hypocampus.controller.EditProjectController.LOCAL_DATE;
 import com.hypocampus.models.Backlog;
 import com.hypocampus.models.Project;
+import com.hypocampus.models.Sprint;
 import com.hypocampus.models.Task;
 import com.hypocampus.services.ServiceProject;
+import com.hypocampus.services.ServiceSprint;
 import com.hypocampus.services.ServiceTask;
 import java.io.IOException;
 import java.net.URL;
@@ -28,6 +30,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -81,6 +84,11 @@ public class EditTaskController implements Initializable {
     private AnchorPane ContentPane;
 
     int taskid;
+    public int  backlog_project_id;
+    @FXML
+    private ComboBox<Sprint> SprintTask2;
+    @FXML
+    private Text SprintTitre1;
     /**
      * Initializes the controller class.
      */
@@ -98,7 +106,11 @@ public class EditTaskController implements Initializable {
         // init story points list
         StoryPointsList.getItems().addAll(0,1,2,3,5,8,13,21); 
     }
-    
+        
+                public void set_backlog_project_id(int id){
+        backlog_project_id = id;
+            System.out.println(backlog_project_id);
+    }
     
         public void inflateUI(Task T) throws IOException {
             TItreTask.setText(T.getTitle());
@@ -111,6 +123,24 @@ public class EditTaskController implements Initializable {
             BacklogId.setText(Integer.toString(T.getBacklog_id()));
             taskid = T.getId();
 
+    }
+        
+            public void liste_sprints(int backlog_project_id, int sprint_id){
+                ServiceSprint SS = new ServiceSprint();
+                 final ObservableList<Sprint> options = FXCollections.observableArrayList();
+                 
+     
+          List <Sprint>sprints= SS.afficher_SprintProject_GetById(backlog_project_id);
+          
+             for(int i=0;i<sprints.size();i++) 
+                { 
+                    options.add(sprints.get(i)); 
+
+              }
+              SprintTask2.setItems(options);
+             
+              Sprint my_sprint= SS.GetByIdSprint(sprint_id);
+              SprintTask2.getSelectionModel().select(my_sprint);
     }
         
              public static final LocalDate LOCAL_DATE (String dateString){
@@ -135,7 +165,7 @@ public class EditTaskController implements Initializable {
         int priority= Priority.getSelectionModel().getSelectedItem();
         int archive = 0;
         // to implement sprint id after 
-        int sprint_id =2;
+        Sprint sprint_id = SprintTask2.getSelectionModel().getSelectedItem();
         
         
               // controle saisie date
@@ -193,7 +223,7 @@ public class EditTaskController implements Initializable {
         // alghorithme points false to remove old points
         ST.point_algortime_1(oldTask, false);
         
-        Task t = new Task(taskid,Integer.parseInt(BacklogId.getText()), title, description_fonctionnel, description_technique, story_points, created_date, finished_date, state, priority, archive, sprint_id);
+        Task t = new Task(taskid,Integer.parseInt(BacklogId.getText()), title, description_fonctionnel, description_technique, story_points, created_date, finished_date, state, priority, archive, sprint_id.getId());
         ST.modifier(t);
         // ALGHO points ture to add new points
         ST.point_algortime_1(t, true);

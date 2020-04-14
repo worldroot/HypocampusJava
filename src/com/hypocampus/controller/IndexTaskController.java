@@ -8,6 +8,7 @@ package com.hypocampus.controller;
 import com.hypocampus.models.Backlog;
 import com.hypocampus.models.Task;
 import com.hypocampus.services.ServiceCommentaire;
+import com.hypocampus.services.ServiceSprint;
 import com.hypocampus.services.ServiceTask;
 import java.io.IOException;
 import java.net.URL;
@@ -307,7 +308,24 @@ public class IndexTaskController implements Initializable {
             postpane.getChildren().add(PriorityTextPane);
             
             
-            /// To add after sprint + user + desTechnique
+            /// To add after sprint + user + 
+             Pane SprintTextPane = new Pane();
+            SprintTextPane.setPrefWidth(190);
+            SprintTextPane.setLayoutX(10);
+            ServiceSprint SS = new ServiceSprint();
+            Label SprintLabel = new Label();
+            SprintLabel.setPrefHeight(110);
+            SprintLabel.setPrefWidth(230);
+            SprintLabel.setLayoutX(8);
+            SprintLabel.setLayoutY(230);
+            SprintLabel.setTextFill(Color.WHITE);
+            SprintLabel.setStyle("-fx-font-size :15");
+            SprintLabel.setText("Sprint : "+SS.GetByIdSprint(tasks.get(i).getSprint_id()).getName());
+            SprintLabel.setAlignment(Pos.TOP_LEFT);
+            SprintLabel.setWrapText(true);
+            SprintTextPane.getChildren().add(SprintLabel);
+            postpane.getChildren().add(SprintTextPane);
+            
             //Edit bouton task
             Image editIcon = new Image("/com/hypocampus/uploads/settings1.png");
             editIcon.getRequestedHeight();
@@ -328,6 +346,8 @@ public class IndexTaskController implements Initializable {
                         ContentMaine.getChildren().setAll(parent);
                         EditTaskController controller =(EditTaskController) loader.getController();
                         controller.inflateUI(current);
+                        // controller.set_backlog_project_id(Backlog_project_id);
+                            controller.liste_sprints(Backlog_project_id,current.getSprint_id());
                     } catch (IOException ex) {
                         Logger.getLogger(IndexTaskController.class.getName()).log(Level.SEVERE, null, ex);
                     }

@@ -361,5 +361,24 @@ Connection cnx = DataSource.getInstance().getCnx();
         }
       
         return ListSprint;
+    }
+          
+      public Sprint GetByIdSprint(int id) {
+            Sprint ListSprint = new Sprint();
+
+        try {
+            String requete = "SELECT * FROM sprint where id="+id+"";
+            PreparedStatement pst = cnx.prepareStatement(requete);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                ListSprint = (new Sprint(rs.getInt("id"), rs.getString("sprintname")
+                ,rs.getDate("startDatesprint"), rs.getDate("endDatesprint"),rs.getInt("projets_id")));
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+      
+        return ListSprint;
     }  
 }

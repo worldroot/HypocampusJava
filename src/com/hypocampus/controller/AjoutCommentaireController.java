@@ -175,8 +175,12 @@ public class AjoutCommentaireController implements Initializable {
                source.setText(img);
                Image image1 = new Image(img);
                previewImg.setImage(image1);
-               //FileUtils.copyFileToDirectory(file, new File("src/com/hypocampus/uploads/"));
-               FileUtils.copyFileToDirectory(file, new File("file:/Users/mehdibehira/Desktop/Esprit_3/ProjetPi/Hypocampus/web/uploads/commentaires/files/")); 
+                try {
+                    //FileUtils.copyFileToDirectory(file, new File("src/com/hypocampus/uploads/"));
+                    FileUtils.copyFileToDirectory(file, new File("file:/Users/mehdibehira/Desktop/Esprit_3/ProjetPi/Hypocampus/web/uploads/commentaires/files/"));
+                } catch (IOException ex) {
+                    Logger.getLogger(AjoutCommentaireController.class.getName()).log(Level.SEVERE, null, ex);
+                }
         
       
                 }

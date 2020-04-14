@@ -89,7 +89,7 @@ public class ServiceTask implements IService<Task>{
     public void modifier(Task t) {
     try {
             String requete = "UPDATE task SET title=?, description_fonctionnel=?, description_technique=?,"
-                    + " story_points=?, finished_date=?, state=?, priority=?, archive=? WHERE id=?";
+                    + " story_points=?, finished_date=?, state=?, priority=?, archive=? , sprint_id=? WHERE id=?";
             PreparedStatement pst = cnx.prepareStatement(requete);
             pst.setString(1, t.getTitle());
             pst.setString(2, t.getDescription_fonctionnel());
@@ -99,7 +99,8 @@ public class ServiceTask implements IService<Task>{
             pst.setString(6, t.getState());
             pst.setInt(7, t.getPriority());
             pst.setInt(8, t.getArchive());
-            pst.setInt(9, t.getId());
+            pst.setInt(9, t.getSprint_id());
+            pst.setInt(10, t.getId());
 
             pst.executeUpdate();
             System.out.println("Tache modifiée !");
