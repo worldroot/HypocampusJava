@@ -9,9 +9,9 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="ContentPanemodifS" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EditSprintController">
+<AnchorPane id="AnchorPane" fx:id="ContentPanemodifS" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.EditSprintController">
    <children>
-      <Pane layoutX="68.0" layoutY="20.0" prefHeight="516.0" prefWidth="973.0" style="-fx-background-color: #ffff;">
+      <Pane layoutX="12.0" layoutY="14.0" prefHeight="516.0" prefWidth="973.0" style="-fx-background-color: #ffff;">
          <children>
             <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="14.0" layoutY="40.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modifier Sprint" wrappingWidth="186.99998885393143">
                <font>

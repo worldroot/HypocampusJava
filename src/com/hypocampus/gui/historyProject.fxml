@@ -9,21 +9,21 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.HistoryProjectController">
+<AnchorPane id="AnchorPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.HistoryProjectController">
    <children>
       <AnchorPane id="AnchorPane" layoutX="20.0" layoutY="20.0" prefHeight="695.0" prefWidth="996.0">
          <children>
-            <TableView fx:id="tab" layoutX="28.0" layoutY="162.0" prefHeight="300.0" prefWidth="1026.0">
+            <TableView fx:id="tab" layoutX="28.0" layoutY="162.0" prefHeight="300.0" prefWidth="917.0">
                <columns>
                   <TableColumn fx:id="Colprojetname" prefWidth="185.0" text="projet_name" />
                   <TableColumn fx:id="Colowner" prefWidth="198.0" text="owner" />
                   <TableColumn fx:id="Colstartdate" prefWidth="195.0" text="start_date" />
                   <TableColumn fx:id="Colenddate" prefWidth="190.0" text="end_date" />
-                  <TableColumn fx:id="Coldescription" prefWidth="257.0" text="description" />
+                  <TableColumn fx:id="Coldescription" prefWidth="147.0" text="description" />
                </columns>
             </TableView>
             <Button fx:id="SupprimerProject" layoutX="279.0" layoutY="567.0" mnemonicParsing="false" onAction="#SupprimerProject" style="-fx-background-color: #fa626b;" text="Supprimer le projet de sélection" textFill="WHITE" />
-            <Pane layoutX="14.0" layoutY="39.0" prefHeight="70.0" prefWidth="1026.0" style="-fx-background-color: #ffff;">
+            <Pane layoutX="14.0" layoutY="39.0" prefHeight="70.0" prefWidth="949.0" style="-fx-background-color: #ffff;">
                <children>
                   <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="15.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Projets archivés" wrappingWidth="186.99998885393143">
                      <font>
@@ -33,7 +33,7 @@
                </children>
             </Pane>
             <Button fx:id="Restaurer" layoutX="622.0" layoutY="567.0" mnemonicParsing="false" onAction="#RestaurerAction" prefHeight="31.0" prefWidth="135.0" style="-fx-background-color: #28afd0;" text="Restaurer" textFill="WHITE" />
-            <TextField fx:id="filterField" layoutX="853.0" layoutY="118.0" promptText="Search" />
+            <TextField fx:id="filterField" layoutX="757.0" layoutY="121.0" promptText="Search" />
          </children>
       </AnchorPane>
    </children>

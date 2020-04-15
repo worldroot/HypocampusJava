@@ -17,18 +17,18 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="ContentPane" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.AfficherProjectController">
+<AnchorPane id="AnchorPane" fx:id="ContentPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.AfficherProjectController">
    <children>
-      <AnchorPane id="AnchorPane" prefHeight="695.0" prefWidth="996.0">
+      <AnchorPane id="AnchorPane" maxHeight="695.0" maxWidth="996.0" minHeight="695.0" minWidth="996.0" prefHeight="695.0" prefWidth="996.0">
          <children>
-            <TableView fx:id="tab" layoutX="29.0" layoutY="199.0" prefHeight="300.0" prefWidth="1026.0">
+            <TableView fx:id="tab" layoutX="29.0" layoutY="199.0" prefHeight="300.0" prefWidth="926.0">
               <columns>
                 <TableColumn fx:id="Colprojetname" prefWidth="164.00003051757812" text="projet_name" />
                 <TableColumn fx:id="Colowner" prefWidth="111.0" text="owner" />
-                  <TableColumn fx:id="Colstartdate" prefWidth="193.0" text="start_date" />
-                  <TableColumn fx:id="Colenddate" prefWidth="155.0" text="end_date" />
-                  <TableColumn fx:id="Coldescription" prefWidth="221.0" text="description" />
-                  <TableColumn fx:id="Colprogress" prefWidth="189.0" text="Progress" />
+                  <TableColumn fx:id="Colstartdate" prefWidth="166.0" text="start_date" />
+                  <TableColumn fx:id="Colenddate" prefWidth="135.0" text="end_date" />
+                  <TableColumn fx:id="Coldescription" prefWidth="199.0" text="description" />
+                  <TableColumn fx:id="Colprogress" prefWidth="149.0" text="Progress" />
               </columns>
                <contextMenu>
                   <ContextMenu>
@@ -38,17 +38,17 @@
                   </ContextMenu>
                </contextMenu>
             </TableView>
-            <Pagination fx:id="pagination" layoutX="30.0" layoutY="201.0" prefHeight="353.0" prefWidth="1026.0" />
+            <Pagination fx:id="pagination" layoutX="30.0" layoutY="201.0" prefHeight="353.0" prefWidth="926.0" />
             <Button fx:id="supprimerProject" layoutX="310.0" layoutY="604.0" mnemonicParsing="false" onAction="#supprimerProject" style="-fx-background-color: #fa626b;" text="Supprimer le projet de sélection" textFill="WHITE" />
-            <Pane layoutX="18.0" layoutY="52.0" prefHeight="63.0" prefWidth="1049.0" style="-fx-background-color: #ffff;">
+            <Pane layoutX="18.0" layoutY="52.0" prefHeight="63.0" prefWidth="967.0" style="-fx-background-color: #ffff;">
                <children>
                   <Text fill="#6b6565" fontSmoothingType="LCD" layoutX="15.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Liste des projets" wrappingWidth="186.99998885393143">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Text>
-                  <Button fx:id="newProject" layoutX="927.0" layoutY="16.0" mnemonicParsing="false" onAction="#newProjectAction" style="-fx-background-color: #5ed84f;" text="New Project" textFill="WHITE" />
-                  <Button fx:id="history" layoutX="826.0" layoutY="16.0" mnemonicParsing="false" onAction="#historyAction" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #28afd0;" text="history" textFill="WHITE" />
+                  <Button fx:id="newProject" layoutX="853.0" layoutY="16.0" mnemonicParsing="false" onAction="#newProjectAction" style="-fx-background-color: #5ed84f;" text="New Project" textFill="WHITE" />
+                  <Button fx:id="history" layoutX="752.0" layoutY="16.0" mnemonicParsing="false" onAction="#historyAction" prefHeight="31.0" prefWidth="86.0" style="-fx-background-color: #28afd0;" text="history" textFill="WHITE" />
                </children>
             </Pane>
             <ImageView fx:id="stat" fitHeight="51.0" fitWidth="40.0" layoutX="39.0" layoutY="132.0" onMouseClicked="#statAction" pickOnBounds="true" preserveRatio="true">
