@@ -15,5 +15,6 @@
       <AnchorPane fx:id="ContentPane" layoutX="204.0" layoutY="73.0" prefHeight="695.0" prefWidth="996.0" />
       <Button fx:id="btnE" layoutX="49.0" layoutY="163.0" mnemonicParsing="false" onAction="#btnEAction" opacity="0.0" prefHeight="50.0" prefWidth="140.0" />
       <Button fx:id="btnA" layoutX="49.0" layoutY="236.0" mnemonicParsing="false" onAction="#btnAAction" opacity="0.0" prefHeight="50.0" prefWidth="140.0" />
+      <Button fx:id="btnU" layoutX="49.0" layoutY="307.0" mnemonicParsing="false" onAction="#btnUAction" opacity="0.0" prefHeight="50.0" prefWidth="140.0" />
    </children>
 </AnchorPane>
