@@ -34,6 +34,9 @@ public class Backback_Controller implements Initializable {
 	
 	@FXML
     private Button btnA;
+	
+	@FXML
+    private Button btnU;
 
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
@@ -49,6 +52,13 @@ public class Backback_Controller implements Initializable {
 	@FXML
     void btnAAction(ActionEvent event) throws IOException {
 		AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/readAbonnement.fxml"));
+        ContentPane.getChildren().setAll(pane);
+
+    }
+	
+	@FXML
+    void btnUAction(ActionEvent event) throws IOException {
+		AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/readUser.fxml"));
         ContentPane.getChildren().setAll(pane);
 
     }
