@@ -9,6 +9,7 @@ import com.hypocampus.models.Event;
 import com.hypocampus.models.Participant;
 import com.hypocampus.services.ServiceEvent;
 import com.hypocampus.services.ServiceParticipant;
+import com.hypocampus.utils.Email;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -82,7 +83,7 @@ public class ParticipantInscriController implements Initializable {
     }
 
     @FXML
-    private void ValiderAction(ActionEvent event) throws IOException {
+    private void ValiderAction(ActionEvent event) throws IOException, Exception {
         
          if (!nom.getText().equals("") && !prenom.getText().equals("") && !pass.getText().equals("") && !mail.getText().equals("")) {
              
@@ -103,8 +104,16 @@ public class ParticipantInscriController implements Initializable {
                                    n.darkStyle();
                                    n.show();
                    
-                        
-           
+                    String titreMail ="Nouveau Participant ";
+                    String text = "\"<h1> Bonsoir, \n </h1>"
+                            + " <h2>Un nouveau Participant a ete ajouter,"
+                            + "<h2>Nom: "+nom.getText()+"\n</h2> "
+                            + "<h2>Prenom: "+prenom.getText()+"\n</h2>"
+                            + "<h2>Mail: "+mail.getText()+"\n</h2>"
+                            + "<h2>Id Event: "+et.getIdev()+"\n</h2>"
+                            + "<h3> </h3>";      
+              new Email("hypocampus.platforms@gmail.com", "3A192020", "mehdibehira@gmail.com", titreMail, text); // Send a message
+
                           
              //AnchorPane pane = FXMLLoader.load(getClass().getResource("/com/hypocampus/gui/EventAffichage.fxml"));
              //ContentPane.getChildren().setAll(pane);
