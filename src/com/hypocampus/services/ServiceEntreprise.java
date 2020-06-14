@@ -113,9 +113,11 @@ public class ServiceEntreprise implements IService<Entreprise> {
 		 ObservableList <Entreprise> ListProject = FXCollections.observableArrayList();
 
         try {
-            String requete = "SELECT * FROM entreprise where "+ y +" like ?";
+            String requete = "SELECT * FROM entreprise where name like ? or email like ? or createdate like ?";
             PreparedStatement pst = cnx.prepareStatement(requete);
 			pst.setString(1, "%"+x+"%");
+			pst.setString(2, "%"+x+"%");
+			pst.setString(3, "%"+x+"%");
             ResultSet rs = pst.executeQuery();
             while (rs.next()) {
                 ListProject.add(new Entreprise(rs.getInt("id"),rs.getString("name"),rs.getString("email"),rs.getDate("createdate")));
