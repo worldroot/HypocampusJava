@@ -50,11 +50,10 @@ public class ReadEntrepriseController implements Initializable {
 	@Override
 	public void initialize(URL url, ResourceBundle rb) {
 		cbSearch.getItems().addAll(
-			"ID",
 			"Name",
 			"Email"
 		);
-		cbSearch.setValue("ID");
+		cbSearch.setValue("Name");
 		READ();
 	}	
 	

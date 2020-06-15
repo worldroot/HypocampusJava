@@ -8,15 +8,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-
-<AnchorPane id="AnchorPane" fx:id="apU" prefHeight="400.0" prefWidth="600.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="com.hypocampus.controller.ReadUserController">
+<AnchorPane id="AnchorPane" fx:id="apU" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.hypocampus.controller.ReadUserController">
    <children>
       <AnchorPane id="AnchorPane" fx:id="apUuu" layoutX="8.0" prefHeight="706.0" prefWidth="1064.0">
          <children>
             <TableView fx:id="tabU" layoutX="33.0" layoutY="152.0" prefHeight="300.0" prefWidth="922.0">
                <columns>
-                  <TableColumn fx:id="clmUid" prefWidth="60.0" text="#" />
-                  <TableColumn fx:id="clmUun" prefWidth="210.0" text="Username" />
+                  <TableColumn fx:id="clmUid" minWidth="0.0" prefWidth="0.0" text="#" />
+                  <TableColumn fx:id="clmUun" prefWidth="270.0" text="Username" />
                   <TableColumn fx:id="clmUem" prefWidth="386.0" text="Email" />
                   <TableColumn fx:id="clmUrl" prefWidth="265.0" text="Role" />
                </columns>
